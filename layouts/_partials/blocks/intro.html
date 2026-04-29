@@ -1,0 +1,35 @@
+<section id="{{ .Params.id | default "intro" }}" class="scroll-mt-32 bg-white py-20 lg:py-24">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+    <div>
+      {{ with .Params.eyebrow }}
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ . }}</p>
+      {{ end }}
+      {{ with .Params.heading }}
+        <h2 class="mt-4 max-w-xl text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">{{ . }}</h2>
+      {{ end }}
+      <p class="mt-5 max-w-md text-base leading-7 text-deep/66">
+        privacy.fish exists for people who would rather adapt their workflow than hand over more data than necessary.
+      </p>
+    </div>
+
+    <div class="rounded-[2.5rem] border border-deep/8 bg-mist/55 p-8 shadow-[0_26px_60px_-48px_rgba(6,47,73,0.38)] sm:p-10">
+      <div class="space-y-6 text-lg leading-8 text-deep/75">
+        {{ range .Params.paragraphs }}
+          <p>{{ . | safeHTML }}</p>
+        {{ end }}
+      </div>
+
+      {{ with .Params.primary_cta_text }}
+        <div class="mt-8">
+          <a
+            href="{{ $.Params.primary_cta_url }}"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-sun px-6 py-3 text-base font-bold text-deep transition hover:bg-amber"
+          >
+            {{ . }}
+            {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-deep") }}
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+#!/bin/ksh
+
+daemon="/usr/local/bin/pfish-signup"
+daemon_user="_pfishsignup"
+env_file="/etc/pfish-signup/env"
+
+. /etc/rc.d/rc.subr
+
+rc_pre() {
+	if [[ ! -r "$env_file" ]]; then
+		echo "$env_file is missing or unreadable"
+		return 1
+	fi
+
+	set -a
+	. "$env_file"
+	set +a
+}
+
+rc_cmd $1

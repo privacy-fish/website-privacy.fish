@@ -1,0 +1,98 @@
+baseURL = "https://privacy.fish/"
+languageCode = "en"
+title = "privacy.fish"
+copyright = "privacy.fish"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+description = "Uncompromisingly private and secure email. A privacy-first email service built to minimize retained data, attack surface, and trust."
+author = "privacy.fish"
+tagline = "Uncompromisingly private and secure email"
+logo = "images/logo.svg"
+company_name = "privacy.fish"
+email = ""
+website = "https://privacy.fish/"
+signup_url = "/signup/"
+cap_site_key = "5211efb454"
+cap_widget_src = "/captcha/assets/widget.js"
+cap_wasm_src = "/captcha/assets/cap_wasm.js"
+
+
+[menus]
+
+[[menus.main]]
+name = "Home"
+url = "/#hero"
+weight = 1
+
+[[menus.main]]
+name = "Blog"
+url = "/blog/"
+weight = 2
+
+[[menus.main]]
+name = "Documentation"
+url = "/docs/"
+weight = 3
+
+[[menus.main]]
+name = "FAQ"
+url = "/faq/"
+weight = 4
+
+[[menus.main]]
+name = "Code"
+url = "https://github.com/fishprivacy"
+weight = 5
+
+[[menus.footer]]
+name = "Features"
+url = "/#features"
+weight = 1
+
+[[menus.footer]]
+name = "How it works"
+url = "/#how-it-works"
+weight = 2
+
+[[menus.footer]]
+name = "Pricing"
+url = "/#pricing"
+weight = 3
+
+[[menus.footer]]
+name = "Threat model"
+url = "/#threat-model"
+weight = 4
+
+[[menus.footer]]
+name = "Blog"
+url = "/blog/"
+weight = 5
+
+[[menus.footer]]
+name = "Documentation"
+url = "/docs/"
+weight = 6
+
+[[menus.footer]]
+name = "Company legal information"
+url = "/legal-information/"
+weight = 7
+
+[[menus.footer]]
+name = "Terms and conditions"
+url = "/terms-and-conditions/"
+weight = 8
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
+[minify]
+disableCSS = false
+disableHTML = false
+disableJS = false
+disableSVG = false

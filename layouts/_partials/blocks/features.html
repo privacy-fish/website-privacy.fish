@@ -1,0 +1,53 @@
+<section id="{{ .Params.id | default "features" }}" class="scroll-mt-32 bg-mist/55 py-20 lg:py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      {{ with .Params.eyebrow }}
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ . }}</p>
+      {{ end }}
+      {{ with .Params.heading }}
+        <h2 class="mt-4 text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">
+          {{ . }}
+        </h2>
+      {{ end }}
+      {{ with .Params.subheading }}
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-deep/68">
+          {{ . }}
+        </p>
+      {{ end }}
+    </div>
+
+    <div class="mt-16 space-y-16 lg:space-y-20">
+      {{ range $i, $group := .Params.groups }}
+        {{ $imagePosition := $group.image_position | default "right" }}
+        {{ $imageOnRight := eq $imagePosition "right" }}
+        <article class="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+          {{ with $group.image }}
+            <div class="{{ if $imageOnRight }}lg:order-2{{ end }}">
+              <div class="overflow-hidden rounded-[1.5rem]">
+                {{ partial "components/image-responsive.html" (dict
+                  "src" .
+                  "alt" $group.title
+                  "class" "aspect-[21/9] w-full object-cover lg:aspect-[4/3]"
+                  "sizes" "(min-width: 1024px) 460px, 100vw"
+                  "maxDisplayWidth" 1200
+                ) }}
+              </div>
+            </div>
+          {{ end }}
+
+          <div class="{{ if and $group.image (not $imageOnRight) }}lg:order-2{{ end }}">
+            <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep sm:text-3xl">{{ $group.title }}</h3>
+            <ul class="mt-5 grid gap-y-3">
+              {{ range $group.items }}
+                <li class="flex items-start gap-3 text-sm leading-6 text-deep/72 sm:text-base">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>
+                  <span>{{ . | safeHTML }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

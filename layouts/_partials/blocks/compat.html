@@ -1,0 +1,26 @@
+<section id="{{ .Params.id | default "compat" }}" class="scroll-mt-32 bg-white py-6">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="rounded-[2rem] border border-deep/8 bg-[linear-gradient(135deg,#ffffff_0%,#f4f8fb_58%,#fff8e8_100%)] px-6 py-6 shadow-[0_24px_60px_-48px_rgba(6,47,73,0.25)] lg:px-8">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <p class="text-xs font-bold tracking-[0.22em] text-deep/58 uppercase">
+          {{ .Params.label | default "Compatible with" }}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          {{ range .Params.items }}
+            {{ if .supported }}
+              <span class="inline-flex items-center gap-2 rounded-full border border-deep/8 bg-white px-4 py-2 text-sm font-semibold text-deep">
+                <span class="h-2 w-2 rounded-full bg-ocean"></span>
+                {{ .name }}
+              </span>
+            {{ else }}
+              <span class="inline-flex items-center gap-2 rounded-full border border-deep/8 bg-white/70 px-4 py-2 text-sm font-semibold text-deep/48">
+                <span class="h-2 w-2 rounded-full bg-amber"></span>
+                No {{ .name }}
+              </span>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

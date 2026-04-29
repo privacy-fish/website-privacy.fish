@@ -1,0 +1,82 @@
+{{ define "main" }}
+  {{ $pages := .RegularPages }}
+  {{ $isBlog := eq .Section "blog" }}
+  {{ if eq .Section "blog" }}
+    {{ $pages = .RegularPages.ByDate.Reverse }}
+  {{ else }}
+    {{ $pages = .RegularPages.ByWeight }}
+  {{ end }}
+
+  <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-14 sm:pt-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-ocean uppercase">{{ .Title }}</p>
+        <h1 class="mt-4 text-5xl font-extrabold tracking-[-0.05em] text-deep sm:text-6xl">
+          {{ with .Params.heading }}{{ . }}{{ else }}{{ .Title }}{{ end }}
+        </h1>
+        {{ with .Description }}
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-deep/68">{{ . }}</p>
+        {{ end }}
+      </div>
+
+      {{ if .Content }}
+        <div class="prose prose-lg prose-headings:font-display prose-headings:text-deep prose-a:text-ocean mt-10 max-w-3xl text-deep/75">
+          {{ .Content }}
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="bg-white py-16 lg:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {{ range $pages }}
+          <a href="{{ .RelPermalink }}" class="group flex h-full flex-col rounded-[2rem] bg-white p-7 no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]{{ if not $isBlog }} border border-deep/8{{ end }}">
+            <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+              <span>{{ if eq .Section "blog" }}Blog post{{ else }}Guide{{ end }}</span>
+              {{ if eq .Section "blog" }}
+                <span class="h-1 w-1 rounded-full bg-amber"></span>
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+              {{ end }}
+            </div>
+            <h2 class="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
+              {{ .Title }}
+            </h2>
+            <p class="mt-4 flex-1 text-base leading-7 text-deep/70">
+              {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}
+            </p>
+            <div class="mt-6 flex items-center justify-between gap-4">
+              <span class="text-sm font-semibold text-deep/52">{{ .ReadingTime }} min read</span>
+              <span class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition group-hover:text-deep">
+                Read more
+                {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
+              </span>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist/55 pt-10 pb-10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[2.25rem] border border-deep/8 bg-white px-6 py-10 shadow-[0_30px_80px_-60px_rgba(6,47,73,0.3)] sm:px-10">
+        <div class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">Next step</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-deep">Ready to use a privacy-first mailbox?</h2>
+            <p class="mt-3 max-w-2xl text-base leading-7 text-deep/68">
+              The service is designed for technical users who want stronger privacy guarantees and can work with SSH / SFTP.
+            </p>
+          </div>
+          <a
+            href="{{ .Site.Params.signup_url }}"
+            class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
+          >
+            Create Your Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

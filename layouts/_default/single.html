@@ -1,0 +1,71 @@
+{{ define "main" }}
+  {{ $isBlog := eq .Section "blog" }}
+  {{ $eyebrow := "Page" }}
+  {{ if $isBlog }}
+    {{ $eyebrow = .Date.Format "January 2, 2006" }}
+  {{ else if eq .Section "docs" }}
+    {{ $eyebrow = "Documentation" }}
+  {{ end }}
+  {{ with .Params.eyebrow }}
+    {{ $eyebrow = . }}
+  {{ end }}
+  <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-12 sm:pt-32">
+    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+      <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+        {{ with .Parent }}
+          <a href="{{ .RelPermalink }}" class="transition hover:text-deep">{{ .Title }}</a>
+          <span class="h-1 w-1 rounded-full bg-amber"></span>
+        {{ end }}
+        <span>{{ $eyebrow }}</span>
+      </div>
+
+      <h1 class="mt-5 max-w-4xl text-5xl sm:text-6xl font-extrabold tracking-[-0.05em] text-deep">
+        {{ .Title }}
+      </h1>
+
+      {{ with .Description }}
+        <p class="mt-5 max-w-4xl text-[1.4rem] leading-10 text-deep/68">{{ . }}</p>
+      {{ end }}
+
+      {{ if ne .Params.show_meta false }}
+        <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-deep/54">
+          <span>{{ .ReadingTime }} min read</span>
+          {{ if .Date }}
+            <span class="h-1 w-1 self-center rounded-full bg-deep/24"></span>
+            <span>{{ .Date.Format "January 2, 2006" }}</span>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="bg-white pb-20">
+    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+      <div class="py-10">
+        <article class="prose prose-lg prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
+          {{ .Content }}
+        </article>
+      </div>
+
+      {{ if ne .Params.show_cta false }}
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          {{ with .Parent }}
+            <a
+              href="{{ .RelPermalink }}"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
+            >
+              {{ partial "components/icon.html" (dict "name" "arrow-left" "class" "h-4 w-4") }}
+              Back to {{ .Title }}
+            </a>
+          {{ end }}
+          <a
+            href="{{ .Site.Params.signup_url }}"
+            class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
+          >
+            Create Your Account
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

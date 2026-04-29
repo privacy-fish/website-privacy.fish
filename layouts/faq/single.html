@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <div class="pt-10 sm:pt-12">
+    {{ partial "blocks/blocks" . }}
+  </div>
+
+  {{ if .Content }}
+    <section class="bg-white pb-20">
+      <div class="mx-auto max-w-5xl px-6 lg:px-8">
+        <div class="py-10">
+          <article class="prose prose-lg prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
+            {{ .Content }}
+          </article>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

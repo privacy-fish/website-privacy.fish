@@ -1,0 +1,27 @@
+<section id="{{ .Params.id | default "tradeoffs" }}" class="scroll-mt-32 bg-[linear-gradient(180deg,#ffffff_0%,#fff8e8_100%)] py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      {{ with .Params.eyebrow }}
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ . }}</p>
+      {{ end }}
+      {{ with .Params.heading }}
+        <h2 class="mt-4 text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">{{ . }}</h2>
+      {{ end }}
+      {{ with .Params.subheading }}
+        <p class="mt-5 text-lg leading-8 text-deep/75">{{ . }}</p>
+      {{ end }}
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {{ range .Params.items }}
+        <article class="rounded-[1.8rem] border border-amber/20 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(244,167,12,0.38)]">
+          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-sun/35 text-amber">
+            {{ partial "components/icon.html" (dict "name" (.icon | default "scale-balanced") "class" "h-5 w-5 text-amber") }}
+          </div>
+          <h3 class="mt-4 text-lg font-extrabold tracking-[-0.02em] text-deep">{{ .title }}</h3>
+          <p class="mt-2 text-base leading-7 text-deep/72">{{ .text }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

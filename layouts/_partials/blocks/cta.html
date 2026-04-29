@@ -1,0 +1,71 @@
+<section
+  id="{{ .Params.id | default "contact" }}"
+  class="scroll-mt-32 relative overflow-hidden bg-[linear-gradient(180deg,#edf5fb_0%,#ffffff_100%)] pt-10 pb-10"
+>
+  <div class="absolute top-0 right-0 h-56 w-56 rounded-full bg-sun/18 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 h-56 w-56 rounded-full bg-ocean/12 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid gap-8 rounded-[2.5rem] border border-deep/8 bg-white px-6 py-10 shadow-[0_34px_110px_-66px_rgba(6,47,73,0.35)] sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-12">
+      <div>
+        {{ with .Params.eyebrow }}
+          <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.heading }}
+          <h2 class="mt-4 max-w-3xl text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">
+            {{ . | safeHTML }}
+          </h2>
+        {{ end }}
+        {{ with .Params.copy }}
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-deep/72">
+            {{ . }}
+          </p>
+        {{ end }}
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          {{ with .Params.primary_cta_text }}
+            {{ $primaryUrl := $.Params.primary_cta_url }}
+            {{ $isPrimaryExternal := or (strings.HasPrefix $primaryUrl "http://") (strings.HasPrefix $primaryUrl "https://") }}
+            <a
+              href="{{ $primaryUrl }}"
+              {{ if $isPrimaryExternal }}target="_blank" rel="noreferrer"{{ end }}
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
+            >
+              {{ . }}
+              {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
+            </a>
+          {{ end }}
+          {{ with .Params.secondary_cta_text }}
+            {{ $secondaryUrl := $.Params.secondary_cta_url }}
+            {{ $isSecondaryExternal := or (strings.HasPrefix $secondaryUrl "http://") (strings.HasPrefix $secondaryUrl "https://") }}
+            <a
+              href="{{ $secondaryUrl }}"
+              {{ if $isSecondaryExternal }}target="_blank" rel="noreferrer"{{ end }}
+              class="inline-flex items-center justify-center rounded-full border border-deep/12 bg-white px-7 py-3.5 text-base font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
+            >
+              {{ . }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-deep/8 bg-mist/60 p-6">
+        <p class="text-sm font-bold tracking-[0.16em] text-ocean uppercase">Before you sign up</p>
+        <ul class="mt-5 space-y-3">
+          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
+            <span>Be comfortable using SSH and SFTP from your own devices.</span>
+          </li>
+          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
+            <span>Generate and safely store backup SSH keys for recovery.</span>
+          </li>
+          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
+            <span>Expect local-first mail handling rather than webmail convenience.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

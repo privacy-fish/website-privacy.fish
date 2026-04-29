@@ -1,0 +1,22 @@
+{{- $images := slice -}}
+{{- $paths := slice -}}
+
+{{- with .Params.blocks -}}
+  {{- range . -}}
+    {{- with .image -}}
+      {{- $paths = $paths | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with or .Params.logo site.Home.Params.logo site.Params.logo -}}
+  {{- $paths = $paths | append . -}}
+{{- end -}}
+
+{{- range $paths -}}
+  {{- $path := strings.TrimPrefix "/" . -}}
+  {{- with resources.GetMatch $path -}}
+    {{- $images = $images | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $images -}}

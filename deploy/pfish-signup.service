@@ -1,0 +1,26 @@
+[Unit]
+Description=privacy.fish signup backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pfish-signup
+Group=pfish-signup
+ExecStart=/usr/local/bin/pfish-signup
+Restart=on-failure
+EnvironmentFile=/etc/pfish-signup/env
+
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+ReadWritePaths=/var/lib/pfish-signup
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallFilter=@system-service ~@privileged ~@resources
+
+[Install]
+WantedBy=multi-user.target

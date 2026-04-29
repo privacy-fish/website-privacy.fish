@@ -1,0 +1,57 @@
+<footer class="border-t border-deep/8 bg-[linear-gradient(180deg,#ffffff_0%,#edf7fd_100%)]">
+  {{ $logo := or site.Home.Params.logo .Site.Params.logo }}
+  <div class="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-8 lg:pt-20">
+    <div class="flex flex-col gap-12 border-b border-deep/8 pb-12 lg:flex-row lg:items-start lg:justify-between">
+      <div class="max-w-xl lg:flex-none">
+        <a href="/" class="inline-block no-underline">
+          {{ partial "components/image-responsive.html" (dict
+            "src" $logo
+            "alt" (printf "%s logo" .Site.Title)
+            "class" "h-16 w-auto sm:h-20"
+            "sizes" "240px"
+            "loading" "lazy"
+          ) }}
+        </a>
+
+        <p class="mt-6 max-w-lg text-base leading-8 text-deep/70">
+          A privacy-first email service built to minimize retained data, attack surface, and trust. Private and secure access to the internet is a human right.
+        </p>
+<!-- 
+        <a
+          href="{{ .Site.Params.signup_url }}"
+          class="mt-7 inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white shadow-[0_18px_38px_-18px_rgba(52,142,195,0.82)] transition hover:bg-deep"
+        >
+          Create Your Account
+        </a> -->
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:ml-auto lg:flex-none lg:grid-cols-[max-content_minmax(18rem,22rem)] lg:gap-20">
+        <div>
+          <h2 class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">Resources</h2>
+          <nav class="mt-5 space-y-3 text-sm font-semibold text-deep/68">
+            <a href="/blog/" class="block transition hover:text-ocean">Blog</a>
+            <a href="/docs/" class="block transition hover:text-ocean">Documentation</a>
+            <a href="https://github.com/fishprivacy" target="_blank" rel="noreferrer" class="block transition hover:text-ocean">Code</a>
+            <a href="mailto:{{ .Site.Params.email }}" class="block transition hover:text-ocean">{{ .Site.Params.email }}</a>
+          </nav>
+        </div>
+
+        <div>
+          <h2 class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">Legal</h2>
+          <nav class="mt-5 space-y-3 text-sm font-semibold text-deep/68">
+            <a href="/legal-information/" class="block transition hover:text-ocean">Company legal information</a>
+            <a href="/terms-and-conditions/" class="block transition hover:text-ocean">Terms and conditions</a>
+          </nav>
+          <p class="mt-6 text-sm leading-6 text-deep/54">
+            Hosted in Norway. Built to retain as little useful data as possible.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 pt-6 text-sm text-deep/58 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {{ now.Year }} {{ .Site.Params.company_name }}</p>
+      <p>Privacy-first email, by design.</p>
+    </div>
+  </div>
+</footer>

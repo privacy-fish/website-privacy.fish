@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-deep: #062f49;
+  --color-deep-soft: #0a4166;
+  --color-ocean: #348ec3;
+  --color-ocean-light: #5aa8d6;
+  --color-ocean-soft: #e6f1f9;
+  --color-sun: #ffc941;
+  --color-sun-light: #ffdb7a;
+  --color-amber: #f4a70c;
+  --color-amber-light: #ffc34d;
+  --color-cream: #fff8e8;
+  --color-mist: #f4f8fb;
+  --color-ink: #062f49;
+  --color-bubble: #eaf6ff;
+  --color-coral: #ff8c61;
+  --color-seafoam: #b4e4d8;
+  --color-slate: #d8e5ef;
+
+  --font-body: "Open Sans", sans-serif;
+  --font-display: "Open Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: #f7fafc;
+    color: var(--color-deep);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+
+  img {
+    display: block;
+  }
+
+  ::selection {
+    background: var(--color-sun);
+    color: var(--color-deep);
+  }
+}

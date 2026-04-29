@@ -1,0 +1,48 @@
+<section id="{{ .Params.id | default "audience" }}" class="scroll-mt-32 bg-white py-20 lg:py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      {{ with .Params.eyebrow }}
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ . }}</p>
+      {{ end }}
+      {{ with .Params.heading }}
+        <h2 class="mt-4 text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">{{ . }}</h2>
+      {{ end }}
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      <article class="rounded-[2.25rem] border border-ocean/18 bg-mist/55 p-8 shadow-[0_24px_70px_-54px_rgba(52,142,195,0.38)]">
+        <div class="relative flex items-center gap-3">
+          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-ocean text-white">
+            {{ partial "components/icon.html" (dict "name" "circle-check" "class" "h-6 w-6 text-white") }}
+          </div>
+          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.for_title | default "Who is it for?" }}</h3>
+        </div>
+        <ul class="relative mt-6 space-y-3">
+          {{ range .Params.for_items }}
+            <li class="flex items-start gap-3 text-base leading-7 text-deep/80">
+              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
+              <span>{{ . }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </article>
+
+      <article class="rounded-[2.25rem] border border-amber/20 bg-[linear-gradient(180deg,#ffffff_0%,#fff8e8_100%)] p-8 shadow-[0_24px_70px_-54px_rgba(244,167,12,0.35)]">
+        <div class="relative flex items-center gap-3">
+          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber text-white">
+            {{ partial "components/icon.html" (dict "name" "circle-xmark" "class" "h-6 w-6 text-white") }}
+          </div>
+          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.not_for_title | default "Who it is not for" }}</h3>
+        </div>
+        <ul class="relative mt-6 space-y-3">
+          {{ range .Params.not_for_items }}
+            <li class="flex items-start gap-3 text-base leading-7 text-deep/80">
+              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>
+              <span>{{ . }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
