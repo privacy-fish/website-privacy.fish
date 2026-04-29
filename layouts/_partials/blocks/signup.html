@@ -49,8 +49,8 @@
       <p class="mt-1 text-sm leading-6 text-deep/64">
         Lowercase letters, digits, dots and hyphens. 1 to 31 characters. Must start and end with a letter or digit.
       </p>
-      <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-stretch">
-        <div class="flex min-w-0 flex-1 flex-col rounded-2xl border border-deep/12 bg-mist/40 transition focus-within:border-ocean focus-within:bg-white sm:flex-row sm:items-stretch">
+      <div class="mt-3">
+        <div class="flex min-w-0 flex-col rounded-2xl border border-deep/12 bg-mist/40 transition focus-within:border-ocean focus-within:bg-white sm:flex-row sm:items-stretch">
           <input
             id="username"
             name="username"
@@ -66,13 +66,6 @@
             @privacy.fish
           </span>
         </div>
-        <button
-          type="submit"
-          data-signup-intent="check"
-          class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-5 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {{ .Params.check_text | default "Check availability" }}
-        </button>
       </div>
       <p class="mt-3 flex items-start gap-2 text-sm leading-6 text-deep/60">
         {{ partial "components/icon.html" (dict "name" "circle-info" "class" "h-4 w-4 mt-0.5 shrink-0 text-ocean") }}
@@ -83,22 +76,43 @@
         data-username-error
       ></p>
 
-      <div class="mt-5 rounded-2xl border border-deep/10 bg-mist/40 p-4">
-        {{ if $capSiteKey }}
-          <cap-widget
-            id="cap"
-            data-cap-api-endpoint="{{ $capEndpoint }}"
-          ></cap-widget>
-        {{ else }}
-          <p class="text-sm leading-6 text-deep/64">
-            Captcha is required before availability checks. The local captcha widget will appear here once it is enabled.
-          </p>
-        {{ end }}
+      <div class="mt-6 overflow-hidden rounded-[1.75rem] border border-deep/10 bg-[linear-gradient(135deg,#f7fbff_0%,#ffffff_52%,#fff8e6_100%)] shadow-[0_20px_60px_-52px_rgba(6,47,73,0.55)]">
+        <div class="grid gap-0 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-stretch">
+          <div class="p-4 sm:p-5">
+            <div class="flex items-center gap-2 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+              <span class="h-2 w-2 rounded-full bg-amber"></span>
+              <span>Human check</span>
+            </div>
+            <div class="mt-3 rounded-2xl border border-deep/10 bg-white p-4">
+              {{ if $capSiteKey }}
+                <cap-widget
+                  id="cap"
+                  data-cap-api-endpoint="{{ $capEndpoint }}"
+                ></cap-widget>
+              {{ else }}
+                <p class="text-sm leading-6 text-deep/64">
+                  Captcha is required before availability checks. The local captcha widget will appear here once it is enabled.
+                </p>
+              {{ end }}
+            </div>
+            <p class="mt-3 hidden text-sm leading-6 text-amber" data-captcha-status></p>
+          </div>
+          <div class="border-t border-deep/8 bg-white/58 p-4 sm:p-5 lg:border-t-0 lg:border-l">
+            <p class="text-sm font-bold text-deep">Check after solving</p>
+            <p class="mt-1 text-sm leading-6 text-deep/56" data-tries-status>
+              Solve the captcha once, then you get five username or signup attempts.
+            </p>
+            <button
+              type="submit"
+              data-signup-intent="check"
+              class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ocean px-5 py-3 text-sm font-bold text-white transition hover:bg-deep disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {{ .Params.check_text | default "Check availability" }}
+              {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
+            </button>
+          </div>
+        </div>
       </div>
-      <p class="mt-2 hidden text-sm leading-6 text-amber" data-captcha-status></p>
-      <p class="mt-2 text-sm leading-6 text-deep/56" data-tries-status>
-        Solve the captcha once, then you get five username or signup attempts.
-      </p>
       <p
         class="mt-3 hidden text-sm font-bold leading-6"
         data-availability-status

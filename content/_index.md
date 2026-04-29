@@ -49,6 +49,7 @@ blocks:
     id: intro
     eyebrow: "Why we exist"
     heading: "Email, the way it should be"
+    lead: "privacy.fish exists for people who would rather adapt their workflow than hand over more data than necessary."
     paragraphs:
       - "A free and open society is built upon privacy. If people don't have the right to decide for themselves exactly when and with whom they want to share their thoughts and ideas, then all other rights are at risk."
       - "Every human being has the right to access the internet. An email address is required to sign up for almost all modern online services."

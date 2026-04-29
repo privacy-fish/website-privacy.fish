@@ -7,9 +7,9 @@
       {{ with .Params.heading }}
         <h2 class="mt-4 max-w-xl text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">{{ . }}</h2>
       {{ end }}
-      <p class="mt-5 max-w-md text-base leading-7 text-deep/66">
-        privacy.fish exists for people who would rather adapt their workflow than hand over more data than necessary.
-      </p>
+      {{ with .Params.lead }}
+        <div class="mt-5 max-w-md text-base leading-7 text-deep/66">{{ . | markdownify }}</div>
+      {{ end }}
     </div>
 
     <div class="rounded-[2.5rem] border border-deep/8 bg-mist/55 p-8 shadow-[0_26px_60px_-48px_rgba(6,47,73,0.38)] sm:p-10">
