@@ -1,5 +1,5 @@
 baseURL = "https://privacy.fish/"
-languageCode = "en"
+locale = "en"
 title = "privacy.fish"
 copyright = "privacy.fish"
 enableRobotsTXT = true
