@@ -167,7 +167,6 @@
     state.checkedUsername = "";
     state.available = false;
     setMessage(availabilityStatus, null);
-    setKeySectionVisible(false);
   }
 
   function setKeySectionVisible(visible) {
@@ -283,7 +282,6 @@
       updateTriesStatus();
       state.checkedUsername = name;
       state.available = Boolean(data.available);
-      setKeySectionVisible(state.available);
       setMessage(
         availabilityStatus,
         data.available
@@ -391,7 +389,7 @@
       state.submitIntent = "check";
       credentialInput.value = "";
       resetAvailability();
-      setKeySectionVisible(false);
+      setKeySectionVisible(true);
       clearCapToken();
       renderHighlight();
       updateTriesStatus();
@@ -401,6 +399,7 @@
   }
 
   renderHighlight();
+  setKeySectionVisible(true);
   updateTriesStatus();
   refreshSubmit();
 })();
