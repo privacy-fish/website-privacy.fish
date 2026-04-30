@@ -104,7 +104,7 @@
           <button
             type="submit"
             data-signup-intent="check"
-            class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-5 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean disabled:cursor-not-allowed disabled:opacity-60"
+            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-5 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean disabled:cursor-not-allowed disabled:opacity-60"
           >
             {{ .Params.check_text | default "Check availability" }}
             {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
@@ -167,7 +167,7 @@
           <button
             type="submit"
             data-signup-intent="reserve"
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep disabled:cursor-not-allowed disabled:opacity-60"
+            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep disabled:cursor-not-allowed disabled:opacity-60"
           >
             {{ .Params.submit_text | default "Reserve account for 30 days" }}
             {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
@@ -217,7 +217,7 @@
         {{ end }}
         <button
           type="button"
-          class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
+          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
           data-new-signup
         >
           Reserve another account
