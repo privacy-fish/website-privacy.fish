@@ -134,6 +134,11 @@
           Only <code class="font-mono text-ocean">ssh-ed25519</code> keys are accepted. Each key authorizes one device. Mail is age-encrypted to these keys, so only you can read it.
         </p>
         <div class="relative mt-3">
+          <pre
+            aria-hidden="true"
+            data-key-overlay
+            class="font-mono pointer-events-none absolute inset-0 z-0 m-0 overflow-y-auto rounded-2xl border border-transparent bg-mist/40 px-4 py-3 text-sm leading-6 text-deep break-all whitespace-pre-wrap [scrollbar-gutter:stable]"
+          ></pre>
           <textarea
             id="ssh_keys"
             name="ssh_keys"
@@ -143,14 +148,10 @@
             autocorrect="off"
             autocapitalize="off"
             placeholder="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... laptop&#10;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... phone"
-            class="font-mono block w-full rounded-2xl border border-deep/12 bg-mist/40 px-4 py-3 text-sm leading-6 text-transparent caret-deep placeholder-deep/35 transition focus:border-ocean focus:bg-white focus:outline-none break-all whitespace-pre-wrap [scrollbar-gutter:stable]"
+            class="font-mono relative z-10 block w-full rounded-2xl border border-deep/12 bg-transparent px-4 py-3 text-sm leading-6 text-transparent caret-deep placeholder-deep/35 transition focus:border-ocean focus:bg-transparent focus:outline-none break-all whitespace-pre-wrap [scrollbar-gutter:stable]"
           ></textarea>
-          <pre
-            aria-hidden="true"
-            data-key-overlay
-            class="font-mono pointer-events-none absolute inset-0 m-0 overflow-y-auto rounded-2xl border border-transparent px-4 py-3 text-sm leading-6 text-deep break-all whitespace-pre-wrap [scrollbar-gutter:stable]"
-          ></pre>
         </div>
+        <p class="mt-2 hidden text-sm leading-6 text-red-600" data-key-error></p>
         <div class="mt-3 flex items-start justify-between gap-3 text-sm leading-6 text-deep/60">
           <p class="flex items-start gap-2">
             {{ partial "components/icon.html" (dict "name" "key" "class" "h-4 w-4 mt-0.5 shrink-0 text-ocean") }}
@@ -184,46 +185,46 @@
         </div>
         <p class="mt-4 hidden text-sm leading-6 text-amber" data-form-status></p>
       </div>
-    </form>
 
-    <section
-      class="mt-10 hidden rounded-[2rem] border border-ocean/18 bg-white p-6 shadow-[0_30px_80px_-60px_rgba(6,47,73,0.32)] sm:p-8 lg:p-10"
-      data-signup-result
-      tabindex="-1"
-    >
-      <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ .Params.success_eyebrow | default "Reserved" }}</p>
-      <h2 class="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-deep sm:text-4xl">{{ .Params.success_heading | default "What happens now" }}</h2>
-      <p class="mt-4 text-lg leading-8 text-deep/68">
-        {{ .Params.success_copy | default "Your account is reserved for 30 days. Include the payment reference below whenever or however you pay. We manually create accounts within 24 hours after receiving payment." }}
-      </p>
-      <div class="mt-6 rounded-2xl bg-deep p-5 text-white">
-        <p class="text-xs font-bold tracking-[0.22em] text-white/58 uppercase">Payment reference</p>
-        <p class="font-mono mt-3 break-all text-2xl font-extrabold tracking-[0.08em]" data-payment-reference></p>
-      </div>
-      <div class="mt-6 grid gap-4 text-sm leading-6 text-deep/68 sm:grid-cols-3">
-        <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Pay € 20</strong>Use this reference with bank transfer, crypto, cash by mail, or voucher payment.</p>
-        <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Manual provisioning</strong>We create your account after payment is received and verified.</p>
-        <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Association deleted</strong>The payment reference to account link is deleted after provisioning.</p>
-      </div>
-      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-        {{ with .Params.help_url }}
-          <a
-            href="{{ . }}"
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
+      <section
+        class="mt-8 hidden rounded-[2rem] border border-ocean/18 bg-white p-6 shadow-[0_30px_80px_-60px_rgba(6,47,73,0.32)] sm:p-8 lg:p-10"
+        data-signup-result
+        tabindex="-1"
+      >
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ .Params.success_eyebrow | default "Reserved" }}</p>
+        <h2 class="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-deep sm:text-4xl">{{ .Params.success_heading | default "What happens now" }}</h2>
+        <p class="mt-4 text-lg leading-8 text-deep/68">
+          {{ .Params.success_copy | default "Your account is reserved for 30 days. Include the payment reference below whenever or however you pay. We manually create accounts within 24 hours after receiving payment." }}
+        </p>
+        <div class="mt-6 rounded-2xl bg-deep p-5 text-white">
+          <p class="text-xs font-bold tracking-[0.22em] text-white/58 uppercase">Payment reference</p>
+          <p class="font-mono mt-3 break-all text-2xl font-extrabold tracking-[0.08em]" data-payment-reference></p>
+        </div>
+        <div class="mt-6 grid gap-4 text-sm leading-6 text-deep/68 sm:grid-cols-3">
+          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Pay € 20</strong>Use this reference with bank transfer, crypto, cash by mail, or voucher payment.</p>
+          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Manual provisioning</strong>We create your account after payment is received and verified.</p>
+          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Association deleted</strong>The payment reference to account link is deleted after provisioning.</p>
+        </div>
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          {{ with .Params.help_url }}
+            <a
+              href="{{ . }}"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
+            >
+              {{ $.Params.help_text | default "Read the Getting Started guide" }}
+              {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
+            </a>
+          {{ end }}
+          <button
+            type="button"
+            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
+            data-new-signup
           >
-            {{ $.Params.help_text | default "Read the Getting Started guide" }}
-            {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
-          </a>
-        {{ end }}
-        <button
-          type="button"
-          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
-          data-new-signup
-        >
-          Reserve another account
-        </button>
-      </div>
-    </section>
+            Reserve another account
+          </button>
+        </div>
+      </section>
+    </form>
   </div>
 </section>
 

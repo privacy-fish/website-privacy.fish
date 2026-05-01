@@ -8,6 +8,7 @@
   var captchaStatus = form.querySelector("[data-captcha-status]");
   var triesStatus = form.querySelector("[data-tries-status]");
   var formStatus = form.querySelector("[data-form-status]");
+  var keyError = form.querySelector("[data-key-error]");
   var credentialInput = form.querySelector("[data-credential]");
   var keySection = form.querySelector("[data-key-section]");
   var textarea = form.querySelector("#ssh_keys");
@@ -108,10 +109,23 @@
 
   function validateKeys() {
     var keys = parseKeys();
+    var invalid = keys.some(function (k) { return !k.ok; }) || keys.length > 10;
     counter.textContent = keys.length + " / 10";
-    counter.classList.toggle("text-amber", keys.length > 10);
+    counter.classList.toggle("text-amber", invalid);
+    counter.classList.toggle("text-deep/52", !invalid);
+    textarea.classList.toggle("border-red-600", invalid);
+    textarea.classList.toggle("border-deep/12", !invalid);
+    overlay.classList.toggle("border-red-600/35", invalid);
+    overlay.classList.toggle("border-transparent", !invalid);
+    if (keys.length > 10) {
+      setMessage(keyError, "Add no more than 10 SSH public keys.", "bad");
+    } else if (invalid) {
+      setMessage(keyError, "Only complete ssh-ed25519 public keys are accepted.", "bad");
+    } else {
+      setMessage(keyError, null);
+    }
     if (keys.length === 0) return true;
-    return keys.every(function (k) { return k.ok; }) && keys.length <= 10;
+    return !invalid;
   }
 
   function escapeHtml(s) {
@@ -126,11 +140,9 @@
     var parts = line.split(/\s+/);
     var type = parts[0];
     var blob = parts[1];
-    if (!blob) return "in-progress";
     if (type !== "ssh-ed25519") return "bad";
-    if (blob.length < 68) {
-      return /^[A-Za-z0-9+/]*$/.test(blob) ? "in-progress" : "bad";
-    }
+    if (!blob) return "in-progress";
+    if (blob.length < 68) return "bad";
     if (!/^[A-Za-z0-9+/]+={0,2}$/.test(blob)) return "bad";
     try {
       if (atob(blob).length !== 51) return "bad";
@@ -142,9 +154,10 @@
     var rawLines = textarea.value.split(/\r?\n/);
     overlay.innerHTML = rawLines.map(function (line) {
       var safe = escapeHtml(line);
-      return classifyLine(line) === "bad"
-        ? '<span class="text-red-600">' + safe + '</span>'
-        : safe;
+      var cls = classifyLine(line);
+      if (cls === "bad") return '<span class="font-semibold text-red-600">' + safe + '</span>';
+      if (cls === "in-progress") return '<span class="text-deep/45">' + safe + '</span>';
+      return '<span class="text-deep">' + safe + '</span>';
     }).join("\n") + "\n";
   }
 
@@ -327,12 +340,12 @@
       state.triesLeft = data.tries_left;
       updateTriesStatus();
       if (paymentReference) paymentReference.textContent = data.payment_reference;
-      form.hidden = true;
       if (result) {
         result.classList.remove("hidden");
         result.focus({ preventScroll: true });
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
       }
+      submit.disabled = true;
+      checkButton.disabled = true;
     } catch (err) {
       if (err.code === "credential_invalid" || err.code === "credential_exhausted") {
         state.credential = "";
@@ -382,7 +395,6 @@
   if (newSignup) {
     newSignup.addEventListener("click", function () {
       form.reset();
-      form.hidden = false;
       if (result) result.classList.add("hidden");
       state.credential = "";
       state.triesLeft = 0;
