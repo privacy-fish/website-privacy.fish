@@ -8,7 +8,7 @@
         <h2 class="mt-4 text-4xl font-extrabold tracking-[-0.04em] text-deep sm:text-5xl">{{ . }}</h2>
       {{ end }}
       {{ with .Params.subheading }}
-        <p class="mt-5 text-lg leading-8 text-deep/75">{{ . }}</p>
+        <div class="mt-5 text-lg leading-8 text-deep/75 [&_a]:font-bold [&_a]:text-ocean [&_a]:underline [&_a]:decoration-ocean/30 [&_a]:underline-offset-4 [&_a:hover]:text-deep [&_a:hover]:decoration-deep/40">{{ . | markdownify }}</div>
       {{ end }}
     </div>
 
@@ -19,7 +19,7 @@
             {{ partial "components/icon.html" (dict "name" (.icon | default "scale-balanced") "class" "h-5 w-5 text-amber") }}
           </div>
           <h3 class="mt-4 text-lg font-extrabold tracking-[-0.02em] text-deep">{{ .title }}</h3>
-          <p class="mt-2 text-base leading-7 text-deep/72">{{ .text }}</p>
+          <div class="mt-2 text-base leading-7 text-deep/72 [&_a]:font-bold [&_a]:text-ocean [&_a]:underline [&_a]:decoration-ocean/30 [&_a]:underline-offset-4 [&_a:hover]:text-deep [&_a:hover]:decoration-deep/40">{{ .text | markdownify }}</div>
         </article>
       {{ end }}
     </div>
