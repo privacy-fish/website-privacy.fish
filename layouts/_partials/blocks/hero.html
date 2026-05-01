@@ -10,13 +10,13 @@
 
 <section
   id="{{ .Params.id | default "hero" }}"
-  class="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_72%,#f7fafc_100%)] pt-28 pb-18 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24"
+  class="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_72%,#f7fafc_100%)] pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36 lg:pb-14"
 >
   <div class="absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top_right,rgba(52,142,195,0.14),transparent_42%)]"></div>
   <div class="absolute right-0 top-18 hidden h-64 w-64 rounded-full bg-sun/18 blur-3xl lg:block"></div>
   <div class="absolute left-[-4rem] top-36 hidden h-40 w-40 rounded-full bg-ocean/10 blur-3xl lg:block"></div>
 
-  <div class="relative mx-auto flex flex-col lg:flex-row justify-between max-w-7xl gap-10 px-4 sm:px-6  lg:items-center lg:gap-14 lg:px-8">
+  <div class="relative mx-auto flex max-w-7xl flex-col justify-between gap-10 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-14 lg:px-8">
     <div class="w-full max-w-2xl">
       {{ with .Params.eyebrow }}
         <div class="inline-flex items-center gap-2 rounded-full border border-ocean/18 bg-white px-4 py-2 text-[0.72rem] font-bold tracking-[0.22em] text-ocean uppercase shadow-[0_16px_32px_-24px_rgba(6,47,73,0.32)]">
@@ -103,4 +103,31 @@
       </div>
     </div>
   </div>
+
+  {{ with .Params.compat }}
+    <div id="{{ .id | default "compat" }}" class="relative mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-full border border-deep/8 bg-white/88 px-4 py-3 shadow-[0_24px_60px_-52px_rgba(6,47,73,0.3)] ring-1 ring-white/70 backdrop-blur sm:px-5">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <p class="shrink-0 text-[0.68rem] font-bold tracking-[0.22em] text-deep/54 uppercase">
+            {{ .label | default "Compatible with" }}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {{ range .items }}
+              {{ if .supported }}
+                <span class="inline-flex items-center gap-2 rounded-full border border-deep/8 bg-white px-3 py-1.5 text-xs font-semibold text-deep">
+                  <span class="h-1.5 w-1.5 rounded-full bg-ocean"></span>
+                  {{ .name }}
+                </span>
+              {{ else }}
+                <span class="inline-flex items-center gap-2 rounded-full border border-deep/8 bg-white/72 px-3 py-1.5 text-xs font-semibold text-deep/48">
+                  <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+                  No {{ .name }}
+                </span>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
 </section>

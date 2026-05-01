@@ -28,23 +28,22 @@ blocks:
     price:
       value: "20,00 € One time payment"
       label: "One registration fee. No subscriptions and no recurring costs."
-
-  - block: compat
-    id: compat
-    label: "Compatible with"
-    items:
-      - name: "Command Line"
-        supported: true
-      - name: "Linux"
-        supported: true
-      - name: "macOS"
-        supported: true
-      - name: "Windows"
-        supported: true
-      - name: "Android"
-        supported: true
-      - name: "iPhone support"
-        supported: false
+    compat:
+      id: compat
+      label: "Compatible with"
+      items:
+        - name: "Command Line"
+          supported: true
+        - name: "Linux"
+          supported: true
+        - name: "macOS"
+          supported: true
+        - name: "Windows"
+          supported: true
+        - name: "Android"
+          supported: true
+        - name: "iPhone support"
+          supported: false
 
   - block: intro
     id: intro
