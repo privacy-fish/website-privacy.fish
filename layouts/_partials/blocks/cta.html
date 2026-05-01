@@ -49,23 +49,23 @@
         </div>
       </div>
 
-      <div class="rounded-[2rem] border border-deep/8 bg-mist/60 p-6">
-        <p class="text-sm font-bold tracking-[0.16em] text-ocean uppercase">Before you sign up</p>
-        <ul class="mt-5 space-y-3">
-          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
-            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
-            <span>Be comfortable using SSH and SFTP from your own devices.</span>
-          </li>
-          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
-            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
-            <span>Generate and safely store backup SSH keys for recovery.</span>
-          </li>
-          <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
-            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
-            <span>Expect local-first mail handling rather than webmail convenience.</span>
-          </li>
-        </ul>
-      </div>
+      {{ if or .Params.checklist_heading .Params.checklist_items }}
+        <div class="rounded-[2rem] border border-deep/8 bg-mist/60 p-6">
+          {{ with .Params.checklist_heading }}
+            <p class="text-sm font-bold tracking-[0.16em] text-ocean uppercase">{{ . }}</p>
+          {{ end }}
+          {{ with .Params.checklist_items }}
+            <ul class="mt-5 space-y-3">
+              {{ range . }}
+                <li class="flex items-start gap-3 text-sm leading-7 text-deep/75">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ocean"></span>
+                  <span>{{ . }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
   </div>
 </section>

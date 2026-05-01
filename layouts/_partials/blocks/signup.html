@@ -46,18 +46,18 @@
           <div>
             <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
               <span class="flex h-7 w-7 items-center justify-center rounded-full bg-amber text-center leading-none tracking-normal text-white">1</span>
-              <span>Human check first</span>
+              <span>{{ .Params.human_step_label }}</span>
             </div>
-            <h2 class="mt-4 text-2xl font-extrabold tracking-[-0.03em] text-deep">Prove you are human before checking usernames.</h2>
+            <h2 class="mt-4 text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.human_heading }}</h2>
             <p class="mt-2 text-sm leading-6 text-deep/62" data-tries-status>
-              Solve the captcha once, then you get five username or signup attempts.
+              {{ .Params.human_copy }}
             </p>
             <p class="mt-2 hidden text-sm leading-6 text-amber" data-captcha-status></p>
           </div>
           <div class="rounded-2xl border border-deep/10 bg-white p-4 shadow-[0_18px_46px_-42px_rgba(6,47,73,0.5)]">
             <div class="flex items-center gap-2 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
               <span class="h-2 w-2 rounded-full bg-amber"></span>
-              <span>Captcha</span>
+              <span>{{ .Params.captcha_label }}</span>
             </div>
             <div class="mt-3">
               {{ if $capSiteKey }}
@@ -67,7 +67,7 @@
                 ></cap-widget>
               {{ else }}
                 <p class="text-sm leading-6 text-deep/64">
-                  Captcha is required before availability checks. The local captcha widget will appear here once it is enabled.
+                  {{ .Params.captcha_disabled_copy }}
                 </p>
               {{ end }}
             </div>
@@ -78,11 +78,11 @@
       <div class="mt-8 rounded-[1.75rem] border border-deep/8 bg-mist/35 p-5 sm:p-6">
         <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
           <span class="flex h-7 w-7 items-center justify-center rounded-full bg-amber text-center leading-none tracking-normal text-white">2</span>
-          <span>Choose your username</span>
+          <span>{{ .Params.username_step_label }}</span>
         </div>
-        <label for="username" class="mt-5 block text-base font-bold text-deep">Desired email address</label>
+        <label for="username" class="mt-5 block text-base font-bold text-deep">{{ .Params.username_label }}</label>
         <p class="mt-1 text-sm leading-6 text-deep/64">
-          Lowercase letters, digits, dots and hyphens. 1 to 31 characters. Must start and end with a letter or digit.
+          {{ .Params.username_help }}
         </p>
         <div class="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-stretch">
           <div class="flex min-w-0 flex-col rounded-2xl border border-deep/12 bg-white transition focus-within:border-ocean sm:flex-row sm:items-stretch">
@@ -94,11 +94,11 @@
               autocomplete="off"
               spellcheck="false"
               pattern="^[a-z0-9](?:[a-z0-9.-]{0,29}[a-z0-9])?$"
-              placeholder="john.doe"
+              placeholder="{{ .Params.username_placeholder }}"
               class="font-mono w-full rounded-2xl bg-transparent px-4 py-3 text-base text-deep placeholder-deep/35 focus:outline-none sm:rounded-l-2xl sm:rounded-r-none"
             />
             <span class="font-mono flex shrink-0 items-center border-deep/8 bg-white/70 px-4 py-3 text-base text-deep/68 sm:border-l sm:rounded-r-2xl">
-              @privacy.fish
+              {{ .Params.username_domain }}
             </span>
           </div>
           <button
@@ -106,13 +106,13 @@
             data-signup-intent="check"
             class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-5 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {{ .Params.check_text | default "Check availability" }}
+            {{ .Params.check_text }}
             {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
           </button>
         </div>
         <p class="mt-3 flex items-start gap-2 text-sm leading-6 text-deep/60">
           {{ partial "components/icon.html" (dict "name" "circle-info" "class" "h-4 w-4 mt-0.5 shrink-0 text-ocean") }}
-          <span>You will also receive matching addresses on every other supported domain (for example <code class="font-mono text-ocean">john.doe@pfi.sh</code>).</span>
+          <span>{{ .Params.username_alias_help | safeHTML }}</span>
         </p>
         <p
           class="mt-2 hidden text-sm leading-6 text-amber"
@@ -127,11 +127,11 @@
       <div class="mt-8 rounded-[1.75rem] border border-deep/8 bg-white p-5 sm:p-6" data-key-section>
         <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
           <span class="flex h-7 w-7 items-center justify-center rounded-full bg-amber text-center leading-none tracking-normal text-white">3</span>
-          <span>Add your SSH public keys</span>
+          <span>{{ .Params.keys_step_label }}</span>
         </div>
-        <label for="ssh_keys" class="mt-5 block text-base font-bold text-deep">Up to 10 ed25519 keys, one per line</label>
+        <label for="ssh_keys" class="mt-5 block text-base font-bold text-deep">{{ .Params.keys_label }}</label>
         <p class="mt-1 text-sm leading-6 text-deep/64">
-          Only <code class="font-mono text-ocean">ssh-ed25519</code> keys are accepted. Each key authorizes one device. Mail is age-encrypted to these keys, so only you can read it.
+          {{ .Params.keys_help | safeHTML }}
         </p>
         <div class="relative mt-3">
           <pre
@@ -147,7 +147,7 @@
             spellcheck="false"
             autocorrect="off"
             autocapitalize="off"
-            placeholder="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... laptop&#10;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... phone"
+            placeholder="{{ .Params.keys_placeholder }}"
             class="font-mono relative z-10 block w-full rounded-2xl border border-deep/12 bg-transparent px-4 py-3 text-sm leading-6 text-transparent caret-deep placeholder-deep/35 transition focus:border-ocean focus:bg-transparent focus:outline-none break-all whitespace-pre-wrap [scrollbar-gutter:stable]"
           ></textarea>
         </div>
@@ -155,13 +155,13 @@
         <div class="mt-3 flex items-start justify-between gap-3 text-sm leading-6 text-deep/60">
           <p class="flex items-start gap-2">
             {{ partial "components/icon.html" (dict "name" "key" "class" "h-4 w-4 mt-0.5 shrink-0 text-ocean") }}
-            <span>Generate with <code class="font-mono text-ocean">ssh-keygen -t ed25519</code> on every device.</span>
+            <span>{{ .Params.keys_generate_help | safeHTML }}</span>
           </p>
-          <p class="font-mono shrink-0 text-deep/52" data-key-counter>0 / 10</p>
+          <p class="font-mono shrink-0 text-deep/52" data-key-counter>{{ .Params.keys_counter_initial }}</p>
         </div>
         <p class="mt-2 flex items-start gap-2 text-sm leading-6 text-deep/60">
           {{ partial "components/icon.html" (dict "name" "shield-halved" "class" "h-4 w-4 mt-0.5 shrink-0 text-ocean") }}
-          <span>The optional comment after each key (the third part, often <code class="font-mono text-ocean">user@host</code>) is removed before submission to protect your privacy.</span>
+          <span>{{ .Params.keys_comment_help | safeHTML }}</span>
         </p>
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -170,7 +170,7 @@
             data-signup-intent="reserve"
             class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {{ .Params.submit_text | default "Reserve account for 30 days" }}
+            {{ .Params.submit_text }}
             {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
           </button>
           {{ with .Params.help_url }}
@@ -179,7 +179,7 @@
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
               {{ partial "components/icon.html" (dict "name" "circle-question" "class" "h-4 w-4") }}
-              {{ $.Params.help_text | default "Read the Getting Started guide" }}
+              {{ $.Params.help_text }}
             </a>
           {{ end }}
         </div>
@@ -191,19 +191,19 @@
         data-signup-result
         tabindex="-1"
       >
-        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ .Params.success_eyebrow | default "Reserved" }}</p>
-        <h2 class="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-deep sm:text-4xl">{{ .Params.success_heading | default "What happens now" }}</h2>
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ .Params.success_eyebrow }}</p>
+        <h2 class="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-deep sm:text-4xl">{{ .Params.success_heading }}</h2>
         <p class="mt-4 text-lg leading-8 text-deep/68">
-          {{ .Params.success_copy | default "Your account is reserved for 30 days. Include the payment reference below whenever or however you pay. We manually create accounts within 24 hours after receiving payment." }}
+          {{ .Params.success_copy }}
         </p>
         <div class="mt-6 rounded-2xl bg-deep p-5 text-white">
-          <p class="text-xs font-bold tracking-[0.22em] text-white/58 uppercase">Payment reference</p>
+          <p class="text-xs font-bold tracking-[0.22em] text-white/58 uppercase">{{ .Params.payment_reference_label }}</p>
           <p class="font-mono mt-3 break-all text-2xl font-extrabold tracking-[0.08em]" data-payment-reference></p>
         </div>
         <div class="mt-6 grid gap-4 text-sm leading-6 text-deep/68 sm:grid-cols-3">
-          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Pay € 20</strong>Use this reference with bank transfer, crypto, cash by mail, or voucher payment.</p>
-          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Manual provisioning</strong>We create your account after payment is received and verified.</p>
-          <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">Association deleted</strong>The payment reference to account link is deleted after provisioning.</p>
+          {{ range .Params.success_cards }}
+            <p class="rounded-2xl border border-deep/10 p-4"><strong class="block text-deep">{{ .title }}</strong>{{ .text }}</p>
+          {{ end }}
         </div>
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
           {{ with .Params.help_url }}
@@ -211,7 +211,7 @@
               href="{{ . }}"
               class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
             >
-              {{ $.Params.help_text | default "Read the Getting Started guide" }}
+              {{ $.Params.help_text }}
               {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
             </a>
           {{ end }}
@@ -220,7 +220,7 @@
             class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             data-new-signup
           >
-            Reserve another account
+            {{ .Params.new_signup_text }}
           </button>
         </div>
       </section>

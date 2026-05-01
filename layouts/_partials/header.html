@@ -2,6 +2,7 @@
   {{ $currentPage := . }}
   {{ $logo := or site.Home.Params.logo .Site.Params.logo }}
   {{ $currentPath := .RelPermalink }}
+  {{ $header := .Site.Params.header }}
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
     <a href="/" class="no-underline">
       {{ partial "components/image-responsive.html" (dict
@@ -41,17 +42,19 @@
         href="{{ .Site.Params.signup_url }}"
         class="inline-flex items-center justify-center rounded-full bg-ocean px-5 py-2.5 text-sm font-bold text-white shadow-[0_16px_32px_-18px_rgba(52,142,195,0.7)] transition hover:bg-deep"
       >
-        Create Your Account
+        {{ $header.cta_text }}
       </a>
     </div>
 
     <button
       data-mobile-menu-toggle
+      data-open-label="{{ $header.menu_open_label }}"
+      data-close-label="{{ $header.menu_close_label }}"
       type="button"
       class="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-transparent text-deep transition hover:bg-ocean-soft hover:text-ocean xl:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
-      aria-label="Open menu"
+      aria-label="{{ $header.menu_open_label }}"
     >
       {{ partial "components/icon.html" (dict "name" "bars" "class" "h-6 w-6") }}
     </button>
@@ -88,7 +91,7 @@
         href="{{ .Site.Params.signup_url }}"
         class="mt-3 inline-flex items-center justify-center rounded-full bg-ocean px-5 py-3 text-sm font-bold text-white transition hover:bg-deep"
       >
-        Create Your Account
+        {{ $header.cta_text }}
       </a>
     </div>
   </div>

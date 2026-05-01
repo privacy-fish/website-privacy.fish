@@ -18,6 +18,50 @@ cap_site_key = "5211efb454"
 cap_widget_src = "/captcha/assets/widget.js"
 cap_wasm_src = "/captcha/assets/cap_wasm.js"
 
+[params.header]
+cta_text = "Create Your Account"
+menu_open_label = "Open menu"
+menu_close_label = "Close menu"
+
+[params.single]
+default_eyebrow = "Page"
+docs_eyebrow = "Documentation"
+back_prefix = "Back to"
+cta_text = "Create Your Account"
+reading_time_suffix = "min read"
+
+[params.list]
+blog_card_label = "Blog post"
+default_card_label = "Guide"
+read_more_text = "Read more"
+reading_time_suffix = "min read"
+
+[params.footer]
+description = "A privacy-first email service built to minimize retained data, attack surface, and trust. Private and secure access to the internet is a human right."
+resources_heading = "Resources"
+legal_heading = "Legal"
+jurisdiction_note = "Hosted in Norway. Built to retain as little useful data as possible."
+copyright_tagline = "Privacy-first email, by design."
+
+[[params.footer.resources]]
+label = "Blog"
+url = "/blog/"
+
+[[params.footer.resources]]
+label = "Documentation"
+url = "/docs/"
+
+[[params.footer.resources]]
+label = "Code"
+url = "https://github.com/privacy-fish"
+
+[[params.footer.legal]]
+label = "Company legal information"
+url = "/legal-information/"
+
+[[params.footer.legal]]
+label = "Terms and conditions"
+url = "/terms-and-conditions/"
 
 [menus]
 

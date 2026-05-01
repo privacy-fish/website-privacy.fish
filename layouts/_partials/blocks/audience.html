@@ -15,7 +15,7 @@
           <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-ocean text-white">
             {{ partial "components/icon.html" (dict "name" "circle-check" "class" "h-6 w-6 text-white") }}
           </div>
-          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.for_title | default "Who is it for?" }}</h3>
+          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.for_title }}</h3>
         </div>
         <ul class="relative mt-6 space-y-3">
           {{ range .Params.for_items }}
@@ -32,7 +32,7 @@
           <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber text-white">
             {{ partial "components/icon.html" (dict "name" "circle-xmark" "class" "h-6 w-6 text-white") }}
           </div>
-          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.not_for_title | default "Who it is not for" }}</h3>
+          <h3 class="text-2xl font-extrabold tracking-[-0.03em] text-deep">{{ .Params.not_for_title }}</h3>
         </div>
         <ul class="relative mt-6 space-y-3">
           {{ range .Params.not_for_items }}

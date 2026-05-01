@@ -1,10 +1,11 @@
 {{ define "main" }}
   {{ $isBlog := eq .Section "blog" }}
-  {{ $eyebrow := "Page" }}
+  {{ $singleText := .Site.Params.single }}
+  {{ $eyebrow := $singleText.default_eyebrow }}
   {{ if $isBlog }}
     {{ $eyebrow = .Date.Format "January 2, 2006" }}
   {{ else if eq .Section "docs" }}
-    {{ $eyebrow = "Documentation" }}
+    {{ $eyebrow = $singleText.docs_eyebrow }}
   {{ end }}
   {{ with .Params.eyebrow }}
     {{ $eyebrow = . }}
@@ -29,7 +30,7 @@
 
       {{ if ne .Params.show_meta false }}
         <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-deep/54">
-          <span>{{ .ReadingTime }} min read</span>
+          <span>{{ .ReadingTime }} {{ $singleText.reading_time_suffix }}</span>
           {{ if .Date }}
             <span class="h-1 w-1 self-center rounded-full bg-deep/24"></span>
             <span>{{ .Date.Format "January 2, 2006" }}</span>
@@ -55,14 +56,14 @@
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
               {{ partial "components/icon.html" (dict "name" "arrow-left" "class" "h-4 w-4") }}
-              Back to {{ .Title }}
+              {{ $singleText.back_prefix }} {{ .Title }}
             </a>
           {{ end }}
           <a
             href="{{ .Site.Params.signup_url }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >
-            Create Your Account
+            {{ $singleText.cta_text }}
           </a>
         </div>
       {{ end }}

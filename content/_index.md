@@ -31,6 +31,7 @@ blocks:
     compat:
       id: compat
       label: "Compatible with"
+      unsupported_prefix: "No"
       items:
         - name: "Command Line"
           supported: true
@@ -183,9 +184,13 @@ blocks:
     heading: "One Time Payment"
     subheading: "No subscriptions or hidden fees. Payment to account association is deleted after account creation."
     price: "20"
+    badge: "One-time payment"
     note: "For company lifetime access"
     cta_text: "Create Your Account"
     cta_url: "https://privacy.fish/signup"
+    provisioning_title: "Manual provisioning"
+    provisioning_copy: "Accounts are created by an administrator within 24 hours of payment."
+    included_heading: "What’s included"
     features:
       - "Main username, 10 random and unlimited rotating aliases"
       - "All our domains work with your main username and all aliases"
@@ -197,6 +202,7 @@ blocks:
       - "SEPA bank transfer"
       - "Credit card"
       - "PayPal"
+    refund_label: "Refund information:"
     refund_information: "Refunds are only possible before the account is created, because the payment-to-account association is destroyed right after."
 
 ---

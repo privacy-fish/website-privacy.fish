@@ -58,11 +58,13 @@
     let isOpen = false;
     let closeTimer = null;
     const transitionMs = 500;
+    const openLabel = toggle.dataset.openLabel || toggle.getAttribute("aria-label") || "";
+    const closeLabel = toggle.dataset.closeLabel || openLabel;
 
     function setOpen(nextOpen) {
       isOpen = Boolean(nextOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      toggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      toggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
       toggle.classList.toggle("is-open", isOpen);
       menu.setAttribute("aria-hidden", isOpen ? "false" : "true");
       window.clearTimeout(closeTimer);
