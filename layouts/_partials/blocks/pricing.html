@@ -28,10 +28,6 @@
             <p class="text-sm font-bold text-deep">Manual provisioning</p>
             <p class="mt-1 text-sm leading-6 text-deep/65">Accounts are created by an administrator within 24 hours of payment.</p>
           </div>
-          <div class="rounded-[1.5rem] border border-deep/8 bg-white p-4">
-            <p class="text-sm font-bold text-deep">Refund window</p>
-            <p class="mt-1 text-sm leading-6 text-deep/65">Refunds are available for one week, except for cash and cryptocurrencies.</p>
-          </div>
         </div>
 
         <div class="mt-8">
@@ -62,6 +58,13 @@
           <div class="mt-8 rounded-[1.75rem] border border-deep/8 bg-white p-5">
             <p class="text-sm font-bold text-deep">{{ $.Params.payment_label | default "Accepted payment methods:" }}</p>
             <p class="mt-2 text-sm leading-7 text-deep/68">{{ delimit . ", " " and " }}</p>
+          </div>
+        {{ end }}
+
+        {{ with .Params.refund_information }}
+          <div class="mt-5 rounded-[1.75rem] border border-amber/24 bg-[linear-gradient(135deg,#ffffff_0%,#fff8e6_100%)] p-5 shadow-[0_20px_54px_-48px_rgba(6,47,73,0.36)]">
+            <p class="text-sm font-bold text-deep">Refund information:</p>
+            <p class="mt-2 text-sm leading-7 text-deep/68">{{ . | markdownify }}</p>
           </div>
         {{ end }}
 

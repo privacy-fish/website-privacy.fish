@@ -197,7 +197,6 @@ blocks:
       - "SEPA bank transfer"
       - "Credit card"
       - "PayPal"
-    # TODO this should be its own box with round corners called "Refund information:"
-      - "Refunds are only possible before the account is created, because the payment-to-account association is destroyed right after."
+    refund_information: "Refunds are only possible before the account is created, because the payment-to-account association is destroyed right after."
 
 ---
