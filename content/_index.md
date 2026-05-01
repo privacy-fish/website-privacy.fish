@@ -7,13 +7,14 @@ blocks:
     id: hero
     eyebrow: "Hosted in Norway"
     heading: "Email: Uncompromisingly Private and Secure"
+    prefix_highlight: "Email:"
     highlight: "Private and Secure"
     subheading: "Private email hosting built around data minimization and open-source infrastructure."
     summary_heading: "Securely Designed to Protect Privacy"
     primary_cta_text: "Create Your Account"
     primary_cta_url: "https://privacy.fish/signup"
-    secondary_cta_text: "How it works"
-    secondary_cta_url: "#how-it-works"
+    secondary_cta_text: "Code"
+    secondary_cta_url: "https://github.com/privacy-fish"
     callouts:
       - value: "Privacy by Design"
         label: "Only data required to run the email servers is collected, and any data no longer needed is deleted."
@@ -48,14 +49,14 @@ blocks:
   - block: intro
     id: intro
     eyebrow: "Norwegian Privacy"
-    heading: "Private and Secure Access to the Internet Is a Human Right"
+    heading: "<span class=\"text-sun\">Private and Secure</span> <span class=\"text-deep\">Access to the Internet</span> <span class=\"text-ocean\">Is a Human Right</span>"
     lead: "An email address is a requirement for participating in the modern internet. It is the first thing most modern services ask for. Its privacy should be protected."
     paragraphs:
       - "Your email address is the key to most of your online life. When your email provider tracks it, your identity becomes easier to profile, target, and expose."
       - "Privacy.Fish treats email as private infrastructure, not as a data source."
       - "We collect only what is required to run the mail servers, publish our code, and design every technical decision around privacy and security."
-    primary_cta_text: "Create Your Account"
-    primary_cta_url: "https://privacy.fish/signup"
+    primary_cta_text: "Read our company philosophy page"
+    primary_cta_url: "/documentation/company-philosophy/"
 
   - block: counter
     id: counter

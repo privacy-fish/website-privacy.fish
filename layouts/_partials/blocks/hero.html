@@ -1,4 +1,8 @@
 {{ $heading := .Params.heading }}
+{{ with .Params.prefix_highlight }}
+  {{ $mark := printf "<span class=\"text-sun\">%s</span>" . }}
+  {{ $heading = replace $heading . $mark }}
+{{ end }}
 {{ with .Params.highlight }}
   {{ $mark := printf "<span class=\"text-ocean\">%s</span>" . }}
   {{ $heading = replace $heading . $mark }}
