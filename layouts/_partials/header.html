@@ -14,7 +14,7 @@
       ) }}
     </a>
 
-    <div class="hidden items-center gap-8 xl:flex">
+    <div class="hidden items-center gap-3 xl:flex">
       {{ range .Site.Menus.main }}
         {{ $url := .URL }}
         {{ $isExternal := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") }}
@@ -29,7 +29,7 @@
           href="{{ $url }}"
           {{ if $isHash }}data-nav="{{ $url }}"{{ end }}
           {{ if $isExternal }}target="_blank" rel="noreferrer"{{ end }}
-          class="navbar-link text-sm font-semibold tracking-[0.02em] text-deep/66 transition hover:text-ocean{{ if $isActive }} active text-ocean{{ end }}"
+          class="navbar-link rounded-full px-3 py-2 text-sm font-semibold tracking-[0.02em] text-deep/66 transition hover:bg-ocean-soft/60 hover:text-ocean{{ if $isActive }} active bg-ocean-soft/80 text-ocean{{ end }}"
         >
           {{ .Name }}
         </a>
