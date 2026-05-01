@@ -12,16 +12,28 @@
       {{ end }}
     </div>
 
-    <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="relative mx-auto mt-16 max-w-4xl">
+      <div class="absolute top-0 bottom-0 left-8 hidden w-px bg-[linear-gradient(180deg,transparent_0%,rgba(52,142,195,0.38)_8%,rgba(52,142,195,0.38)_92%,transparent_100%)] md:block"></div>
       {{ range $i, $step := .Params.steps }}
-        <article class="flex flex-col rounded-[2rem] border border-deep/8 bg-white p-6 shadow-[0_22px_60px_-48px_rgba(6,47,73,0.26)]">
-          <div class="flex h-13 w-13 items-center justify-center rounded-2xl bg-ocean text-white">
-            {{ partial "components/icon.html" (dict "name" (or $step.icon "circle") "class" "h-6 w-6") }}
+        {{ $stepNumber := printf "%02d" (add $i 1) }}
+        <article class="relative grid gap-5 pb-10 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-8 lg:gap-10 lg:pb-12">
+          <div class="relative z-10 flex items-start justify-start md:pt-8">
+            <div class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_18px_42px_-28px_rgba(6,47,73,0.55)] ring-1 ring-ocean/18">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-ocean text-base font-extrabold tracking-[0.08em] text-white">
+                {{ $stepNumber }}
+              </div>
+            </div>
           </div>
-          {{ with $step.title }}
-            <h3 class="mt-5 text-lg font-extrabold tracking-[-0.02em] text-deep">{{ . }}</h3>
-          {{ end }}
-          <p class="{{ if $step.title }}mt-2 {{ end }}text-base leading-7 text-deep/72">{{ $step.text | safeHTML }}</p>
+
+          <div>
+            <div class="group relative overflow-hidden rounded-[2rem] border border-deep/8 bg-white p-6 shadow-[0_24px_76px_-58px_rgba(6,47,73,0.42)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_34px_86px_-58px_rgba(6,47,73,0.5)] sm:p-7 lg:p-8">
+              <div class="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#348ec3_0%,#ffc941_100%)]"></div>
+              {{ with $step.title }}
+                <h3 class="text-xl font-extrabold tracking-[-0.03em] text-deep">{{ . }}</h3>
+              {{ end }}
+              <p class="{{ if $step.title }}mt-2 {{ end }}text-base leading-7 text-deep/72">{{ $step.text | safeHTML }}</p>
+            </div>
+          </div>
         </article>
       {{ end }}
     </div>
