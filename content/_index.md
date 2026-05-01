@@ -6,27 +6,27 @@ blocks:
   - block: hero
     id: hero
     eyebrow: "Hosted in Norway"
-    heading: "Uncompromisingly private and secure"
-    highlight: "private and secure"
-    subheading: "Private and secure access to the internet is a human right."
-    summary_heading: "Designed solely for your Privacy and Security"
+    heading: "Email: Uncompromisingly Private and Secure"
+    highlight: "Private and Secure"
+    subheading: "Private email hosting built around data minimization and open-source infrastructure."
+    summary_heading: "Securely Designed to Protect Privacy"
     primary_cta_text: "Create Your Account"
     primary_cta_url: "https://privacy.fish/signup"
     secondary_cta_text: "How it works"
     secondary_cta_url: "#how-it-works"
     callouts:
-      - value: "No compromise privacy"
-        label: "We prioritize customer privacy above profit, usability, and everything else."
-      - value: "No compromise security"
-        label: "We prioritize IT security above usability, features, and everything else."
+      - value: "Privacy by Design"
+        label: "Only data required to run the email servers is collected, and any data no longer needed is deleted."
+      - value: "Verifiable Security"
+        label: "All our code is open source and can be audited by the community and external cybersecurity firms."
     stats:
-      - value: "10 devices"
+      - value: "10 Devices"
         label: "Per account"
-      - value: "0 compromise"
-        label: "On what matters to you"
+      - value: "0 Compromise"
+        label: "On what matters"
     price:
-      value: "€ 20"
-      label: "Lifetime account"
+      value: "20,00 € One time payment"
+      label: "One registration fee. No subscriptions and no recurring costs."
 
   - block: compat
     id: compat
@@ -47,27 +47,27 @@ blocks:
 
   - block: intro
     id: intro
-    eyebrow: "Why we exist"
-    heading: "Email, the way it should be"
-    lead: "privacy.fish exists for people who would rather adapt their workflow than hand over more data than necessary."
+    eyebrow: "Norwegian Privacy"
+    heading: "Private and Secure Access to the Internet Is a Human Right"
+    lead: "An email address is a requirement for participating in the modern internet. It is the first thing most modern services ask for. Its privacy should be protected."
     paragraphs:
-      - "A free and open society is built upon privacy. If people don't have the right to decide for themselves exactly when and with whom they want to share their thoughts and ideas, then all other rights are at risk."
-      - "Every human being has the right to access the internet. An email address is required to sign up for almost all modern online services."
-      - "<strong>privacy.fish</strong> email is focused on privacy and security above absolutely everything else. Zero compromise."
+      - "Your email address is the key to most of your online life. When your email provider tracks it, your identity becomes easier to profile, target, and expose."
+      - "Privacy.Fish treats email as private infrastructure, not as a data source."
+      - "We collect only what is required to run the mail servers, publish our code, and design every technical decision around privacy and security."
     primary_cta_text: "Create Your Account"
     primary_cta_url: "https://privacy.fish/signup"
 
   - block: counter
     id: counter
     items:
-      - value: "€ 20"
-        label: "per Account"
-      - value: "10"
-        label: "devices per Account"
       - value: "∞"
-        label: "email addresses per account"
+        label: "Privacy Aliases"
+      - value: "20 €"
+        label: "One Time Payment"
+      - value: "10"
+        label: "Devices"
       - value: "0"
-        label: "compromise on privacy and security"
+        label: "Compromise on Privacy and Security"
 
   - block: features
     id: features
@@ -75,159 +75,129 @@ blocks:
     heading: "What separates us from all others"
     subheading: "Every design decision puts your privacy first — from encryption at rest to how we handle payments and logs."
     groups:
-      - title: "Data minimization by default"
+
+      - title: "Data Minimization by Default"
         image: "images/features/we-keep-only-what-is-technically-required.png"
         image_position: "left"
         items:
-          - "We prefer deleting data over trying to protect it."
-          - "We really do not want any of your personal data."
+          - "We do not want data we don't need and prefer deleting data over trying to protect it."
           - "No analytics, trackers, website-, mail- or ssh auth logs."
-          - "You download and delete mail from our servers yourself."
-          - "Mail you do not delete is deleted after 14 days."
+          - "You download and delete mail from our servers yourself. Mail you do not delete is deleted after 14 days."
 
-      - title: "Private account and payment flow"
+      - title: "Private Payment"
         image: "images/features/private-account-payment-flow.png"
         image_position: "right"
         items:
-          - "The payment-to-account reference is deleted after provisioning."
-          - "Cryptocurrencies and cash-by-mail payments are supported."
-          - "Recovery only works using backup SSH keys."
+          - "After signup, you receive a temporary payment code valid for 30 days."
+          - "Once payment is received and the account is created, the code is deleted so the payment cannot be linked to the account anymore."
+          - "We support cash by letter, cryptocurrencies, SEPA bank transfer, PayPal and credit cards."
 
-      - title: "Private access under Norwegian jurisdiction"
+      - title: "Norway’s Privacy Jurisdiction"
         image: "images/features/private-access-norwegian-jurisdiction.png"
         image_position: "left"
         items:
-          - "Tor .onion addresses are available for all servers."
-          - "Norway is the world's best jurisdiction for a private email provider."
+          - "Norwegian law only requires us to save when you logged in and from with IP:port, for 12 months."
+          - "All other jurisdictions come with broader surveillance requirements. For example Switzerland can require sender, recipient, protocol, mailbox-event, and server metadata, while Germany requires large email providers to maintain lawful-interception infrastructure."
+          - "VPN access is encouraged and tor .onion addresses are available for all servers."
 
-      - title: "Secure mail workflow"
-        image: "images/features/secure-mail-workflow.png"
+      - title: "Security Model"
+        image: "images/features/drastically-reduced-attack-surface.png"
         image_position: "right"
         items:
-          - "No webmail, no password login, no user comfort in favor of less security."
-          - "Mail is age-encrypted using your SSH public keys."
-          - "When you delete mail on our servers, it is overwritten with random data."
-          - "Sending and receiving mail happens through SSH / SFTP."
+          - "Built using the most secure open source software (OpenBSD, OpenSMTPD, OpenSSH) and only minimal custom code. Everything is auditable open source code."
+          - "To prevent patched exploits from leaving persistent access, all servers are rebuilt weekly, while only stored emails and your SSH public keys are migrated."
+          - "Admin workstations are OpenBSD Raspberry Pis, replaced monthly with only the SSH private key migrated, and firewalled to only reach our servers and stw.no."
 
-      - title: "Drastically reduced attack surface"
-        image: "images/features/drastically-reduced-attack-surface.png"
+      - title: "Secure Email Workflow"
+        image: "images/features/secure-mail-workflow.png"
         image_position: "left"
         items:
-          - "Built on OpenBSD, OpenSSH, and OpenSMTPD, with minimal custom code."
-          - "All infrastructure is FOSS code, including the admin workstation setup."
-          - "Signup is separated from the mail servers; paid accounts are manually provisioned."
-          - "Spam and virus filtering run locally on our servers, without network access."
-          - "Sending to a mail server with an invalid TLS certificate requires you to confirm or abort."
-          - "Servers and admin workstations are rebuilt weekly; only emails, SSH keys, and Tor onion keys migrate."
+          - "Security before convenience - There is no webmail, password login, IMAP, or POP3 - only SSH and SFTP access through our client app."
+          - "Your emails are stored age-encrypted using your SSH public keys and are securely deleted after 14 days or when you delete them yourself."
+          - "If a recipient’s mail server cannot prove its identity with a valid TLS certificate, the app asks you to cancel or send anyway."
 
   - block: audience
     id: audience
-    eyebrow: "The fit"
-    heading: "Is privacy.fish for you?"
-    for_title: "Who is it for?"
+    eyebrow: "Should you use it?"
+    heading: "Privacy Requires Making a Choice"
+    for_title: "Built for"
     for_items:
-      - "People who prioritize privacy over convenience"
-      - "Technical users comfortable using SSH / SFTP"
-      - "Journalists, activists, researchers, and privacy-conscious individuals"
-      - "Users who want minimal retained data"
-    not_for_title: "Who it is not for"
+      - "You are privacy-conscious and want an email provider that collects as little data as possible."
+      - "You do not want your email or personal data permanently stored on someone else’s servers."
+      - "You prefer a small, focused service built exclusively for the best possible privacy and security."
+    not_for_title: "Not built for"
     not_for_items:
-      - "Users who want classic webmail"
-      - "Users who need permanent server-side storage"
-      - "Users who want easy account recovery"
-      - "Users who want polished convenience features over security guarantees"
+      - "You need your email provider to permanently store mail instead of downloading it to your own devices."
+      - "You need browser email access, even if that means exposing even more metadata or readable mail to the provider."
+      - "You need bundled extras like calendar, contacts, cloud storage, or office tools, even if they add attackable code."
 
   - block: how-it-works
     id: how-it-works
     eyebrow: "How it works"
-    heading: "Private email, simply explained"
-    subheading: "privacy.fish is fully command-line compatible. Client-side tools to serve downloaded mail via POP3 exist as FOSS code."
+    heading: "From Signup to Inbox"
+    subheading: "Your email client connects to SMTP and POP3 ports served by the Privacy.Fish app, which handles SSH connections, email decryption and server-side deletion."
     steps:
       - icon: "key"
-        title: "Up to 10 SSH keys per account"
-        text: "Authorize one SSH public key per device — phone, laptop, workstation. Mail is age-encrypted to those keys, so only your devices can read it."
-      - icon: "at"
-        title: "One main address, unlimited aliases"
-        text: "You get one main and an unlimited number of @privacy.fish email addresses — for example <code class=\"font-mono text-ocean\">john.doe@privacy.fish</code>."
-      - icon: "globe"
-        title: "Multiple top-level domains"
-        text: "We support a variety of additional top-level domains, which you get automatically — like <code class=\"font-mono text-ocean\">john.doe@pfi.sh</code>."
-      - icon: "cloud-arrow-down"
-        title: "SFTP download of encrypted .eml files"
-        text: "Download age-encrypted .eml files via SFTP. An optional client-side tool serves them to your email client (like Thunderbird) via POP3."
-      - icon: "trash-can"
-        title: "Manual or automatic deletion"
-        text: "You can manually delete emails from the server via SFTP, or they are automatically deleted after 14 days."
+        title: "Generate Keys on Your Devices"
+        text: "Install the Privacy.Fish app on each device and generate a local SSH keypair. Copy the public keys into the signup form."
+
+      - icon: "credit-card"
+        title: "Create and Pay Privately"
+        text: "After signup, a temporary code links your payment to the requested account, then is deleted after manual creation so payment and account cannot be connected."
+
       - icon: "desktop"
-        title: "No webmail — you own your mail"
-        text: "There is no traditional webmail client. You download your emails to one or more devices."
+        title: "Set Up Desktop and Mobile"
+        text: "Connect your desktop or mobile mail client to the app’s SMTP and POP3 ports. The app communicates with the Privacy.Fish mail servers over SSH."
 
-  - block: tradeoffs
+      - icon: "thumbs-down"
+        title: "Authorize Unsafe Deliveries"
+        text: "If the person you write is using a mail server with a broken TLS certificate, the app asks whether to cancel or send anyway. If you choose to send, your email is not sent over trustworthy encryption."
+
+      - icon: "trash-can"
+        title: "Control Server Deletion"
+        text: "After downloading email to your devices, the app can delete it from the servers immediately, later, or after 14 days. Deleted email is overwritten and cleared from backups."
+
+      - icon: "at"
+        title: "Random Aliases for Privacy"
+        text: "Use 10 additional random account names for sending and receiving, and unlimited, frequently rotating aliases for receiving email."
+
+  - block: tradeoffs # TODO rename me to trust model
     id: tradeoffs
-    eyebrow: "Honest about the tradeoffs"
-    heading: "What are the tradeoffs?"
-    subheading: "We prioritize privacy and security above convenience. privacy.fish is a technical product. While it does not require deep expertise, it helps to understand how it works."
+    eyebrow: "Our Trust Model"
+    heading: "You Can Verify Everything"
+    subheading: "“Every secret creates a potential failure point.” — [Bruce Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier)"
     items:
-      - icon: "user-gear"
-        title: "User experience"
-        text: "Usability is more complicated than traditional email providers."
-      - icon: "mobile-screen"
-        title: "Platform compatibility"
-        text: "iPhone is not supported, since there is no way to run privacy.fish client tooling there."
+      - icon: "code"
+        title: "Everything Open Source"
+        text: "All software used to build and administrate Privacy.Fish is public on [github](https://github.com/privacy-fish) and our infrastructure can be inspected instead of blindly trusted."
+      - icon: "scale-balanced"
+        title: "Norwegian Jurisdiction"
+        text: "We chose Norway for the best privacy-respecting laws for our service, even though they have rather high taxes. Bcause privacy comes first."
       - icon: "coins"
-        title: "Profit"
-        text: "A one-time payment keeps incentives aligned with your privacy, not perpetual monetization."
-
-  - block: threat
-    id: threat-model
-    eyebrow: "Threat model"
-    heading: "Security philosophy"
-    subheading: "We are explicit about what we protect against, what we deliberately avoid, and what we cannot prevent."
-    items:
-      - label: "What we defend against"
-        title: "No Privacy violations driven by profit"
-        text: "And avoidable vulnerabilities in the email hosting stack."
-      - label: "What we deliberately avoid"
-        title: "No Collecting data we don't need"
-        text: "Any personal data that is not required to operate the service is never collected."
-      - label: "What our design minimizes"
-        title: "Minimized Retained data, trust and attack surface"
-        text: "We minimize data kept on our servers, the trust you have to place in us, and the attack surface of our infrastructure."
-      - label: "What we cannot protect against"
-        title: "Only Lawful Norwegian court orders"
-        text: "And other legally binding requests from Norwegian authorities."
-
-  - block: cta
-    id: last-word
-    eyebrow: "Last word"
-    heading: "Private and secure access to the internet is a human right!"
-    copy: "Join privacy.fish and take back control of your email."
-    primary_cta_text: "Code"
-    primary_cta_url: "https://github.com/fishprivacy"
-    secondary_cta_text: "Read the docs"
-    secondary_cta_url: "/docs/"
+        title: "Aligned Incentives"
+        text: "Privacy.Fish is funded by a one-time account fee, not ads, tracking, subscriptions, or selling access to your data."
 
   - block: pricing
     id: pricing
     eyebrow: "Pricing"
-    heading: "One payment. For life."
-    subheading: "No subscriptions, no hidden fees, no data harvesting. You pay once, then the account is yours."
+    heading: "One Time Payment"
+    subheading: "No subscriptions or hidden fees. Payment to account association is deleted after account creation."
     price: "20"
-    note: "One-time — for the lifetime of the service"
+    note: "For company lifetime access"
     cta_text: "Create Your Account"
     cta_url: "https://privacy.fish/signup"
     features:
-      - "One account with unlimited email addresses"
-      - "Includes all supported top-level domains"
-      - "Account manually created by our admins within 24 hours of payment"
-      - "Refunds possible within one week (except cash and cryptocurrencies)"
+      - "Main username, 10 random and unlimited rotating aliases"
+      - "All our domains work with your main username and all aliases"
+      - "Maximum of 10 devices per account"
     payment_label: "Payment methods:"
     payment_methods:
-      - "Credit card"
-      - "PayPal"
-      - "Cash"
-      - "Voucher"
+      - "Cash by letter"
       - "Cryptocurrencies"
       - "SEPA bank transfer"
+      - "Credit card"
+      - "PayPal"
+    # TODO this should be its own box with round corners called "Refund information:"
+      - "Refunds are only possible before the account is created, because the payment-to-account association is destroyed right after."
 
 ---
