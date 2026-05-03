@@ -1,14 +1,13 @@
 ---
-title: "Using Privacy.Fish"
+title: "User Manual"
 weight: 20
+# @richtermac, I need to write each of the below sections for: CLI, macOS, Linux, Windows, Android, iPhone
+# So I need some kind of 6 boxes with the logo of the OS that the user can click on to get to
+# documentation/user-manual/command-line/account-creation
+# documentation/user-manual/android/account-creation
+#
+# And so on. I'm not sure how else to sort this, but I'm happy for input. All of the headers below "# User Manual" are individual depending on which device you use. The only exceptions are "### Making a Private Payment" and "### How we Activate Your Account".
 ---
-
-@richtermac, I need to write each of the below sections for: CLI, macOS, Linux, Windows, Android, iPhone
-So I need some kind of 6 boxes with the logo of the OS that the user can click on to get to
-documentation/using-privacy-fish/command-line/account-creation
-documentation/using-privacy-fish/android/account-creation
-
-And so on. I'm not sure how else to sort this, but I'm happy for input. All of the headers below "# Using Privacy.Fish" are individual depending on which device you use. The only exceptions are "### Making a Private Payment" and "### How we Activate Your Account".
 
 ## Account Creation
 ### Installing the Client App
@@ -47,4 +46,3 @@ When you submit the signup form, your requested username, SSH public keys, and t
 ### Removing a Device
 ### Creating a Backup SSH Key
 ### Restoring an Account With a Backup SSH Key
-

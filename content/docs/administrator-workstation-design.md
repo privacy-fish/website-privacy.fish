@@ -1,5 +1,5 @@
 ---
-title: "How the Privacy.Fish Administrator Workstation Works"
+title: "Administrator Workstation Design"
 weight: 50
 ---
 
@@ -32,4 +32,3 @@ A secure password has to be given to the SSH private key.
 ## Migrating the SSH Private Key to a New Workstation
 
 An ed25519 private key is reasonably short and can be typed of from another screen, or printed on paper. There is no need to use a USB stick or similar to migrate only the SSH private key.
-
