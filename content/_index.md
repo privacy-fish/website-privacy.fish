@@ -136,36 +136,25 @@ blocks:
     id: how-it-works
     eyebrow: "How it works"
     heading: "From Signup to Inbox"
-    subheading: "Your email client connects to SMTP and POP3 ports served by the Privacy.Fish app, which handles SSH connections, email decryption and server-side deletion."
+    subheading: "After the legal consumer refund period of 14 days has expired, we will permanently delete all information on which account is associated with which received payment."
     steps:
       - icon: "key"
-        title: "Generate Keys on Your Devices"
-        text: "Install the Privacy.Fish app on each device and generate a local SSH keypair. Copy the public keys into the signup form."
+        title: "Use the App to Generate Keypairs on Your Devices"
+        text: "Install the open source Privacy.Fish app and generate SSH keypairs for each device. Copy the public keys to the device you complete the signup form with."
 
       - icon: "credit-card"
-        title: "Create and Pay Privately"
-        text: "After signup, a temporary code links your payment to the requested account, then is deleted after manual creation so payment and account cannot be connected."
+        title: "Signup and Pay Privately"
+        text: "Copy your list of public keys into the signup form and use our privacy-respecting payment methods. We create your account within 24 hours after payment."
 
       - icon: "desktop"
-        title: "Set Up Desktop and Mobile"
-        text: "Connect your desktop or mobile mail client to the app’s SMTP and POP3 ports. The app communicates with the Privacy.Fish mail servers over SSH."
+        title: "Connect the App to Your Email Client"
+        text: "Point your email app to this app’s local SMTP and POP3 ports, and it will handle sending, fetching, and decrypting your mail through our servers."
 
-      - icon: "thumbs-down"
-        title: "Authorize Unsafe Deliveries"
-        text: "If the person you write is using a mail server with a broken TLS certificate, the app asks whether to cancel or send anyway. If you choose to send, your email is not sent over trustworthy encryption."
-
-      - icon: "trash-can"
-        title: "Control Server Deletion"
-        text: "After downloading email to your devices, the app can delete it from the servers immediately, later, or after 14 days. Deleted email is overwritten and cleared from backups."
-
-      - icon: "at"
-        title: "Random Aliases for Privacy"
-        text: "Use 10 additional random account names for sending and receiving, and unlimited, frequently rotating aliases for receiving email."
 
   - block: tradeoffs # TODO rename me to trust model
     id: tradeoffs
     eyebrow: "Our Trust Model"
-    heading: "You Can Verify Everything"
+    heading: "You Verify Everything"
     subheading: "“Every secret creates a potential failure point.” — [Bruce Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier)"
     items:
       - icon: "code"
