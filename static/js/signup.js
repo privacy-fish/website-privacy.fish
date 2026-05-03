@@ -9,6 +9,9 @@
   var triesStatus = form.querySelector("[data-tries-status]");
   var formStatus = form.querySelector("[data-form-status]");
   var keyError = form.querySelector("[data-key-error]");
+  var keyFileInput = form.querySelector("[data-key-file-input]");
+  var keyFileStatus = form.querySelector("[data-key-file-status]");
+  var keyDropZone = form.querySelector("[data-key-drop-zone]");
   var credentialInput = form.querySelector("[data-credential]");
   var keySection = form.querySelector("[data-key-section]");
   var textarea = form.querySelector("#ssh_keys");
@@ -16,10 +19,12 @@
   var counter = form.querySelector("[data-key-counter]");
   var submit = form.querySelector('[data-signup-intent="reserve"]');
   var checkButton = form.querySelector('[data-signup-intent="check"]');
-  var result = document.querySelector("[data-signup-result]");
   var paymentReference = document.querySelector("[data-payment-reference]");
-  var newSignup = document.querySelector("[data-new-signup]");
+  var copyPaymentReference = document.querySelector("[data-copy-payment-reference]");
+  var copyPaymentReferenceLabel = document.querySelector("[data-copy-payment-reference-label]");
+  var paymentSection = document.querySelector("[data-payment-section]");
   var usernamePattern = /^[a-z0-9](?:[a-z0-9.-]{0,29}[a-z0-9])?$/;
+  var freshCaptchaTimer = null;
   var state = {
     credential: "",
     triesLeft: 0,
@@ -27,6 +32,8 @@
     available: false,
     busy: false,
     submitIntent: "check",
+    waitingForFreshCaptcha: false,
+    reserved: false,
   };
 
   function setMessage(el, msg, tone) {
@@ -42,6 +49,87 @@
     else if (tone === "bad") el.classList.add("text-red-600");
     else if (tone === "muted") el.classList.add("text-deep/60");
     else el.classList.add("text-amber");
+  }
+
+  function setAvailabilityWithAttemptWarning(status, available) {
+    if (!availabilityStatus) return;
+    availabilityStatus.classList.remove("hidden", "text-amber", "text-red-600", "text-ocean", "text-deep/60");
+    availabilityStatus.innerHTML =
+      '<span class="' + (available ? "text-ocean" : "text-red-600") + '">' + escapeHtml(status) + '</span>' +
+      '\n<span class="text-red-600">No attempts left. To check additional usernames, please solve the captcha above again.</span>';
+  }
+
+  function setFormStatusMessage(msg, tone) {
+    if (!formStatus) return;
+    formStatus.classList.remove("hidden", "text-amber", "text-red-600", "text-ocean", "text-deep/60");
+    if (!msg) {
+      formStatus.innerHTML = "";
+      formStatus.classList.add("hidden");
+      return;
+    }
+    formStatus.textContent = msg;
+    if (tone === "ok") formStatus.classList.add("text-ocean");
+    else if (tone === "bad") formStatus.classList.add("text-red-600");
+    else if (tone === "muted") formStatus.classList.add("text-deep/60");
+    else formStatus.classList.add("text-amber");
+  }
+
+  function setPaymentReference(value) {
+    if (!paymentReference) return;
+    var hasReference = Boolean(value);
+    paymentReference.textContent = value || paymentReference.dataset.paymentPlaceholder || "";
+    paymentReference.classList.toggle("font-mono", hasReference);
+    paymentReference.classList.toggle("tracking-[0.08em]", hasReference);
+    paymentReference.classList.toggle("sm:text-2xl", hasReference);
+    if (copyPaymentReference) {
+      copyPaymentReference.classList.toggle("hidden", !hasReference);
+      copyPaymentReference.classList.toggle("inline-flex", hasReference);
+    }
+    resetCopyPaymentReferenceLabel();
+  }
+
+  function showReservedState(reference) {
+    setPaymentReference(reference);
+    setFormStatusMessage(
+      formStatus ? formStatus.dataset.reservedMessage || "Your account is reserved for 30 days." : "Your account is reserved for 30 days.",
+      "ok"
+    );
+    if (paymentSection) {
+      paymentSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+
+  function resetCopyPaymentReferenceLabel() {
+    if (!copyPaymentReference || !copyPaymentReferenceLabel) return;
+    copyPaymentReferenceLabel.textContent = copyPaymentReference.dataset.copyLabel || "Copy";
+  }
+
+  function setCopyPaymentReferenceCopied() {
+    if (!copyPaymentReference || !copyPaymentReferenceLabel) return;
+    copyPaymentReferenceLabel.textContent = copyPaymentReference.dataset.copiedLabel || "Copied";
+    window.setTimeout(resetCopyPaymentReferenceLabel, 1800);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var input = document.createElement("textarea");
+      input.value = text;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.top = "-9999px";
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand("copy") ? resolve() : reject(new Error("copy_failed"));
+      } catch (err) {
+        reject(err);
+      } finally {
+        document.body.removeChild(input);
+      }
+    });
   }
 
   function setInvalid(el, invalid) {
@@ -173,13 +261,96 @@
     }
     triesStatus.textContent = state.triesLeft > 0
       ? state.triesLeft + " captcha-backed attempt" + (state.triesLeft === 1 ? "" : "s") + " left."
-      : "No attempts left. Solve the captcha again before continuing.";
+      : "No attempts left. To check additional usernames, please solve the captcha above again.";
   }
 
   function resetAvailability() {
     state.checkedUsername = "";
     state.available = false;
     setMessage(availabilityStatus, null);
+  }
+
+  function keyFingerprint(line) {
+    var parts = line.trim().split(/\s+/);
+    if (parts.length >= 2) return parts[0] + " " + parts[1];
+    return line.trim();
+  }
+
+  function uploadedKeyLines(text) {
+    return text
+      .split(/\r?\n/)
+      .map(function (line) { return line.trim(); })
+      .filter(function (line) {
+        return /^ssh-\S+\s+\S+/.test(line);
+      });
+  }
+
+  function appendKeyLines(lines) {
+    var existingLines = textarea.value
+      .split(/\r?\n/)
+      .map(function (line) { return line.trim(); })
+      .filter(Boolean);
+    var seen = {};
+    existingLines.forEach(function (line) {
+      seen[keyFingerprint(line)] = true;
+    });
+    var added = [];
+    lines.forEach(function (line) {
+      var fingerprint = keyFingerprint(line);
+      if (seen[fingerprint]) return;
+      seen[fingerprint] = true;
+      added.push(line);
+    });
+    if (added.length > 0) {
+      textarea.value = existingLines.concat(added).join("\n");
+    }
+    renderHighlight();
+    syncScroll();
+    refreshSubmit();
+    return added.length;
+  }
+
+  async function importKeyFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (files.length === 0) return;
+    setMessage(keyFileStatus, "Reading public key file" + (files.length === 1 ? "" : "s") + "...", "muted");
+    try {
+      var allLines = [];
+      var skippedLarge = 0;
+      for (var i = 0; i < files.length; i += 1) {
+        var file = files[i];
+        if (file.size > 65536) {
+          skippedLarge += 1;
+          continue;
+        }
+        var text = await file.text();
+        allLines = allLines.concat(uploadedKeyLines(text));
+      }
+      var added = appendKeyLines(allLines);
+      if (skippedLarge > 0) {
+        setMessage(keyFileStatus, "Skipped " + skippedLarge + " file" + (skippedLarge === 1 ? "" : "s") + " because public key files should be smaller than 64 KB.", "bad");
+      } else if (added > 0) {
+        setMessage(
+          keyFileStatus,
+          "Added " + added + " public key" + (added === 1 ? "" : "s") + " from " + files.length + " file" + (files.length === 1 ? "" : "s") + ". You can add more .pub files if needed.",
+          "ok"
+        );
+      } else if (allLines.length > 0) {
+        setMessage(keyFileStatus, "Those keys are already listed below. You can add more .pub files if needed.", "muted");
+      } else {
+        setMessage(keyFileStatus, "No SSH public key lines were found in the selected file" + (files.length === 1 ? "" : "s") + ".", "bad");
+      }
+    } catch (err) {
+      setMessage(keyFileStatus, "Could not read the selected public key file" + (files.length === 1 ? "" : "s") + ".", "bad");
+    }
+  }
+
+  function setDropZoneActive(active) {
+    if (!keyDropZone) return;
+    keyDropZone.classList.toggle("border-ocean", active);
+    keyDropZone.classList.toggle("bg-ocean-soft/60", active);
+    keyDropZone.classList.toggle("border-deep/8", !active);
+    keyDropZone.classList.toggle("bg-mist/35", !active);
   }
 
   function setKeySectionVisible(visible) {
@@ -191,8 +362,8 @@
     var u = validateUsername();
     var k = validateKeys();
     var hasKeys = parseKeys().length > 0;
-    var canReserve = u && k && hasKeys && !state.busy;
-    checkButton.disabled = !u || state.busy;
+    var canReserve = u && k && hasKeys && !state.busy && !state.reserved;
+    checkButton.disabled = !u || state.busy || state.reserved;
     submit.disabled = !canReserve;
   }
 
@@ -245,6 +416,52 @@
     });
   }
 
+  function currentCapToken() {
+    var tokenInput = form.querySelector('input[name="cap-token"]');
+    return tokenInput ? tokenInput.value.trim() : "";
+  }
+
+  function stopFreshCaptchaWatcher() {
+    state.waitingForFreshCaptcha = false;
+    if (!freshCaptchaTimer) return;
+    clearInterval(freshCaptchaTimer);
+    freshCaptchaTimer = null;
+  }
+
+  function clearAvailabilityAfterFreshCaptcha() {
+    if (!state.waitingForFreshCaptcha || !currentCapToken()) return;
+    stopFreshCaptchaWatcher();
+    setMessage(availabilityStatus, null);
+  }
+
+  function startFreshCaptchaWatcher() {
+    if (freshCaptchaTimer) clearInterval(freshCaptchaTimer);
+    freshCaptchaTimer = setInterval(clearAvailabilityAfterFreshCaptcha, 200);
+    clearAvailabilityAfterFreshCaptcha();
+  }
+
+  function resetCaptchaWidget() {
+    clearCapToken();
+    var widget = form.querySelector("cap-widget");
+    if (!widget) return;
+    var replacement = widget.cloneNode(false);
+    widget.replaceWith(replacement);
+  }
+
+  function expireCredential(message) {
+    state.credential = "";
+    state.triesLeft = 0;
+    state.waitingForFreshCaptcha = true;
+    credentialInput.value = "";
+    resetCaptchaWidget();
+    startFreshCaptchaWatcher();
+    updateTriesStatus();
+    setMessage(captchaStatus, null);
+    if (message) {
+      setMessage(availabilityStatus, message, "bad");
+    }
+  }
+
   async function postForm(endpoint, data) {
     var body = new URLSearchParams();
     Object.keys(data).forEach(function (key) {
@@ -274,15 +491,16 @@
     clearCapToken();
     state.credential = data.credential;
     state.triesLeft = data.tries_left;
+    stopFreshCaptchaWatcher();
     credentialInput.value = state.credential;
     updateTriesStatus();
     setMessage(captchaStatus, "Captcha accepted. You can now make up to " + state.triesLeft + " attempts.", "ok");
+    setMessage(availabilityStatus, null);
   }
 
   async function checkAvailability() {
     if (!validateUsername()) return;
     setBusy(true);
-    setMessage(formStatus, null);
     setMessage(availabilityStatus, "Checking availability...", "muted");
     try {
       await ensureCredential();
@@ -302,13 +520,14 @@
           : name + "@privacy.fish is already reserved or taken.",
         data.available ? "ok" : "bad"
       );
+      if (state.triesLeft <= 0) {
+        var status = availabilityStatus.textContent;
+        expireCredential(null);
+        setAvailabilityWithAttemptWarning(status, data.available);
+      }
     } catch (err) {
       if (err.code === "credential_invalid" || err.code === "credential_exhausted") {
-        state.credential = "";
-        state.triesLeft = 0;
-        credentialInput.value = "";
-        clearCapToken();
-        updateTriesStatus();
+        expireCredential(err.message);
       }
       setMessage(availabilityStatus, err.message || "Could not check that username.", "bad");
     } finally {
@@ -328,7 +547,10 @@
       return;
     }
     setBusy(true);
-    setMessage(formStatus, "Reserving account...", "muted");
+    setFormStatusMessage(
+      formStatus ? formStatus.dataset.reservingMessage || "Reserving account..." : "Reserving account...",
+      "muted"
+    );
     try {
       await ensureCredential();
       var name = currentUsername();
@@ -339,22 +561,15 @@
       });
       state.triesLeft = data.tries_left;
       updateTriesStatus();
-      if (paymentReference) paymentReference.textContent = data.payment_reference;
-      if (result) {
-        result.classList.remove("hidden");
-        result.focus({ preventScroll: true });
-      }
+      state.reserved = true;
+      showReservedState(data.payment_reference);
       submit.disabled = true;
       checkButton.disabled = true;
     } catch (err) {
       if (err.code === "credential_invalid" || err.code === "credential_exhausted") {
-        state.credential = "";
-        state.triesLeft = 0;
-        credentialInput.value = "";
-        clearCapToken();
-        updateTriesStatus();
+        expireCredential(err.message);
       }
-      setMessage(formStatus, err.message || "Could not reserve this account.", "bad");
+      setFormStatusMessage(err.message || "Could not reserve this account.", "bad");
     } finally {
       setBusy(false);
     }
@@ -377,6 +592,48 @@
     state.submitIntent = "reserve";
   });
 
+  if (copyPaymentReference) {
+    copyPaymentReference.addEventListener("click", function () {
+      var reference = paymentReference ? paymentReference.textContent.trim() : "";
+      if (!reference) return;
+      copyText(reference)
+        .then(setCopyPaymentReferenceCopied)
+        .catch(function () {
+          setFormStatusMessage("Could not copy the payment reference automatically.", "bad");
+        });
+    });
+  }
+
+  if (keyFileInput) {
+    keyFileInput.addEventListener("change", async function () {
+      try {
+        await importKeyFiles(keyFileInput.files);
+      } finally {
+        keyFileInput.value = "";
+      }
+    });
+  }
+
+  if (keyDropZone) {
+    ["dragenter", "dragover"].forEach(function (eventName) {
+      keyDropZone.addEventListener(eventName, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setDropZoneActive(true);
+      });
+    });
+    ["dragleave", "drop"].forEach(function (eventName) {
+      keyDropZone.addEventListener(eventName, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setDropZoneActive(false);
+      });
+    });
+    keyDropZone.addEventListener("drop", function (e) {
+      importKeyFiles(e.dataTransfer ? e.dataTransfer.files : []);
+    });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var active = document.activeElement;
@@ -391,24 +648,6 @@
     }
     reserveAccount();
   });
-
-  if (newSignup) {
-    newSignup.addEventListener("click", function () {
-      form.reset();
-      if (result) result.classList.add("hidden");
-      state.credential = "";
-      state.triesLeft = 0;
-      state.submitIntent = "check";
-      credentialInput.value = "";
-      resetAvailability();
-      setKeySectionVisible(true);
-      clearCapToken();
-      renderHighlight();
-      updateTriesStatus();
-      refreshSubmit();
-      form.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
 
   renderHighlight();
   setKeySectionVisible(true);
