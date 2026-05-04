@@ -1,8 +1,8 @@
 ---
 title: "Example blog post template"
 description: "Draft example showing the content patterns available for privacy.fish blog posts."
-date: 2026-05-05
-draft: true
+date: 2026-05-04
+draft: false
 video: "/videos/security-model.mp4"
 show_cta: false
 ---
