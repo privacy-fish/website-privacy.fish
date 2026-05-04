@@ -78,7 +78,7 @@ blocks:
     groups:
 
       - title: "Data Minimization by Default"
-        image: "images/features/we-keep-only-what-is-technically-required.png"
+        video: "/videos/data-minimization-by-default.mp4"
         image_position: "left"
         items:
           - "We do not want data we don't need and prefer deleting data over trying to protect it."
