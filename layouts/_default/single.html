@@ -1,17 +1,18 @@
 {{ define "main" }}
   {{ $isBlog := eq .Section "blog" }}
+  {{ $isDocumentation := eq .Section "documentation" }}
   {{ $singleText := .Site.Params.single }}
   {{ $eyebrow := $singleText.default_eyebrow }}
   {{ if $isBlog }}
     {{ $eyebrow = .Date.Format "January 2, 2006" }}
-  {{ else if eq .Section "docs" }}
+  {{ else if $isDocumentation }}
     {{ $eyebrow = $singleText.docs_eyebrow }}
   {{ end }}
   {{ with .Params.eyebrow }}
     {{ $eyebrow = . }}
   {{ end }}
   <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-12 sm:pt-32">
-    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="mx-auto px-6 lg:px-8 {{ if $isDocumentation }}max-w-7xl{{ else }}max-w-5xl{{ end }}">
       <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
         {{ with .Parent }}
           <a href="{{ .RelPermalink }}" class="transition hover:text-deep">{{ .Title }}</a>
@@ -41,12 +42,33 @@
   </section>
 
   <section class="bg-white pb-20">
-    <div class="mx-auto max-w-5xl px-6 lg:px-8">
-      <div class="py-10">
-        <article class="prose prose-lg prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
-          {{ .Content }}
-        </article>
-      </div>
+    <div class="mx-auto px-6 lg:px-8 {{ if $isDocumentation }}max-w-7xl{{ else }}max-w-5xl{{ end }}">
+      {{ if $isDocumentation }}
+        <div class="grid gap-12 py-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
+          <article class="prose prose-lg prose-headings:scroll-mt-32 prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
+            {{ .Content }}
+          </article>
+          {{ with .TableOfContents }}
+            <aside class="hidden lg:sticky lg:top-28 lg:block lg:max-h-[calc(100vh-8rem)] lg:self-start lg:overflow-y-auto">
+              <div class="rounded-[1.5rem] border border-deep/8 bg-mist/35 p-5">
+                <p class="text-[0.72rem] font-bold tracking-[0.2em] text-amber uppercase">On this page</p>
+                <div
+                  data-doc-toc
+                  class="mt-4 text-sm leading-6 text-deep/62 [&_a.active]:bg-white [&_a.active]:text-amber [&_a.active]:shadow-[0_10px_30px_-24px_rgba(6,47,73,0.5)] [&_a]:block [&_a]:rounded-xl [&_a]:px-3 [&_a]:py-1.5 [&_a]:font-semibold [&_a]:text-deep/68 [&_a]:no-underline [&_a]:transition [&_a:hover]:bg-white [&_a:hover]:text-amber [&_li]:my-1 [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3"
+                >
+                  {{ . }}
+                </div>
+              </div>
+            </aside>
+          {{ end }}
+        </div>
+      {{ else }}
+        <div class="py-10">
+          <article class="prose prose-lg prose-headings:scroll-mt-32 prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
+            {{ .Content }}
+          </article>
+        </div>
+      {{ end }}
 
       {{ if ne .Params.show_cta false }}
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">

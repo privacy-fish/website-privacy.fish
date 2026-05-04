@@ -56,7 +56,7 @@ blocks:
       - "Privacy.Fish treats email as private infrastructure, not as a data source."
       - "We collect only what is required to run the mail servers, publish our code, and design every technical decision around privacy and security."
     primary_cta_text: "Read our company philosophy page"
-    primary_cta_url: "/docs/company-philosophy/"
+    primary_cta_url: "/documentation/company-philosophy/"
 
   - block: counter
     id: counter

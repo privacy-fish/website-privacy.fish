@@ -49,7 +49,7 @@ url = "/blog/"
 
 [[params.footer.resources]]
 label = "Documentation"
-url = "/docs/"
+url = "/documentation/"
 
 [[params.footer.resources]]
 label = "Code"
@@ -77,7 +77,7 @@ weight = 2
 
 [[menus.main]]
 name = "Documentation"
-url = "/docs/"
+url = "/documentation/"
 weight = 3
 
 [[menus.main]]
@@ -117,7 +117,7 @@ weight = 5
 
 [[menus.footer]]
 name = "Documentation"
-url = "/docs/"
+url = "/documentation/"
 weight = 6
 
 [[menus.footer]]

@@ -1,6 +1,7 @@
 {{ define "main" }}
   {{ $pages := .RegularPages }}
   {{ $isBlog := eq .Section "blog" }}
+  {{ $isDocumentation := eq .Section "documentation" }}
   {{ $listText := .Site.Params.list }}
   {{ $cta := .Params.list_cta }}
   {{ if eq .Section "blog" }}
@@ -29,34 +30,49 @@
     </div>
   </section>
 
-  <section class="bg-white py-16 lg:py-20">
+  <section class="bg-white {{ if $isDocumentation }}pt-8 pb-16 lg:pt-10 lg:pb-20{{ else }}py-16 lg:py-20{{ end }}">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {{ range $pages }}
-          <a href="{{ .RelPermalink }}" class="group flex h-full flex-col rounded-[2rem] bg-white p-7 no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]{{ if not $isBlog }} border border-deep/8{{ end }}">
-            <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
-              <span>{{ if eq .Section "blog" }}{{ $listText.blog_card_label }}{{ else }}{{ $listText.default_card_label }}{{ end }}</span>
-              {{ if eq .Section "blog" }}
-                <span class="h-1 w-1 rounded-full bg-amber"></span>
-                <span>{{ .Date.Format "January 2, 2006" }}</span>
-              {{ end }}
-            </div>
-            <h2 class="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
-              {{ .Title }}
-            </h2>
-            <p class="mt-4 flex-1 text-base leading-7 text-deep/70">
-              {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}
-            </p>
-            <div class="mt-6 flex items-center justify-between gap-4">
-              <span class="text-sm font-semibold text-deep/52">{{ .ReadingTime }} {{ $listText.reading_time_suffix }}</span>
-              <span class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition group-hover:text-deep">
-                {{ $listText.read_more_text }}
+      {{ if $isDocumentation }}
+        <div class="max-w-4xl divide-y divide-deep/8 border-b border-deep/8">
+          {{ range $pages }}
+            <a href="{{ .RelPermalink }}" class="group flex items-center justify-between gap-5 py-5 no-underline transition hover:bg-mist/40 sm:px-4">
+              <h2 class="text-xl font-extrabold tracking-[-0.02em] text-deep transition group-hover:text-ocean">
+                {{ .Title }}
+              </h2>
+              <span class="shrink-0 text-amber transition group-hover:text-amber" aria-hidden="true">
                 {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
               </span>
-            </div>
-          </a>
-        {{ end }}
-      </div>
+            </a>
+          {{ end }}
+        </div>
+      {{ else }}
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {{ range $pages }}
+            <a href="{{ .RelPermalink }}" class="group flex h-full flex-col rounded-[2rem] bg-white p-7 no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]{{ if not $isBlog }} border border-deep/8{{ end }}">
+              <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+                <span>{{ if eq .Section "blog" }}{{ $listText.blog_card_label }}{{ else }}{{ $listText.default_card_label }}{{ end }}</span>
+                {{ if eq .Section "blog" }}
+                  <span class="h-1 w-1 rounded-full bg-amber"></span>
+                  <span>{{ .Date.Format "January 2, 2006" }}</span>
+                {{ end }}
+              </div>
+              <h2 class="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
+                {{ .Title }}
+              </h2>
+              <p class="mt-4 flex-1 text-base leading-7 text-deep/70">
+                {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}
+              </p>
+              <div class="mt-6 flex items-center justify-between gap-4">
+                <span class="text-sm font-semibold text-deep/52">{{ .ReadingTime }} {{ $listText.reading_time_suffix }}</span>
+                <span class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition group-hover:text-deep">
+                  {{ $listText.read_more_text }}
+                  {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
+                </span>
+              </div>
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
   </section>
 

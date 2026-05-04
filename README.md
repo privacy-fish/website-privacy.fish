@@ -46,7 +46,7 @@ Each homepage block maps to a partial in [`layouts/_partials/blocks`](./layouts/
 Additional site sections:
 
 - [`content/blog`](./content/blog) for blog posts
-- [`content/docs`](./content/docs) for documentation pages
+- [`content/documentation`](./content/documentation) for documentation pages
 
 The shared page templates live in:
 
@@ -58,7 +58,7 @@ The shared page templates live in:
 
 - [`content/_index.md`](./content/_index.md): homepage copy, block order, CTAs, pricing, and section content
 - [`content/blog`](./content/blog): blog landing copy and posts
-- [`content/docs`](./content/docs): documentation landing copy and guides
+- [`content/documentation`](./content/documentation): documentation landing copy and guides
 - [`hugo.toml`](./hugo.toml): site metadata, menus, base URL, logo path, and signup URL
 - [`assets/css/main.css`](./assets/css/main.css): Tailwind v4 theme tokens and global base styles
 - [`assets/images`](./assets/images): logo and any Hugo-managed image assets

@@ -49,6 +49,59 @@
     updateActiveNav();
   }
 
+  function initDocTocScrollSpy() {
+    const toc = qs("[data-doc-toc]");
+    if (!toc) return;
+
+    const links = qsa('a[href^="#"]', toc);
+    if (links.length === 0) return;
+
+    const linkById = new Map();
+    for (const link of links) {
+      const id = decodeURIComponent(link.hash.replace("#", ""));
+      if (id) linkById.set(id, link);
+    }
+
+    const headings = qsa("article [id]").filter((heading) => linkById.has(heading.id));
+    if (headings.length === 0) return;
+
+    let ticking = false;
+
+    function setActive(activeLink) {
+      for (const link of links) {
+        link.classList.toggle("active", link === activeLink);
+      }
+    }
+
+    function updateActiveToc() {
+      ticking = false;
+      const navbar = document.getElementById("navbar");
+      const headerOffset = (navbar ? navbar.offsetHeight : 0) + 40;
+      let activeHeading = headings[0];
+
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top <= headerOffset) {
+          activeHeading = heading;
+        } else {
+          break;
+        }
+      }
+
+      setActive(linkById.get(activeHeading.id));
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActiveToc);
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    window.addEventListener("hashchange", requestUpdate);
+    updateActiveToc();
+  }
+
   function initMobileMenu() {
     const navbar = document.getElementById("navbar");
     const toggle = qs("[data-mobile-menu-toggle]");
@@ -251,6 +304,7 @@
   function init() {
     initNavbarHeightVar();
     initScrollSpy();
+    initDocTocScrollSpy();
     initMobileMenu();
     initSmoothAnchors();
     initRevealAnimations();
