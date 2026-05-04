@@ -1,4 +1,4 @@
-<section id="{{ .Params.id | default "features" }}" class="scroll-mt-32 bg-mist/55 py-20 lg:py-24">
+<section id="{{ .Params.id | default "features" }}" class="scroll-mt-32 bg-white py-20 lg:py-24">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
       {{ with .Params.eyebrow }}
@@ -27,13 +27,13 @@
               <div class="overflow-hidden rounded-[1.5rem]">
                 {{ if $group.video }}
                   <video
-                    class="aspect-[7/3] w-full object-cover object-center"
-                    autoplay
+                    class="{{ if eq $group.video_aspect "16:9" }}aspect-video{{ else if eq $group.video_aspect "7:3" }}aspect-[7/3]{{ else }}aspect-[320/137]{{ end }} w-full object-cover object-center"
                     muted
-                    loop
                     playsinline
                     preload="metadata"
                     aria-label="{{ $group.title }}"
+                    data-limited-video
+                    data-play-count="2"
                   >
                     <source src="{{ $group.video }}" type="video/mp4" />
                   </video>
@@ -66,3 +66,5 @@
     </div>
   </div>
 </section>
+
+<script defer src="/js/feature-videos.js"></script>

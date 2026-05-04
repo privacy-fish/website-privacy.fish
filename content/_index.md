@@ -86,7 +86,8 @@ blocks:
           - "You download and delete mail from our servers yourself. Mail you do not delete is deleted after 14 days."
 
       - title: "Private Payment"
-        image: "images/features/private-account-payment-flow.png"
+        video: "/videos/private-payment.mp4"
+        video_aspect: "16:9"
         image_position: "right"
         items:
           - "After signup, you receive a temporary payment code valid for 30 days."
@@ -94,7 +95,7 @@ blocks:
           - "We support cash by letter, cryptocurrencies, SEPA bank transfer, PayPal and credit cards."
 
       - title: "Norway’s Privacy Jurisdiction"
-        image: "images/features/private-access-norwegian-jurisdiction.png"
+        video: "/videos/norways-privacy-jurisdiction.mp4"
         image_position: "left"
         items:
           - "Norwegian law only requires us to save when you logged in and from with IP:port, for 12 months."
@@ -102,7 +103,7 @@ blocks:
           - "VPN access is encouraged and tor .onion addresses are available for all servers."
 
       - title: "Security Model"
-        image: "images/features/drastically-reduced-attack-surface.png"
+        video: "/videos/security-model.mp4"
         image_position: "right"
         items:
           - "Built using the most secure open source software (OpenBSD, OpenSMTPD, OpenSSH) and only minimal custom code. Everything is auditable open source code."
@@ -110,7 +111,7 @@ blocks:
           - "Admin workstations are OpenBSD Raspberry Pis, replaced monthly with only the SSH private key migrated, and firewalled to only reach our servers and stw.no."
 
       - title: "Secure Email Workflow"
-        image: "images/features/secure-mail-workflow.png"
+        video: "/videos/secure-email-workflow.mp4"
         image_position: "left"
         items:
           - "Security before convenience - There is no webmail, password login, IMAP, or POP3 - only SSH and SFTP access through our client app."
