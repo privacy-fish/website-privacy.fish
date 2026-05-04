@@ -2,6 +2,7 @@
 title: "What Norwegian jurisdiction means in practice"
 description: "The service is hosted in Norway and complies with legal obligations that actually apply there, while still minimizing retained data."
 date: 2026-04-16
+video: "/videos/norways-privacy-jurisdiction.mp4"
 ---
 
 privacy.fish is hosted in Norwegian data centers. That matters for both operational trust and legal exposure.

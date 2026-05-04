@@ -25,6 +25,23 @@
         {{ .Title }}
       </h1>
 
+      {{ if and $isBlog .Params.video }}
+        <div class="mt-8 aspect-[21/9] max-w-5xl overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.36)]">
+          <video
+            class="h-full w-full object-cover object-center"
+            muted
+            playsinline
+            preload="metadata"
+            data-limited-video
+            data-play-count="1"
+            {{ with .Params.video_poster }}poster="{{ . }}"{{ end }}
+          >
+            <source src="{{ .Params.video }}" type="video/mp4" />
+          </video>
+        </div>
+        <script defer src="/js/feature-videos.js"></script>
+      {{ end }}
+
       {{ with .Description }}
         <p class="mt-5 max-w-4xl text-[1.4rem] leading-10 text-deep/68">{{ . }}</p>
       {{ end }}

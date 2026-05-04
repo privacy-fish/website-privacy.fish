@@ -45,6 +45,49 @@
             </a>
           {{ end }}
         </div>
+      {{ else if $isBlog }}
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {{ range $pages }}
+            <a href="{{ .RelPermalink }}" class="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]">
+              {{ $videoPoster := .Params.video_poster }}
+              {{ with .Params.video }}
+                <div class="aspect-[21/9] w-full overflow-hidden bg-mist">
+                  <video
+                    class="h-full w-full object-cover object-center"
+                    muted
+                    playsinline
+                    preload="metadata"
+                    data-blog-card-video
+                    {{ with $videoPoster }}poster="{{ . }}"{{ end }}
+                  >
+                    <source src="{{ . }}" type="video/mp4" />
+                  </video>
+                </div>
+              {{ end }}
+              <div class="flex flex-1 flex-col p-7">
+                <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+                  <span>{{ $listText.blog_card_label }}</span>
+                  <span class="h-1 w-1 rounded-full bg-amber"></span>
+                  <span>{{ .Date.Format "January 2, 2006" }}</span>
+                </div>
+                <h2 class="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
+                  {{ .Title }}
+                </h2>
+                <p class="mt-4 flex-1 text-base leading-7 text-deep/70">
+                  {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}
+                </p>
+                <div class="mt-6 flex items-center justify-between gap-4">
+                  <span class="text-sm font-semibold text-deep/52">{{ .ReadingTime }} {{ $listText.reading_time_suffix }}</span>
+                  <span class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition group-hover:text-deep">
+                    {{ $listText.read_more_text }}
+                    {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
+                  </span>
+                </div>
+              </div>
+            </a>
+          {{ end }}
+        </div>
+        <script defer src="/js/blog-videos.js"></script>
       {{ else }}
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {{ range $pages }}

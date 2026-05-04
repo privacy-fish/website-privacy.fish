@@ -2,6 +2,7 @@
 title: "Launching privacy.fish with privacy above convenience"
 description: "Why privacy.fish starts from a different premise than mainstream email providers, and why that changes everything from storage to recovery."
 date: 2026-04-22
+video: "/videos/data-minimization-by-default.mp4"
 ---
 
 Most email services optimize for convenience first. privacy.fish does not.

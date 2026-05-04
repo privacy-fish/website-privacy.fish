@@ -2,6 +2,7 @@
 title: "Why mail expires after 14 days"
 description: "The 14-day retention window is a security and trust decision, not a storage optimization trick."
 date: 2026-04-19
+video: "/videos/secure-email-workflow.mp4"
 ---
 
 privacy.fish does not try to be a permanent archive. Mail on the server is temporary by design.
