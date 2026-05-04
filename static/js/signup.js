@@ -25,6 +25,8 @@
   var paymentSection = document.querySelector("[data-payment-section]");
   var usernamePattern = /^[a-z0-9](?:[a-z0-9.-]{0,29}[a-z0-9])?$/;
   var freshCaptchaTimer = null;
+  var captchaTokenTimer = null;
+  var credentialPromise = null;
   var state = {
     credential: "",
     triesLeft: 0,
@@ -89,6 +91,7 @@
   }
 
   function showReservedState(reference) {
+    stopCaptchaTokenWatcher();
     setPaymentReference(reference);
     setFormStatusMessage(
       formStatus ? formStatus.dataset.reservedMessage || "Your account is reserved for 30 days." : "Your account is reserved for 30 days.",
@@ -440,6 +443,24 @@
     clearAvailabilityAfterFreshCaptcha();
   }
 
+  function stopCaptchaTokenWatcher() {
+    if (!captchaTokenTimer) return;
+    clearInterval(captchaTokenTimer);
+    captchaTokenTimer = null;
+  }
+
+  function startCaptchaTokenWatcher() {
+    if (captchaTokenTimer) clearInterval(captchaTokenTimer);
+    captchaTokenTimer = setInterval(function () {
+      if (state.reserved || state.busy || credentialPromise) return;
+      if (state.credential && state.triesLeft > 0) return;
+      if (!currentCapToken()) return;
+      ensureCredential().catch(function (err) {
+        setMessage(captchaStatus, err.message || "Captcha verification failed. Please solve it again.", "bad");
+      });
+    }, 200);
+  }
+
   function resetCaptchaWidget() {
     clearCapToken();
     var widget = form.querySelector("cap-widget");
@@ -486,6 +507,16 @@
 
   async function ensureCredential() {
     if (state.credential && state.triesLeft > 0) return;
+    if (credentialPromise) return credentialPromise;
+    credentialPromise = redeemCredential();
+    try {
+      await credentialPromise;
+    } finally {
+      credentialPromise = null;
+    }
+  }
+
+  async function redeemCredential() {
     var token = await getCapToken();
     var data = await postForm(form.dataset.lookupEndpoint, { "cap-token": token });
     clearCapToken();
@@ -652,5 +683,6 @@
   renderHighlight();
   setKeySectionVisible(true);
   updateTriesStatus();
+  startCaptchaTokenWatcher();
   refreshSubmit();
 })();
