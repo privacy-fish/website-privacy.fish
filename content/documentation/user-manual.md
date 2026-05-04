@@ -1,6 +1,8 @@
 ---
 title: "User Manual"
+description: "User-facing notes for account creation, SSH keys, payment, provisioning, mail access, sending, receiving, and deletion."
 weight: 20
+video: "/videos/secure-email-workflow.mp4"
 # @richtermac, I need to write each of the below sections for: CLI, macOS, Linux, Windows, Android, iPhone
 # So I need some kind of 6 boxes with the logo of the OS that the user can click on to get to
 # documentation/user-manual/command-line/account-creation

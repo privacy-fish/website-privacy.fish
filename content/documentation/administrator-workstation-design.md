@@ -1,6 +1,8 @@
 ---
 title: "Administrator Workstation Design"
+description: "How the admin workstation is treated as replaceable infrastructure and rebuilt around minimal trusted material."
 weight: 50
+video: "/videos/security-model.mp4"
 ---
 
 The core concept behind the hardware of a Privacy.Fish administrators workstation is to harden it, but still consider it exploitable and hence completely replace it frequently.

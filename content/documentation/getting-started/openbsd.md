@@ -2,6 +2,7 @@
 title: "OpenBSD setup"
 description: "Basic OpenBSD notes for generating SSH keys and preparing for privacy.fish access."
 weight: 7
+video: "/videos/security-model.mp4"
 ---
 
 OpenBSD is a natural fit for the privacy.fish workflow because SSH tooling is available by default.

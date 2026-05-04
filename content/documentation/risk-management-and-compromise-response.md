@@ -1,6 +1,8 @@
 ---
 title: "Risk Management and Compromise Response"
+description: "How privacy.fish thinks about live compromise, impact boundaries, operational risk, and response after an incident."
 weight: 45
+video: "/videos/secure-email-workflow.mp4"
 ---
 
 # Risk Management and Compromise Response

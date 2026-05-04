@@ -1,6 +1,8 @@
 ---
 title: "Email Infrastructure Architecture"
+description: "A technical overview of the privacy.fish email infrastructure, trust boundaries, OpenBSD stack, and operational security model."
 weight: 40
+video: "/videos/security-model.mp4"
 ---
 
 # Infrastructure Security Concepts

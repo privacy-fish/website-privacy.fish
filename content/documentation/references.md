@@ -1,6 +1,8 @@
 ---
 title: "References"
+description: "Reference notes for account limits, supported domains, storage duration, compatibility, and operational assumptions."
 weight: 80
+video: "/videos/data-minimization-by-default.mp4"
 ---
 
 ## Limits

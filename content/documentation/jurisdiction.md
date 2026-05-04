@@ -1,6 +1,8 @@
 ---
 title: "Jurisdiction"
+description: "Why Norway was selected for privacy.fish and how jurisdiction affects logging, disclosure, and legal exposure."
 weight: 70
+video: "/videos/norways-privacy-jurisdiction.mp4"
 ---
 
 

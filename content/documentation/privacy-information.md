@@ -1,6 +1,8 @@
 ---
 title: "Privacy Information"
+description: "Privacy information covering payment codes, one-time payments, provider exposure, server logs, and website data."
 weight: 60
+video: "/videos/private-payment.mp4"
 ---
 
 # Privacy Information

@@ -1,5 +1,5 @@
 (function () {
-  var videos = document.querySelectorAll("[data-blog-card-video]");
+  var videos = document.querySelectorAll("[data-blog-card-video], [data-card-video]");
   if (!videos.length) return;
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
