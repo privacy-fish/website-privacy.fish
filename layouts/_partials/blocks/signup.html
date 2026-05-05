@@ -260,7 +260,7 @@
               {{ with $item.logo }}
                 {{ $logo = resources.Get . }}
               {{ end }}
-              <article class="overflow-hidden rounded-2xl border border-deep/10 bg-white {{ if not $logo }}p-5{{ end }}">
+              <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-deep/10 bg-white {{ if not $logo }}p-5{{ end }}">
                 {{ with $logo }}
                   <div class="flex h-24 items-center justify-center border-b border-deep/10 px-5">
                     {{ if $item.logo_url }}
@@ -272,12 +272,26 @@
                     {{ end }}
                   </div>
                 {{ end }}
-                <div class="{{ if $logo }}p-5{{ end }}">
-                  <h3 class="font-bold text-deep">{{ .title }}</h3>
+                <div class="flex-1 {{ if $logo }}p-5{{ end }}">
+                  <h3 class="font-bold text-deep">
+                    {{ if $item.logo_url }}
+                      <a href="{{ $item.logo_url }}" target="_blank" rel="noopener noreferrer" class="transition hover:text-ocean">{{ .title }}</a>
+                    {{ else }}
+                      {{ .title }}
+                    {{ end }}
+                  </h3>
                   <div class="mt-1 text-deep/64 [&_a]:font-bold [&_a]:text-ocean [&_a]:underline [&_a]:decoration-ocean/30 [&_a]:underline-offset-4 [&_a:hover]:text-deep">
                     {{ .text | markdownify }}
                   </div>
                 </div>
+                {{ with $item.privacy_url }}
+                  <div class="border-t border-deep/10 px-5 py-4">
+                    <a href="{{ . }}" class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition hover:text-deep">
+                      Privacy information
+                      {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-amber") }}
+                    </a>
+                  </div>
+                {{ end }}
               </article>
             {{ end }}
           </div>
