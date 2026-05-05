@@ -26,7 +26,9 @@
   var usernamePattern = /^[a-z0-9](?:[a-z0-9.-]{0,29}[a-z0-9])?$/;
   var freshCaptchaTimer = null;
   var captchaTokenTimer = null;
+  var autoAvailabilityTimer = null;
   var credentialPromise = null;
+  var autoAvailabilityDelayMs = 2000;
   var state = {
     credential: "",
     triesLeft: 0,
@@ -271,6 +273,12 @@
     state.checkedUsername = "";
     state.available = false;
     setMessage(availabilityStatus, null);
+  }
+
+  function clearAutoAvailabilityCheck() {
+    if (!autoAvailabilityTimer) return;
+    clearTimeout(autoAvailabilityTimer);
+    autoAvailabilityTimer = null;
   }
 
   function keyFingerprint(line) {
@@ -529,17 +537,44 @@
     setMessage(availabilityStatus, null);
   }
 
-  async function checkAvailability() {
+  function scheduleAutoAvailabilityCheck() {
+    clearAutoAvailabilityCheck();
+
+    var name = currentUsername();
+    if (!name || state.reserved) {
+      setMessage(availabilityStatus, null);
+      return;
+    }
+    if (!validateUsername()) {
+      setMessage(availabilityStatus, null);
+      return;
+    }
+
+    setMessage(availabilityStatus, "Waiting for you to stop typing...", "muted");
+    autoAvailabilityTimer = setTimeout(function () {
+      autoAvailabilityTimer = null;
+      if (currentUsername() !== name || state.reserved) return;
+      setMessage(availabilityStatus, "Checking availability...", "muted");
+      checkAvailability({ expectedUsername: name });
+    }, autoAvailabilityDelayMs);
+  }
+
+  async function checkAvailability(options) {
+    options = options || {};
+    clearAutoAvailabilityCheck();
+    if (options.expectedUsername && currentUsername() !== options.expectedUsername) return;
     if (!validateUsername()) return;
+    var name = currentUsername();
     setBusy(true);
     setMessage(availabilityStatus, "Checking availability...", "muted");
     try {
       await ensureCredential();
-      var name = currentUsername();
+      if (currentUsername() !== name) return;
       var data = await postForm(form.dataset.checkEndpoint, {
         credential: state.credential,
         username: name,
       });
+      if (currentUsername() !== name) return;
       state.triesLeft = data.tries_left;
       updateTriesStatus();
       state.checkedUsername = name;
@@ -609,6 +644,7 @@
   username.addEventListener("input", function () {
     resetAvailability();
     refreshSubmit();
+    scheduleAutoAvailabilityCheck();
   });
   username.addEventListener("blur", refreshSubmit);
   textarea.addEventListener("input", function () {
@@ -674,9 +710,11 @@
         ? active.dataset.signupIntent
         : state.submitIntent;
     if (intent === "check") {
+      clearAutoAvailabilityCheck();
       checkAvailability();
       return;
     }
+    clearAutoAvailabilityCheck();
     reserveAccount();
   });
 
