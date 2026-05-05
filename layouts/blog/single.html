@@ -1,12 +1,16 @@
 {{ define "main" }}
   {{ $singleText := .Site.Params.single }}
-  {{ $eyebrow := $singleText.default_eyebrow }}
+  {{ $eyebrow := .Date.Format "January 2, 2006" }}
   {{ with .Params.eyebrow }}
     {{ $eyebrow = . }}
   {{ end }}
+  {{ $videoPoster := .Params.video_poster }}
+  {{ if and (not $videoPoster) .Params.video (hasPrefix .Params.video "/videos/") (hasSuffix .Params.video ".mp4") }}
+    {{ $videoPoster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" .Params.video }}
+  {{ end }}
 
   <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-12 sm:pt-32">
-    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
         {{ with .Parent }}
           <a href="{{ .RelPermalink }}" class="transition hover:text-deep">{{ .Title }}</a>
@@ -18,6 +22,22 @@
       <h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-[-0.05em] text-deep sm:text-6xl">
         {{ .Title }}
       </h1>
+
+      {{ with .Params.video }}
+        <div class="mt-8 aspect-[21/9] max-w-5xl overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.36)]">
+          <video
+            class="h-full w-full object-cover object-center"
+            muted
+            playsinline
+            preload="auto"
+            data-limited-video
+            data-play-count="1"
+            {{ with $videoPoster }}poster="{{ . }}"{{ end }}
+          >
+            <source src="{{ . }}" type="video/mp4" />
+          </video>
+        </div>
+      {{ end }}
 
       {{ with .Description }}
         <p class="mt-5 max-w-4xl text-[1.4rem] leading-10 text-deep/68">{{ . }}</p>
@@ -36,11 +56,24 @@
   </section>
 
   <section class="bg-white pb-20">
-    <div class="mx-auto max-w-5xl px-6 lg:px-8">
-      <div class="py-10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-12 py-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
         <article class="prose prose-lg prose-headings:scroll-mt-32 prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-p:text-deep/76 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/76 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
           {{ .Content }}
         </article>
+        {{ with .TableOfContents }}
+          <aside class="hidden lg:sticky lg:top-28 lg:block lg:max-h-[calc(100vh-8rem)] lg:self-start lg:overflow-y-auto">
+            <div class="rounded-[1.5rem] border border-deep/8 bg-mist/35 p-5">
+              <p class="text-[0.72rem] font-bold tracking-[0.2em] text-amber uppercase">On this page</p>
+              <div
+                data-doc-toc
+                class="mt-4 text-sm leading-6 text-deep/62 [&_a.active]:text-amber [&_a]:block [&_a]:rounded-xl [&_a]:px-3 [&_a]:py-1.5 [&_a]:font-semibold [&_a]:text-deep/68 [&_a]:no-underline [&_a]:transition [&_a:hover]:text-amber [&_li]:my-1 [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3"
+              >
+                {{ . }}
+              </div>
+            </div>
+          </aside>
+        {{ end }}
       </div>
 
       {{ if ne .Params.show_cta false }}
@@ -64,4 +97,6 @@
       {{ end }}
     </div>
   </section>
+
+  <script defer src="/js/feature-videos.js"></script>
 {{ end }}

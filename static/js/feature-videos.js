@@ -17,6 +17,9 @@
     var plays = 0;
     var autoPlayed = false;
 
+    video.preload = "auto";
+    video.load();
+
     function startSequence() {
       plays = 0;
       video.currentTime = 0;
