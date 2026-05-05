@@ -11,8 +11,7 @@ blocks:
     eyebrow: "Sign up"
     heading: "Reserve your privacy.fish address"
     subheading: |-
-      Pick your username and add your SSH public keys.  
-      We will verify them and walk you through the rest.
+      Pick your username and add your SSH public keys. We will verify them and walk you through the rest.
     human_step_label: "Human check first"
     human_heading: "Prove you are human before checking usernames."
     human_copy: "Solve the captcha once, then you get five username or signup attempts."
