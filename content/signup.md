@@ -53,9 +53,11 @@ blocks:
     payment_methods:
       - title: "Info"
         logo: "images/logos/paypal.svg"
+        logo_url: "https://www.paypal.com/"
         text: "Read the payment and account creation guide before choosing a payment method."
       - title: "Cash by letter"
         logo: "images/logos/paypal.svg"
+        logo_url: "https://www.paypal.com/"
         text: "Send cash with the payment code."
       - title: "Crypto"
         logo: "images/logos/bitcoin.svg"
