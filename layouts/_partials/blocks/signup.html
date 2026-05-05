@@ -285,10 +285,10 @@
             <div class="mt-6">
               <a
                 href="{{ . }}"
-                class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
+                class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
               >
                 {{ with $.Params.payment_methods_docs_icon }}
-                  {{ partial "components/icon.html" (dict "name" . "class" "h-4 w-4 text-ocean") }}
+                  {{ partial "components/icon.html" (dict "name" . "class" "h-4 w-4 text-white") }}
                 {{ end }}
                 {{ $.Params.payment_methods_docs_text }}
               </a>
