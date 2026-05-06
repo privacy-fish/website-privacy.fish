@@ -35,9 +35,17 @@
   <meta property="og:type" content="website">
 {{- end }}
 
-{{- with partial "_funcs/get-page-images" . }}
-  {{- range . | first 6 }}
-    <meta property="og:image" content="{{ .Permalink }}">
+{{- $videoPoster := partial "_funcs/get-video-poster.html" . -}}
+{{- if $videoPoster }}
+  <meta property="og:image" content="{{ $videoPoster | absURL }}">
+  {{- with or $.Title site.Title site.Params.title | plainify }}
+    <meta property="og:image:alt" content="{{ . }}">
+  {{- end }}
+{{- else }}
+  {{- with partial "_funcs/get-page-images" . }}
+    {{- range . | first 6 }}
+      <meta property="og:image" content="{{ .Permalink }}">
+    {{- end }}
   {{- end }}
 {{- end }}
 

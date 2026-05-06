@@ -1,0 +1,8 @@
+{{- $poster := "" -}}
+{{- if and .IsPage (eq .Section "blog") -}}
+  {{- $poster = .Params.video_poster | default "" -}}
+  {{- if and (not $poster) .Params.video (hasPrefix .Params.video "/videos/") (hasSuffix .Params.video ".mp4") -}}
+    {{- $poster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" .Params.video -}}
+  {{- end -}}
+{{- end -}}
+{{- return $poster -}}
