@@ -11,7 +11,7 @@ The Privacy.Fish infrastructure security model combines several ideas: trusting 
 
 Privacy.Fish trades server-side convenience for a smaller trust model: fewer services, less retained data, fewer passwords, short-lived servers, and mail stored primarily on devices you control.
 
-Security is never finished. There is always another control, another audit, or another layer that could be added. Privacy.Fish publishes its setup and design decisions on [github.com/privacy-fish](https://github.com/privacy-fish) so professional security reviewers and the wider technical community can inspect them, challenge them, and help improve the system over time.
+Security is never finished. There is always another control, another audit, or another layer that could be added. Privacy.Fish publishes its setup and design decisions on [github.com/privacy-fish](https://github.com/privacy-fish "github.com/privacy-fish") so professional security reviewers and the wider technical community can inspect them, challenge them, and help improve the system over time.
 
 ## Things We Have to Trust Ultimately
 
@@ -30,15 +30,15 @@ All our servers are located in Norway and hosted with servetheworld.no / stw.no.
 
 ServeTheWorld is a Norwegian hosting provider based in Oslo. For Privacy.Fish, the most important property is jurisdiction: the servers are hosted in Norway, under Norwegian law. Privacy.Fish is a Norwegian LLC.
 
-STW states that it deploys its dedicated servers in Oslo data centers under Norwegian law. They also state that privacy is supported by Norwegian legislation and that customer data is not handed to another party without a Norwegian court order. ([Dedicated servers](https://stw.no/en/dedicated-server/), [ServeTheWorld overview](https://stw.no/en/))
+STW states that it deploys its dedicated servers in Oslo data centers under Norwegian law. They also state that privacy is supported by Norwegian legislation and that customer data is not handed to another party without a Norwegian court order. ([Dedicated servers](https://stw.no/en/dedicated-server/ "Dedicated servers"), [ServeTheWorld overview](https://stw.no/en/ "ServeTheWorld overview"))
 
-From a physical and operational security perspective, STW describes its Oslo data center as a high-security facility with capacity for around 4,000 servers, protection against fire, theft, power failure and flooding, redundant network lines, redundant UPS, A/B power, firewalling and diesel generator backup. For colocation, STW also describes redundant cooling, redundant power paths, security around the clock and 24/7 emergency personnel. Their terms include a GDPR data processing agreement, which makes STW a data processor for hosted customer data, but Privacy.Fish still avoids treating the hosting provider as a privacy boundary: mail content is age-encrypted before storage, and the server design minimizes the data that STW or the infrastructure ever needs to handle in readable form. ([Colocation](https://stw.no/en/colocation/), [Data Processing Agreement](https://stw.no/wp-content/uploads/legal/nor-legal/Databehandleravtale_%28DBA%29.pdf))
+From a physical and operational security perspective, STW describes its Oslo data center as a high-security facility with capacity for around 4,000 servers, protection against fire, theft, power failure and flooding, redundant network lines, redundant UPS, A/B power, firewalling and diesel generator backup. For colocation, STW also describes redundant cooling, redundant power paths, security around the clock and 24/7 emergency personnel. Their terms include a GDPR data processing agreement, which makes STW a data processor for hosted customer data, but Privacy.Fish still avoids treating the hosting provider as a privacy boundary: mail content is age-encrypted before storage, and the server design minimizes the data that STW or the infrastructure ever needs to handle in readable form. ([Colocation](https://stw.no/en/colocation/ "Colocation"), [Data Processing Agreement](https://stw.no/wp-content/uploads/legal/nor-legal/Databehandleravtale_%28DBA%29.pdf "Data Processing Agreement"))
 
 ## OpenBSD as Operating System
 
 OpenBSD is widely considered to be one of the most secure operating systems. All our servers and admin workstations run OpenBSD.
 
-The reason we use OpenBSD is not only its reputation, but its security philosophy. OpenBSD is designed to be secure by default: non-essential services are disabled, the base system is continuously audited, and many security mechanisms are built into the operating system itself instead of added later as optional hardening. Examples include privilege separation, privilege revocation, chroot jailing, W^X memory protection, randomized memory allocation, `pledge(2)`, and `unveil(2)`. For Privacy.Fish, this matters because we want the operating system to help reduce the damage a compromised process can do, even before our own application design is considered. ([OpenBSD Security](https://www.openbsd.org/security.html), [OpenBSD Innovations](https://www.openbsd.org/innovations.html))
+The reason we use OpenBSD is not only its reputation, but its security philosophy. OpenBSD is designed to be secure by default: non-essential services are disabled, the base system is continuously audited, and many security mechanisms are built into the operating system itself instead of added later as optional hardening. Examples include privilege separation, privilege revocation, chroot jailing, W^X memory protection, randomized memory allocation, `pledge(2)`, and `unveil(2)`. For Privacy.Fish, this matters because we want the operating system to help reduce the damage a compromised process can do, even before our own application design is considered. ([OpenBSD Security](https://www.openbsd.org/security.html "OpenBSD Security"), [OpenBSD Innovations](https://www.openbsd.org/innovations.html "OpenBSD Innovations"))
 
 ## Mostly OpenBSD base packages
 
@@ -46,7 +46,7 @@ Our email hosting stack is mainly built around two programs that are shipped wit
 
 ## Minimal Custom Code
 
-The largest part of our codebase is [configuration management code](https://github.com/privacy-fish/playbook-infrastructure-privacy.fish) to install and configure software on the servers.
+The largest part of our codebase is [configuration management code](https://github.com/privacy-fish/playbook-infrastructure-privacy.fish "configuration management code") to install and configure software on the servers.
 
 TODO links to the custom scripts / tools
 
@@ -58,7 +58,7 @@ OpenSMTPD is our open source mail server of choice. It is open source software d
 
 SSH (Secure Shell) is the standard way to securely log in to most of today's Linux and OpenBSD servers over the internet. It uses an encrypted connection and usually cryptographic keys (like your SSH public keys) instead of reusable passwords.
 
-We trust OpenSSH because OpenSSH is widely deployed, open source, and heavily scrutinized. Shodan currently lists OpenSSH as the top SSH product with more than 40 million indexed instances, and the OpenSSH project describes it as the premier tool for remote login with the SSH protocol. This popularity is not proof of safety by itself, but it does mean the software is continuously exercised, audited, attacked, and patched in real-world use. ([OpenSSH](https://www.openssh.com/), [Shodan SSH search](https://www.shodan.io/search?query=ssh)).
+We trust OpenSSH because OpenSSH is widely deployed, open source, and heavily scrutinized. Shodan currently lists OpenSSH as the top SSH product with more than 40 million indexed instances, and the OpenSSH project describes it as the premier tool for remote login with the SSH protocol. This popularity is not proof of safety by itself, but it does mean the software is continuously exercised, audited, attacked, and patched in real-world use. ([OpenSSH](https://www.openssh.com/ "OpenSSH"), [Shodan SSH search](https://www.shodan.io/search?query=ssh "Shodan SSH search")).
 
 We need OpenSSH installed to administer our servers anyway, so we use it for more than one purpose. Using SSH for client interaction gives Privacy.Fish one key-based authentication system, fewer exposed login services, and no reusable mailbox password.
 
@@ -67,7 +67,7 @@ We need OpenSSH installed to administer our servers anyway, so we use it for mor
 
 Privacy.Fish prioritizes privacy and security above features. Our job is simple: send and deliver email, as private and secure as possible. We think this approach fits privacy-conscious email users who prefer fewer server-side features over giving us more mailbox data, even if that state is encrypted.
 
-IMAP is useful because it lets clients work with server-side folders, message flags, search, selective downloads, synchronization, and long-lived mailboxes. IMAP servers such as [Dovecot](https://www.dovecot.org/), [Cyrus IMAP](https://www.cyrusimap.org/), and [Courier-IMAP](https://www.courier-mta.org/imap/) can provide synchronized folders, read/unread state, sent-mail copies, search, indexes, concurrent clients, and long-lived server mailboxes. That is useful, but it requires extra running code and extra mailbox state on the server, even if encrypted.
+IMAP is useful because it lets clients work with server-side folders, message flags, search, selective downloads, synchronization, and long-lived mailboxes. IMAP servers such as [Dovecot](https://www.dovecot.org/ "Dovecot"), [Cyrus IMAP](https://www.cyrusimap.org/ "Cyrus IMAP"), and [Courier-IMAP](https://www.courier-mta.org/imap/ "Courier-IMAP") can provide synchronized folders, read/unread state, sent-mail copies, search, indexes, concurrent clients, and long-lived server mailboxes. That is useful, but it requires extra running code and extra mailbox state on the server, even if encrypted.
 
 Privacy.Fish gives up those features deliberately. We avoid collecting and storing that mailbox state because we do not want that data, not even encrypted. Privacy.Fish is temporary encrypted delivery storage, not a long-term server-side mail archive. That also fits the 14-day retention model.
 
@@ -122,7 +122,7 @@ Privacy.Fish does this every week because it is always reasonable to assume that
 
 0day exploits are software bugs that are not publicly known yet, or at least not yet patched by the affected software maintainers. OpenBSD has a strong security record, but it is not magic: serious vulnerabilities still get found and patched.
 
-In January 2020, [Qualys found an OpenSMTPD bug](https://www.qualys.com/2020/01/28/cve-2020-7247/lpe-rce-opensmtpd.txt) where a specially crafted email address could make the mail server execute shell commands as root in some configurations. In February 2020, [Qualys found another OpenSMTPD bug](https://www.qualys.com/2020/02/24/cve-2020-8794/lpe-rce-opensmtpd-default-install.txt) where a malicious or compromised remote mail server could inject commands into OpenSMTPD's internal delivery state. Also in February 2020, an OpenBSD `vmm` issue was reported where a VM guest could write into host memory; OpenBSD published a [February 17, 2020 errata patch](https://www.openbsd.org/errata66.html).
+In January 2020, [Qualys found an OpenSMTPD bug](https://www.qualys.com/2020/01/28/cve-2020-7247/lpe-rce-opensmtpd.txt "Qualys found an OpenSMTPD bug") where a specially crafted email address could make the mail server execute shell commands as root in some configurations. In February 2020, [Qualys found another OpenSMTPD bug](https://www.qualys.com/2020/02/24/cve-2020-8794/lpe-rce-opensmtpd-default-install.txt "Qualys found another OpenSMTPD bug") where a malicious or compromised remote mail server could inject commands into OpenSMTPD's internal delivery state. Also in February 2020, an OpenBSD `vmm` issue was reported where a VM guest could write into host memory; OpenBSD published a [February 17, 2020 errata patch](https://www.openbsd.org/errata66.html "February 17, 2020 errata patch").
 
 Because of this, it is reasonable to treat any internet-facing server as potentially compromisable by a sufficiently capable attacker. The infrastructure is therefore designed around a simple question: if an attacker gets root access today, and the exploit they used is later found and patched, how do we make sure that access does not survive the next rebuild? This does not protect against an unpatched 0day that still works after the rebuild. In that case, the attacker could simply exploit the fresh server again. The rebuild model is mainly about preventing persistence after the original entry point has been closed.
 
@@ -145,7 +145,7 @@ Dynamic data is data our users generate and modify, so we have to migrate this d
 
 The actual `~/.ssh/authorized_keys` files are generated from signed account-key state during server setup and propagation.
 
-Everything else about the server is controlled by code that is on [github.com/privacy-fish](https://github.com/privacy-fish). The configuration management code and all other automations are published on GitHub. The list of registered users is not published, because it is private operational data, but it is used by configuration management to recreate the required user accounts on a fresh OpenBSD server installation.
+Everything else about the server is controlled by code that is on [github.com/privacy-fish](https://github.com/privacy-fish "github.com/privacy-fish"). The configuration management code and all other automations are published on GitHub. The list of registered users is not published, because it is private operational data, but it is used by configuration management to recreate the required user accounts on a fresh OpenBSD server installation.
 
 #### Mitigating The Manipulation Of Stored Encrypted Email Files
 
@@ -153,7 +153,7 @@ The current protection comes from the age encryption of the email files itself. 
 
 This does not detect every possible mailbox manipulation on the fetch server. If an attacker has root access on the fetch server, they could delete stored `.age` files, replace them, or add new `.age` files encrypted to the user's public keys. Modified files are detected by age decryption failure, but deletion, replacement, and newly added valid `.age` files are not detected by age alone.
 
-Signing stored encrypted mail files is a TODO. It is tracked as infrastructure work in the [playbook-infrastructure-privacyfish issues](https://github.com/privacy-fish/playbook-infrastructure-privacyfish/issues).
+Signing stored encrypted mail files is a TODO. It is tracked as infrastructure work in the [playbook-infrastructure-privacyfish issues](https://github.com/privacy-fish/playbook-infrastructure-privacyfish/issues "playbook-infrastructure-privacyfish issues").
 
 Adding signatures would interfere with attacks in the following way:
 
@@ -205,7 +205,7 @@ The administrator's workstation is, like the servers, designed to be replaced co
 - Network Cable (or Wi-Fi where unavoidable)
 - 2FA TOTP device for stw.no
 
-We use configuration management code available on [github.com/privacy-fish](https://github.com/privacy-fish) to set up the workstations so you can take a look for yourself.
+We use configuration management code available on [github.com/privacy-fish](https://github.com/privacy-fish "github.com/privacy-fish") to set up the workstations so you can take a look for yourself.
 
 The only "dynamic data" that has to be migrated is the administrator's SSH private key. The password to login to stw.no, as well as the password to use the SSH private key, can be memorized.
 

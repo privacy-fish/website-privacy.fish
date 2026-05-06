@@ -1,1 +1,5 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="nofollow noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- $title := .Title -}}
+{{- if not $title -}}
+  {{- $title = .PlainText | plainify -}}
+{{- end -}}
+<a href="{{ .Destination | safeURL }}" title="{{ $title }}"{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="nofollow noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>

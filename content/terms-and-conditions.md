@@ -52,4 +52,4 @@ The service may require explicit confirmation when sending to servers with inval
 
 These terms may be updated as the service develops. Material changes will be published on this page.
 
-Questions about these terms can be sent to [legal@privacy.fish](mailto:legal@privacy.fish).
+Questions about these terms can be sent to [legal@privacy.fish](mailto:legal@privacy.fish "legal@privacy.fish").

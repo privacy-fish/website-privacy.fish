@@ -11,8 +11,8 @@ privacy.fish is a privacy-first email service built to minimize retained data, a
 ## Service operator
 
 - Service name: privacy.fish
-- Website: [https://privacy.fish/](https://privacy.fish/)
-- Contact email: [legal@privacy.fish](mailto:legal@privacy.fish)
+- Website: [https://privacy.fish/](https://privacy.fish/ "https://privacy.fish/")
+- Contact email: [legal@privacy.fish](mailto:legal@privacy.fish "legal@privacy.fish")
 - Operating jurisdiction: Norway
 
 Formal company registration details, postal address, and any legally required statutory identifiers will be published here when they are available and required for the public service.
@@ -27,4 +27,4 @@ We disclose only the minimum data legally required and challenge overbroad reque
 
 privacy.fish does not collect names, phone numbers, or unnecessary profile data simply because it might be useful later. The service is intentionally designed to reduce retained data and long-term account linkage.
 
-For questions about legal information, contact [legal@privacy.fish](mailto:legal@privacy.fish).
+For questions about legal information, contact [legal@privacy.fish](mailto:legal@privacy.fish "legal@privacy.fish").

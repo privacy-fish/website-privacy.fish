@@ -28,6 +28,7 @@
             {{ $isPrimaryExternal := or (strings.HasPrefix $primaryUrl "http://") (strings.HasPrefix $primaryUrl "https://") }}
             <a
               href="{{ $primaryUrl }}"
+              title="{{ $.Params.primary_cta_title | default . }}"
               {{ if $isPrimaryExternal }}target="_blank" rel="noreferrer"{{ end }}
               class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
             >
@@ -40,6 +41,7 @@
             {{ $isSecondaryExternal := or (strings.HasPrefix $secondaryUrl "http://") (strings.HasPrefix $secondaryUrl "https://") }}
             <a
               href="{{ $secondaryUrl }}"
+              title="{{ $.Params.secondary_cta_title | default . }}"
               {{ if $isSecondaryExternal }}target="_blank" rel="noreferrer"{{ end }}
               class="inline-flex items-center justify-center rounded-full border border-deep/12 bg-white px-7 py-3.5 text-base font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >

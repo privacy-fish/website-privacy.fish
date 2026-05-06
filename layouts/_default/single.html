@@ -9,7 +9,7 @@
     <div class="mx-auto max-w-5xl px-6 lg:px-8">
       <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
         {{ with .Parent }}
-          <a href="{{ .RelPermalink }}" class="transition hover:text-deep">{{ .Title }}</a>
+          <a href="{{ .RelPermalink }}" title="{{ .Title }}" class="transition hover:text-deep">{{ .Title }}</a>
           <span class="h-1 w-1 rounded-full bg-amber"></span>
         {{ end }}
         <span>{{ $eyebrow }}</span>
@@ -48,6 +48,7 @@
           {{ with .Parent }}
             <a
               href="{{ .RelPermalink }}"
+              title="{{ $.Params.back_title | default (printf "%s %s" $singleText.back_prefix .Title) }}"
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
               {{ partial "components/icon.html" (dict "name" "arrow-left" "class" "h-4 w-4") }}
@@ -56,6 +57,7 @@
           {{ end }}
           <a
             href="{{ .Site.Params.signup_url }}"
+            title="{{ .Site.Params.single.cta_title | default $singleText.cta_text }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >
             {{ $singleText.cta_text }}

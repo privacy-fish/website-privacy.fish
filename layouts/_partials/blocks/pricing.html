@@ -33,6 +33,7 @@
         <div class="mt-8">
           <a
             href="{{ .Params.cta_url | default $.Root.Site.Params.signup_url }}"
+            title="{{ .Params.cta_title | default .Params.cta_text }}"
             class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
           >
             {{ .Params.cta_text }}

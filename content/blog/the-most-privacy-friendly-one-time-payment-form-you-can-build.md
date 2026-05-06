@@ -11,7 +11,7 @@ Privacy.Fish has the checkout complexity of a lemonade stand: one product, one p
 
 Our answer is a private signup form built around one-time payments, temporary payment codes, self-hosted captcha for bot protection, and deletion of the payment-to-account link after 14 days, when the Norwegian consumer withdrawal period has expired.
 
-The implementation is public: the [code for this website](https://github.com/privacy-fish/website-privacy.fish) is open source.
+The implementation is public: the [code for this website](https://github.com/privacy-fish/website-privacy.fish "code for this website") is open source.
 
 ## Why Private Signup Forms Are Harder Than They Look
 
@@ -35,15 +35,15 @@ Privacy.Fish uses a one-time payment because it can be matched once, used to cre
 
 A public signup form needs abuse control. If anyone can ask unlimited username-availability questions or reserve unlimited accounts, bots can turn the form into a username-enumeration tool or a pending-account queue. But dropping Google reCAPTCHA or another large third-party challenge provider into the form creates its own privacy problem.
 
-Privacy.Fish uses [Cap](https://capjs.js.org/), an open source captcha system, and serves the widget from our own site instead of loading the challenge from Google or a third-party CDN. The [signup template](https://github.com/privacy-fish/website-privacy.fish/blob/main/layouts/_partials/blocks/signup.html#L1-L13) points the browser to the locally served Cap widget and WebAssembly asset, and the signup backend verifies the Cap token against our configured Cap endpoint before allowing username checks or account reservation.
+Privacy.Fish uses [Cap](https://capjs.js.org/ "Cap"), an open source captcha system, and serves the widget from our own site instead of loading the challenge from Google or a third-party CDN. The [signup template](https://github.com/privacy-fish/website-privacy.fish/blob/main/layouts/_partials/blocks/signup.html#L1-L13 "signup template") points the browser to the locally served Cap widget and WebAssembly asset, and the signup backend verifies the Cap token against our configured Cap endpoint before allowing username checks or account reservation.
 
 ### Why Captcha Attempts Are Limited
 
-Solving the captcha does not give unlimited access to the username checker. A successful human check creates a short-lived credential with five attempts, and the server consumes that credential when the user checks a username or reserves an account. The relevant backend path is [`handleLookupSession`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L128-L151).
+Solving the captcha does not give unlimited access to the username checker. A successful human check creates a short-lived credential with five attempts, and the server consumes that credential when the user checks a username or reserves an account. The relevant backend path is [`handleLookupSession`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L128-L151 "`handleLookupSession`").
 
 The form also has rate limits by source IP and limits successful signups. That does not make enumeration impossible. It makes enumeration more expensive, slower, and noisier, without handing the signup session to a third-party captcha provider.
 
-For logs, Privacy.Fish uses the model described in our [logfile privacy information](/documentation/privacy-information/#logfile-privacy-information/): internal security analysis, no third-party lookups, and deletion of ordinary lines when no alert is triggered.
+For logs, Privacy.Fish uses the model described in our [logfile privacy information](/documentation/privacy-information/#logfile-privacy-information/ "logfile privacy information"): internal security analysis, no third-party lookups, and deletion of ordinary lines when no alert is triggered.
 
 ## Step 2: Make The User List Harder To Steal From A Compromised Webserver
 
@@ -63,7 +63,7 @@ This is not magic encryption of usernames. Usernames are guessable: if an attack
 
 ### HMAC Checks Instead Of Plain Username Lookups
 
-When a user checks a username, the server normalizes it, computes an `HMAC-SHA256` value with a deploy-rotated pepper and salt, and checks that value against the used and pending stores. The relevant code is [`UsernameHMAC`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L370-L375) and the [`usernameTaken`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L354-L367) path.
+When a user checks a username, the server normalizes it, computes an `HMAC-SHA256` value with a deploy-rotated pepper and salt, and checks that value against the used and pending stores. The relevant code is [`UsernameHMAC`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L370-L375 "`UsernameHMAC`") and the [`usernameTaken`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L354-L367 "`usernameTaken`") path.
 
 This is not a password hash. Usernames are low-entropy by nature; many can be guessed. The point is narrower: the signup server can do availability checks without carrying a simple plaintext list of every registered account.
 
@@ -79,11 +79,11 @@ Privacy.Fish asks for SSH public keys during signup because we need them to prov
 
 An SSH key pair is used for cryptographic login and for encrypting email with age: the public key can be stored on our servers, while the private key stays on the user's device. When the user connects later, the SSH protocol runs a public-key authentication exchange: the server checks that the client can produce a valid signature with the matching private key, without the private key or a reusable mailbox password being sent to us.
 
-For the signup form, the privacy point is simple: we collect the requested username and the authentication method needed to operate the account. We do not ask for a contact email or phone number, because that is user data we do not want to have in the first place. The backend accepts only `ssh-ed25519` public keys, deduplicates them, and canonicalizes them to the key type and key material; optional OpenSSH comments such as `user@laptop` are stripped because they can accidentally reveal names, devices, or workplaces. The exact parser is [`internal/sshkey/parse.go`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/sshkey/parse.go#L18-L47).
+For the signup form, the privacy point is simple: we collect the requested username and the authentication method needed to operate the account. We do not ask for a contact email or phone number, because that is user data we do not want to have in the first place. The backend accepts only `ssh-ed25519` public keys, deduplicates them, and canonicalizes them to the key type and key material; optional OpenSSH comments such as `user@laptop` are stripped because they can accidentally reveal names, devices, or workplaces. The exact parser is [`internal/sshkey/parse.go`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/sshkey/parse.go#L18-L47 "`internal/sshkey/parse.go`").
 
 ## Step 4: Create A Temporary Payment Code
 
-When the user presses the reserve button, the browser sends the requested username and SSH public keys to the Privacy.Fish signup backend. The backend validates the username, canonicalizes the public keys, generates a temporary payment reference, and stores a pending signup record with the username, canonicalized SSH public keys, payment reference, and creation time. The backend then sends the payment reference back to the browser, so the user can include it with whichever payment method they choose. The relevant code is [`handleSignup`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L185-L257).
+When the user presses the reserve button, the browser sends the requested username and SSH public keys to the Privacy.Fish signup backend. The backend validates the username, canonicalizes the public keys, generates a temporary payment reference, and stores a pending signup record with the username, canonicalized SSH public keys, payment reference, and creation time. The backend then sends the payment reference back to the browser, so the user can include it with whichever payment method they choose. The relevant code is [`handleSignup`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/server/server.go#L185-L257 "`handleSignup`").
 
 The payment code is intentionally not the username. It is meant to travel through the payment channel: a bank transfer reference, PayPal message, crypto confirmation, or note inside a cash letter can all contain the temporary payment code. What should not travel through those channels is the account identifier. The user should not put their requested email address, real name, existing email address, phone number, or other identifying text next to the payment code.
 
@@ -123,7 +123,7 @@ The privacy improvement here is not that these payment methods become anonymous.
 
 The strongest part of the design is not the payment code itself. A payment code is just a temporary identifier. The privacy feature is deleting the association after it has served its purpose.
 
-During account creation, Privacy.Fish needs to know three things together: the requested username, SSH public keys, and payment code that proves payment. On the disk of the webserver hosting the Privacy.Fish website and signup form, pending signup data is stored as an age-encrypted payload for the administrator's public key; the pending record keeps metadata such as the username HMAC and encrypted ciphertext. The relevant code is [`internal/store/pending.go`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/store/pending.go#L59-L91).
+During account creation, Privacy.Fish needs to know three things together: the requested username, SSH public keys, and payment code that proves payment. On the disk of the webserver hosting the Privacy.Fish website and signup form, pending signup data is stored as an age-encrypted payload for the administrator's public key; the pending record keeps metadata such as the username HMAC and encrypted ciphertext. The relevant code is [`internal/store/pending.go`](https://github.com/privacy-fish/website-privacy.fish/blob/main/internal/store/pending.go#L59-L91 "`internal/store/pending.go`").
 
 That does not mean the live web process never sees the submitted form. A form handler necessarily receives the form while processing the request. The point is that pending signup data is not left on the disk of the webserver hosting the Privacy.Fish website and signup form in plaintext, and that webserver cannot create mail accounts automatically because, for security reasons, there intentionally is no network path from it to the mail infrastructure for that.
 

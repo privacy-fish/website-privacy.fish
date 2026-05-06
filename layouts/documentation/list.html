@@ -28,6 +28,7 @@
         {{ range $pages }}
           <a
             href="{{ .RelPermalink }}"
+            title="{{ .Params.link_title | default .Title }}"
             class="group flex items-center justify-between gap-6 border-b border-deep/10 py-7 no-underline transition first:border-t-0 hover:border-amber/45"
           >
             <span class="text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
@@ -55,6 +56,7 @@
           </div>
           <a
             href="{{ .Site.Params.signup_url }}"
+            title="{{ $cta.button_title | default $cta.button_text }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >
             {{ $cta.button_text }}

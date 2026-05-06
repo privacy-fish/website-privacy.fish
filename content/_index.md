@@ -12,7 +12,7 @@ blocks:
     subheading: "Private email hosting built around data minimization and open-source infrastructure."
     summary_heading: "Securely Designed to Protect Privacy"
     primary_cta_text: "Create Your Account"
-    primary_cta_url: "https://privacy.fish/signup"
+    primary_cta_url: "/signup/"
     secondary_cta_text: "Code"
     secondary_cta_url: "https://github.com/privacy-fish"
     callouts:
@@ -156,11 +156,11 @@ blocks:
     id: tradeoffs
     eyebrow: "Our Trust Model"
     heading: "You Verify Everything"
-    subheading: "“Every secret creates a potential failure point.” — [Bruce Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier)"
+    subheading: "“Every secret creates a potential failure point.” — [Bruce Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier 'Bruce Schneier')"
     items:
       - icon: "code"
         title: "Everything Open Source"
-        text: "All software used to build and administrate Privacy.Fish is public on [github](https://github.com/privacy-fish) and our infrastructure can be inspected instead of blindly trusted."
+        text: "All software used to build and administrate Privacy.Fish is public on [github](https://github.com/privacy-fish 'github') and our infrastructure can be inspected instead of blindly trusted."
       - icon: "scale-balanced"
         title: "Norwegian Jurisdiction"
         text: "We chose Norway for the best privacy-respecting laws for our service, even though they have rather high taxes. Bcause privacy comes first."
@@ -177,7 +177,7 @@ blocks:
     badge: "One-time payment"
     note: "For company lifetime access"
     cta_text: "Create Your Account"
-    cta_url: "https://privacy.fish/signup"
+    cta_url: "/signup/"
     provisioning_title: "Manual provisioning"
     provisioning_copy: "Accounts are created by an administrator within 24 hours of payment."
     included_heading: "What’s included"

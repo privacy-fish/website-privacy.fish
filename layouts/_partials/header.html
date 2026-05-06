@@ -3,8 +3,9 @@
   {{ $logo := or site.Home.Params.logo .Site.Params.logo }}
   {{ $currentPath := .RelPermalink }}
   {{ $header := .Site.Params.header }}
+  {{ $headerCtaTitle := $header.cta_title | default $header.cta_text }}
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-    <a href="/" class="no-underline">
+    <a href="/" title="{{ $header.logo_title | default (printf "%s home" .Site.Title) }}" class="no-underline">
       {{ partial "components/image-responsive.html" (dict
         "src" $logo
         "alt" (printf "%s logo" .Site.Title)
@@ -18,6 +19,7 @@
     <div class="hidden items-center gap-3 xl:flex">
       {{ range .Site.Menus.main }}
         {{ $url := .URL }}
+        {{ $title := .Title | default .Name }}
         {{ $isExternal := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") }}
         {{ $isHash := or (strings.HasPrefix $url "#") (strings.HasPrefix $url "/#") }}
         {{ $isActive := false }}
@@ -28,6 +30,7 @@
         {{ end }}
         <a
           href="{{ $url }}"
+          title="{{ $title }}"
           {{ if $isHash }}data-nav="{{ $url }}"{{ end }}
           {{ if $isExternal }}target="_blank" rel="noreferrer"{{ end }}
           class="navbar-link rounded-full px-3 py-2 text-sm font-semibold tracking-[0.02em] text-deep/66 transition hover:bg-ocean-soft/60 hover:text-ocean{{ if $isActive }} active bg-ocean-soft/80 text-ocean{{ end }}"
@@ -40,6 +43,7 @@
     <div class="hidden xl:flex">
       <a
         href="{{ .Site.Params.signup_url }}"
+        title="{{ $headerCtaTitle }}"
         class="inline-flex items-center justify-center rounded-full bg-ocean px-5 py-2.5 text-sm font-bold text-white shadow-[0_16px_32px_-18px_rgba(52,142,195,0.7)] transition hover:bg-deep"
       >
         {{ $header.cta_text }}
@@ -70,6 +74,7 @@
     <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 sm:px-6 lg:px-8">
       {{ range .Site.Menus.main }}
         {{ $url := .URL }}
+        {{ $title := .Title | default .Name }}
         {{ $isExternal := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") }}
         {{ $isHash := or (strings.HasPrefix $url "#") (strings.HasPrefix $url "/#") }}
         {{ $isActive := false }}
@@ -80,6 +85,7 @@
         {{ end }}
         <a
           href="{{ $url }}"
+          title="{{ $title }}"
           {{ if $isExternal }}target="_blank" rel="noreferrer"{{ end }}
           class="rounded-2xl px-4 py-3 text-sm font-semibold text-deep/78 transition hover:bg-ocean-soft hover:text-ocean{{ if $isActive }} bg-ocean-soft/70 text-ocean{{ end }}"
         >
@@ -89,6 +95,7 @@
 
       <a
         href="{{ .Site.Params.signup_url }}"
+        title="{{ $headerCtaTitle }}"
         class="mt-3 inline-flex items-center justify-center rounded-full bg-ocean px-5 py-3 text-sm font-bold text-white transition hover:bg-deep"
       >
         {{ $header.cta_text }}

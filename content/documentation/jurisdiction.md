@@ -15,9 +15,9 @@ Every required log becomes data we must collect, protect, retain, secure, and po
 Norway is also clear about what this duty is not supposed to include. Under the Norwegian IP-retention duty, destination information must not be retained. This is the important difference: Norway requires a narrow access-identification log, not broad mail transaction logging.
 
 Sources:
-- [Norwegian Electronic Communications Act, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/cccdd933-8254-4024-820e-168a96f071f0%3Ac6fa2c909f0187b6c31b6f8c0f40f328b7ce46a8/Electronic%20Communications%20Act%20%28Ekom%20Act%29%20%E2%80%93%20Unofficial%20Translation.pdf)
-- [Norwegian Electronic Communications Regulation, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/13dc9675-b0f4-42e0-840e-dba0c735db69%3A470133b1352c9038804c5c0b0d7ed967c13c9e0f/Regulation%20on%20Electronical%20Communications%20Network%20and%20Services%20%E2%80%93%20Unofficial%20version.pdf)
-- [Nordic data-retention comparison: Norway](https://pub.norden.org/temanord2024-532/9-norway.html)
+- [Norwegian Electronic Communications Act, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/cccdd933-8254-4024-820e-168a96f071f0%3Ac6fa2c909f0187b6c31b6f8c0f40f328b7ce46a8/Electronic%20Communications%20Act%20%28Ekom%20Act%29%20%E2%80%93%20Unofficial%20Translation.pdf "Norwegian Electronic Communications Act, unofficial English translation by Nkom")
+- [Norwegian Electronic Communications Regulation, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/13dc9675-b0f4-42e0-840e-dba0c735db69%3A470133b1352c9038804c5c0b0d7ed967c13c9e0f/Regulation%20on%20Electronical%20Communications%20Network%20and%20Services%20%E2%80%93%20Unofficial%20version.pdf "Norwegian Electronic Communications Regulation, unofficial English translation by Nkom")
+- [Nordic data-retention comparison: Norway](https://pub.norden.org/temanord2024-532/9-norway.html "Nordic data-retention comparison: Norway")
 
 ## EU
 
@@ -37,12 +37,12 @@ Why Norway is better:
 - The EU situation is unstable enough that “hosted in the EU” is not precise privacy information.
 
 Sources:
-- [CJEU press release declaring the Data Retention Directive invalid](https://curia.europa.eu/jcms/upload/docs/application/pdf/2014-04/cp140054en.pdf)
-- [European Commission page on data retention](https://home-affairs.ec.europa.eu/policies/internal-security/lawful-access-data/data-retention_en)
-- [EU Data Retention Directive FAQ](https://europa.eu/rapid/press-release_MEMO-14-269_en.htm)
-- [Eurojust report on CJEU data-retention case law](https://www.eurojust.europa.eu/sites/default/files/assets/files/data-retention-report-cjeu-eurojust-13-11-2024.pdf)
-- [Council document on future EU data-retention rules](https://data.consilium.europa.eu/doc/document/WK-11640-2025-INIT/en/pdf)
-- [Cullen International update on national data-retention laws in Europe](https://www.cullen-international.com/news/2025/07/Update-on-national-data-retention-laws-in-Europe.html)
+- [CJEU press release declaring the Data Retention Directive invalid](https://curia.europa.eu/jcms/upload/docs/application/pdf/2014-04/cp140054en.pdf "CJEU press release declaring the Data Retention Directive invalid")
+- [European Commission page on data retention](https://home-affairs.ec.europa.eu/policies/internal-security/lawful-access-data/data-retention_en "European Commission page on data retention")
+- [EU Data Retention Directive FAQ](https://europa.eu/rapid/press-release_MEMO-14-269_en.htm "EU Data Retention Directive FAQ")
+- [Eurojust report on CJEU data-retention case law](https://www.eurojust.europa.eu/sites/default/files/assets/files/data-retention-report-cjeu-eurojust-13-11-2024.pdf "Eurojust report on CJEU data-retention case law")
+- [Council document on future EU data-retention rules](https://data.consilium.europa.eu/doc/document/WK-11640-2025-INIT/en/pdf "Council document on future EU data-retention rules")
+- [Cullen International update on national data-retention laws in Europe](https://www.cullen-international.com/news/2025/07/Update-on-national-data-retention-laws-in-Europe.html "Cullen International update on national data-retention laws in Europe")
 
 ## Norway
 
@@ -62,9 +62,9 @@ Why Norway is better:
 - It does not require routine sender, recipient, mailbox-event, message-ID, delivery-status, or destination-server logging for this model.
 
 Sources:
-- [Norwegian Electronic Communications Act, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/cccdd933-8254-4024-820e-168a96f071f0%3Ac6fa2c909f0187b6c31b6f8c0f40f328b7ce46a8/Electronic%20Communications%20Act%20%28Ekom%20Act%29%20%E2%80%93%20Unofficial%20Translation.pdf)
-- [Norwegian Electronic Communications Regulation, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/13dc9675-b0f4-42e0-840e-dba0c735db69%3A470133b1352c9038804c5c0b0d7ed967c13c9e0f/Regulation%20on%20Electronical%20Communications%20Network%20and%20Services%20%E2%80%93%20Unofficial%20version.pdf)
-- [Nordic data-retention comparison: Norway](https://pub.norden.org/temanord2024-532/9-norway.html)
+- [Norwegian Electronic Communications Act, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/cccdd933-8254-4024-820e-168a96f071f0%3Ac6fa2c909f0187b6c31b6f8c0f40f328b7ce46a8/Electronic%20Communications%20Act%20%28Ekom%20Act%29%20%E2%80%93%20Unofficial%20Translation.pdf "Norwegian Electronic Communications Act, unofficial English translation by Nkom")
+- [Norwegian Electronic Communications Regulation, unofficial English translation by Nkom](https://nkom.no/english/guidelines-for-providers/_/attachment/download/13dc9675-b0f4-42e0-840e-dba0c735db69%3A470133b1352c9038804c5c0b0d7ed967c13c9e0f/Regulation%20on%20Electronical%20Communications%20Network%20and%20Services%20%E2%80%93%20Unofficial%20version.pdf "Norwegian Electronic Communications Regulation, unofficial English translation by Nkom")
+- [Nordic data-retention comparison: Norway](https://pub.norden.org/temanord2024-532/9-norway.html "Nordic data-retention comparison: Norway")
 
 ## Switzerland
 
@@ -84,14 +84,14 @@ Why Norway is better:
 - Switzerland is harder to explain honestly as a simple data-minimizing jurisdiction for this service model.
 
 Sources:
-- [Swiss PTSS FAQ on metadata retention](https://www.li.admin.ch/en/documentation/faq)
-- [Swiss BÜPF information page](https://www.li.admin.ch/de/themen/das-buepf)
-- [Swiss VÜPF ordinance text on Fedlex](https://www.fedlex.admin.ch/eli/cc/2018/32/de)
-- [Swiss ordinance text via LexFind](https://www.lexfind.ch/tolv/149472/de)
-- [Laux Lawyers analysis on Swiss surveillance duties for messaging services](https://www.lauxlawyers.ch/ueberwachung-von-instant-messaging-bundesgericht-schafft-klarheit/)
-- [Swico guide on authority requests and surveillance orders](https://www.swico.ch/media/filer_public/78/f1/78f151c6-ff8b-4ecf-b856-c1530e1a3fd5/leitfaden_behordenanfragen_3_anordnung_zur_fernmeldeuberwachung.pdf)
-- [Internet Society Switzerland criticism of Swiss surveillance ordinance](https://www.isoc.ch/swiss-surveillance-ordinance-encryption-threat-vupf-oscpt/)
-- [Digitale Gesellschaft: data retention in Switzerland](https://www.digitale-gesellschaft.ch/vds-suisse/index_en.html)
+- [Swiss PTSS FAQ on metadata retention](https://www.li.admin.ch/en/documentation/faq "Swiss PTSS FAQ on metadata retention")
+- [Swiss BÜPF information page](https://www.li.admin.ch/de/themen/das-buepf "Swiss BÜPF information page")
+- [Swiss VÜPF ordinance text on Fedlex](https://www.fedlex.admin.ch/eli/cc/2018/32/de "Swiss VÜPF ordinance text on Fedlex")
+- [Swiss ordinance text via LexFind](https://www.lexfind.ch/tolv/149472/de "Swiss ordinance text via LexFind")
+- [Laux Lawyers analysis on Swiss surveillance duties for messaging services](https://www.lauxlawyers.ch/ueberwachung-von-instant-messaging-bundesgericht-schafft-klarheit/ "Laux Lawyers analysis on Swiss surveillance duties for messaging services")
+- [Swico guide on authority requests and surveillance orders](https://www.swico.ch/media/filer_public/78/f1/78f151c6-ff8b-4ecf-b856-c1530e1a3fd5/leitfaden_behordenanfragen_3_anordnung_zur_fernmeldeuberwachung.pdf "Swico guide on authority requests and surveillance orders")
+- [Internet Society Switzerland criticism of Swiss surveillance ordinance](https://www.isoc.ch/swiss-surveillance-ordinance-encryption-threat-vupf-oscpt/ "Internet Society Switzerland criticism of Swiss surveillance ordinance")
+- [Digitale Gesellschaft: data retention in Switzerland](https://www.digitale-gesellschaft.ch/vds-suisse/index_en.html "Digitale Gesellschaft: data retention in Switzerland")
 
 ## Germany
 
@@ -113,13 +113,13 @@ Why Norway is better:
 - Norway is simpler: account, source IP:port, timestamp.
 
 Sources:
-- [BNetzA: email surveillance obligations and 100,000-user threshold](https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/EMailUeberwachung/node.html)
-- [BNetzA: intercepts and provision of information](https://www.bundesnetzagentur.de/EN/Areas/Telecommunications/ServicerProviderObligation/PublicSafety/Intercepts/start.html)
-- [BNetzA: TR TKÜV supplementary information](https://www.bundesnetzagentur.de/EN/Areas/Telecommunications/ServicerProviderObligation/PublicSafety/Intercepts/SupplementaryInformation/SupplementaryInformation_node.html)
-- [BNetzA: electronic authority interface thresholds](https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/BDA/artikel.html)
-- [German TR TKÜV draft text via EU TRIS](https://technical-regulation-information-system.ec.europa.eu/de/notification/26192/text/D/EN)
-- [Statewatch note on German interception obligations for email providers](https://www.statewatch.org/statewatch-database/germany-telecommunication-providers-to-intercept-customers/)
-- [Lexology note on German classification of internet-based email services](https://www.lexology.com/library/detail.aspx?g=62df0a70-3b37-4a27-a7e7-dcf41ba2e469)
+- [BNetzA: email surveillance obligations and 100,000-user threshold](https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/EMailUeberwachung/node.html "BNetzA: email surveillance obligations and 100,000-user threshold")
+- [BNetzA: intercepts and provision of information](https://www.bundesnetzagentur.de/EN/Areas/Telecommunications/ServicerProviderObligation/PublicSafety/Intercepts/start.html "BNetzA: intercepts and provision of information")
+- [BNetzA: TR TKÜV supplementary information](https://www.bundesnetzagentur.de/EN/Areas/Telecommunications/ServicerProviderObligation/PublicSafety/Intercepts/SupplementaryInformation/SupplementaryInformation_node.html "BNetzA: TR TKÜV supplementary information")
+- [BNetzA: electronic authority interface thresholds](https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/BDA/artikel.html "BNetzA: electronic authority interface thresholds")
+- [German TR TKÜV draft text via EU TRIS](https://technical-regulation-information-system.ec.europa.eu/de/notification/26192/text/D/EN "German TR TKÜV draft text via EU TRIS")
+- [Statewatch note on German interception obligations for email providers](https://www.statewatch.org/statewatch-database/germany-telecommunication-providers-to-intercept-customers/ "Statewatch note on German interception obligations for email providers")
+- [Lexology note on German classification of internet-based email services](https://www.lexology.com/library/detail.aspx?g=62df0a70-3b37-4a27-a7e7-dcf41ba2e469 "Lexology note on German classification of internet-based email services")
 
 ## Netherlands
 
@@ -138,12 +138,12 @@ Why Norway is better:
 - Norway is easier to explain honestly to users: one required access log, not a broader or unclear mail-metadata regime.
 
 Sources:
-- [Dutch court invalidated the national data-retention law](https://peacepalacelibrary.nl/blog/2015/data-retention-saga-dutch-court-declared-national-data-retention-law-invalid)
-- [Privacy First summary of the telecom retention case](https://privacyfirst.nl/en/court-cases/telecom-retention-obligation/)
-- [Lexology summary of Dutch data-retention suspension](https://www.lexology.com/library/detail.aspx?g=0860c791-fc73-435a-a243-1701a03a7265)
-- [NBIP lawful interception explanation](https://www.nbip.nl/en/lawful-interception/)
-- [Dutch government business page for telecom-provider requirements](https://business.gov.nl/regulations/requirements-telecom-providers/)
-- [PILP dossier on the Telecommunications Retention Act](https://pilp.nu/en/dossier/the-telecommunications-retention-act/)
+- [Dutch court invalidated the national data-retention law](https://peacepalacelibrary.nl/blog/2015/data-retention-saga-dutch-court-declared-national-data-retention-law-invalid "Dutch court invalidated the national data-retention law")
+- [Privacy First summary of the telecom retention case](https://privacyfirst.nl/en/court-cases/telecom-retention-obligation/ "Privacy First summary of the telecom retention case")
+- [Lexology summary of Dutch data-retention suspension](https://www.lexology.com/library/detail.aspx?g=0860c791-fc73-435a-a243-1701a03a7265 "Lexology summary of Dutch data-retention suspension")
+- [NBIP lawful interception explanation](https://www.nbip.nl/en/lawful-interception/ "NBIP lawful interception explanation")
+- [Dutch government business page for telecom-provider requirements](https://business.gov.nl/regulations/requirements-telecom-providers/ "Dutch government business page for telecom-provider requirements")
+- [PILP dossier on the Telecommunications Retention Act](https://pilp.nu/en/dossier/the-telecommunications-retention-act/ "PILP dossier on the Telecommunications Retention Act")
 
 ## Sweden
 
@@ -163,8 +163,8 @@ Why Norway is better:
 - Norway is easier to explain as a privacy-first jurisdiction.
 
 Sources:
-- [Nordic data-retention comparison: Sweden](https://pub.norden.org/temanord2024-532/10-sweden.html)
-- [Nordic data-retention comparison: Nordic overview](https://pub.norden.org/temanord2024-532/5-nordic-overview.html)
+- [Nordic data-retention comparison: Sweden](https://pub.norden.org/temanord2024-532/10-sweden.html "Nordic data-retention comparison: Sweden")
+- [Nordic data-retention comparison: Nordic overview](https://pub.norden.org/temanord2024-532/5-nordic-overview.html "Nordic data-retention comparison: Nordic overview")
 
 ## Denmark
 
@@ -183,10 +183,10 @@ Why Norway is better:
 - Norway gives users a clearer answer about what we are forced to retain.
 
 Sources:
-- [Nordic data-retention comparison: Denmark](https://pub.norden.org/temanord2024-532/6-denmark.html)
-- [IT-Pol: the new Danish data-retention law](https://itpol.dk/articles/new-Danish-data-retention-law-2022)
-- [European Parliament document on Danish data retention](https://www.europarl.europa.eu/meetdocs/2014_2019/plmrep/COMMITTEES/LIBE/DV/2020/01-20/Danish_data_retention_EN.pdf)
-- [Eurojust report on CJEU data-retention case law](https://www.eurojust.europa.eu/sites/default/files/assets/files/data-retention-report-cjeu-eurojust-13-11-2024.pdf)
+- [Nordic data-retention comparison: Denmark](https://pub.norden.org/temanord2024-532/6-denmark.html "Nordic data-retention comparison: Denmark")
+- [IT-Pol: the new Danish data-retention law](https://itpol.dk/articles/new-Danish-data-retention-law-2022 "IT-Pol: the new Danish data-retention law")
+- [European Parliament document on Danish data retention](https://www.europarl.europa.eu/meetdocs/2014_2019/plmrep/COMMITTEES/LIBE/DV/2020/01-20/Danish_data_retention_EN.pdf "European Parliament document on Danish data retention")
+- [Eurojust report on CJEU data-retention case law](https://www.eurojust.europa.eu/sites/default/files/assets/files/data-retention-report-cjeu-eurojust-13-11-2024.pdf "Eurojust report on CJEU data-retention case law")
 
 ## Finland
 
@@ -205,8 +205,8 @@ Why Norway is better:
 - Norway gives one clearer rule for this model.
 
 Sources:
-- [Nordic data-retention comparison: Finland](https://pub.norden.org/temanord2024-532/7-finland.html)
-- [Nordic data-retention comparison: Nordic overview](https://pub.norden.org/temanord2024-532/5-nordic-overview.html)
+- [Nordic data-retention comparison: Finland](https://pub.norden.org/temanord2024-532/7-finland.html "Nordic data-retention comparison: Finland")
+- [Nordic data-retention comparison: Nordic overview](https://pub.norden.org/temanord2024-532/5-nordic-overview.html "Nordic data-retention comparison: Nordic overview")
 
 ## Iceland
 
@@ -225,9 +225,9 @@ Why Norway is better:
 - Norway explicitly excludes destination information under the IP-retention duty.
 
 Sources:
-- [Nordic data-retention comparison: Iceland](https://pub.norden.org/temanord2024-532/8-iceland.html)
-- [Iceland Electronic Communications Act No. 70/2022](https://fjarskiptastofa.is/library?itemid=175f315e-40a7-4b2e-83b0-4c377b96b098)
-- [Freedom House note on Icelandic data retention](https://freedomhouse.org/country/iceland/freedom-net/2024)
+- [Nordic data-retention comparison: Iceland](https://pub.norden.org/temanord2024-532/8-iceland.html "Nordic data-retention comparison: Iceland")
+- [Iceland Electronic Communications Act No. 70/2022](https://fjarskiptastofa.is/library?itemid=175f315e-40a7-4b2e-83b0-4c377b96b098 "Iceland Electronic Communications Act No. 70/2022")
+- [Freedom House note on Icelandic data retention](https://freedomhouse.org/country/iceland/freedom-net/2024 "Freedom House note on Icelandic data retention")
 
 ## United Kingdom
 
@@ -247,10 +247,10 @@ Why Norway is better:
 - Norway is easier to describe honestly to users.
 
 Sources:
-- [UK Notices Regime Code of Practice](https://www.gov.uk/government/publications/notices-regime-code-of-practice/notices-regime-code-of-practice-accessible)
-- [UK Investigatory Powers Act 2016, section 87](https://www.legislation.gov.uk/ukpga/2016/25/section/87)
-- [UK Communications Data Code of Practice, 2025 PDF](https://assets.publishing.service.gov.uk/media/68419a3d58bd5a53d0211cf7/Communications_Data_Code_of_Practice_-_June_2025.pdf)
-- [UK Communications Data Code of Practice, older PDF](https://assets.publishing.service.gov.uk/media/5bf43801ed915d183c9c53ba/Communications_Data_Code_of_Practice.pdf)
+- [UK Notices Regime Code of Practice](https://www.gov.uk/government/publications/notices-regime-code-of-practice/notices-regime-code-of-practice-accessible "UK Notices Regime Code of Practice")
+- [UK Investigatory Powers Act 2016, section 87](https://www.legislation.gov.uk/ukpga/2016/25/section/87 "UK Investigatory Powers Act 2016, section 87")
+- [UK Communications Data Code of Practice, 2025 PDF](https://assets.publishing.service.gov.uk/media/68419a3d58bd5a53d0211cf7/Communications_Data_Code_of_Practice_-_June_2025.pdf "UK Communications Data Code of Practice, 2025 PDF")
+- [UK Communications Data Code of Practice, older PDF](https://assets.publishing.service.gov.uk/media/5bf43801ed915d183c9c53ba/Communications_Data_Code_of_Practice.pdf "UK Communications Data Code of Practice, older PDF")
 
 ## United States
 
@@ -269,11 +269,11 @@ Why Norway is better:
 - Norway is a better fit for a transparent public promise about what is routinely retained.
 
 Sources:
-- [18 U.S.C. § 2703, Required disclosure and preservation under the Stored Communications Act](https://www.law.cornell.edu/uscode/text/18/2703)
-- [18 U.S.C. § 2704, Backup preservation](https://www.law.cornell.edu/uscode/text/18/2704)
-- [47 U.S.C. § 1002, CALEA assistance capability requirements](https://www.law.cornell.edu/uscode/text/47/1002)
-- [ACLU article on email preservation requests](https://www.aclu.org/news/privacy-technology/government-cannot-force-e-mail-companies-copy-and-save-your)
-- [EFF overview of mandatory data retention proposals](https://www.eff.org/issues/mandatory-data-retention)
+- [18 U.S.C. § 2703, Required disclosure and preservation under the Stored Communications Act](https://www.law.cornell.edu/uscode/text/18/2703 "18 U.S.C. § 2703, Required disclosure and preservation under the Stored Communications Act")
+- [18 U.S.C. § 2704, Backup preservation](https://www.law.cornell.edu/uscode/text/18/2704 "18 U.S.C. § 2704, Backup preservation")
+- [47 U.S.C. § 1002, CALEA assistance capability requirements](https://www.law.cornell.edu/uscode/text/47/1002 "47 U.S.C. § 1002, CALEA assistance capability requirements")
+- [ACLU article on email preservation requests](https://www.aclu.org/news/privacy-technology/government-cannot-force-e-mail-companies-copy-and-save-your "ACLU article on email preservation requests")
+- [EFF overview of mandatory data retention proposals](https://www.eff.org/issues/mandatory-data-retention "EFF overview of mandatory data retention proposals")
 
 ## Canada
 
@@ -292,10 +292,10 @@ Why Norway is better:
 - Privacy.Fish benefits from a jurisdiction where the required retained data is already clear.
 
 Sources:
-- [Canadian Bill C-22 text](https://www.parl.ca/DocumentViewer/en/45-1/bill/C-22/first-reading)
-- [Public Safety Canada backgrounder on Bill C-22 metadata retention](https://www.canada.ca/en/public-safety-canada/news/2026/03/backgrounder--securing-access-to-information-in-bill-c-22.html)
-- [Canadian government note explaining preservation orders are not general data retention](https://www.canada.ca/en/news/archive/2013/11/modernizing-criminal-code.html)
-- [Michael Geist analysis of Bill C-22 metadata retention](https://www.michaelgeist.ca/2026/03/the-lawful-access-privacy-risks-unpacking-bill-c-22s-expansive-metadata-retention-requirements/)
+- [Canadian Bill C-22 text](https://www.parl.ca/DocumentViewer/en/45-1/bill/C-22/first-reading "Canadian Bill C-22 text")
+- [Public Safety Canada backgrounder on Bill C-22 metadata retention](https://www.canada.ca/en/public-safety-canada/news/2026/03/backgrounder--securing-access-to-information-in-bill-c-22.html "Public Safety Canada backgrounder on Bill C-22 metadata retention")
+- [Canadian government note explaining preservation orders are not general data retention](https://www.canada.ca/en/news/archive/2013/11/modernizing-criminal-code.html "Canadian government note explaining preservation orders are not general data retention")
+- [Michael Geist analysis of Bill C-22 metadata retention](https://www.michaelgeist.ca/2026/03/the-lawful-access-privacy-risks-unpacking-bill-c-22s-expansive-metadata-retention-requirements/ "Michael Geist analysis of Bill C-22 metadata retention")
 
 ## Australia
 
@@ -315,11 +315,11 @@ Why Norway is better:
 - Australia is the opposite of what Privacy.Fish wants to build.
 
 Sources:
-- [Australian Home Affairs data-retention obligations](https://www.homeaffairs.gov.au/about-us/our-portfolios/national-security/lawful-access-telecommunications/data-retention-obligations)
-- [Australian prescribed data set](https://www.homeaffairs.gov.au/nat-security/files/dataset.pdf)
-- [Australian data-retention industry FAQ](https://www.homeaffairs.gov.au/nat-security/files/data-retention-industry-faqs.pdf)
-- [Australian data-retention guidelines for service providers](https://www.homeaffairs.gov.au/nat-security/files/data-retention-guidelines-service-providers.pdf)
-- [Australian Parliamentary report on data-retention period](https://www.aph.gov.au/-/media/02_Parliamentary_Business/24_Committees/244_Joint_Committees/PJCIS/DataRetention2014/Chapter4.pdf)
+- [Australian Home Affairs data-retention obligations](https://www.homeaffairs.gov.au/about-us/our-portfolios/national-security/lawful-access-telecommunications/data-retention-obligations "Australian Home Affairs data-retention obligations")
+- [Australian prescribed data set](https://www.homeaffairs.gov.au/nat-security/files/dataset.pdf "Australian prescribed data set")
+- [Australian data-retention industry FAQ](https://www.homeaffairs.gov.au/nat-security/files/data-retention-industry-faqs.pdf "Australian data-retention industry FAQ")
+- [Australian data-retention guidelines for service providers](https://www.homeaffairs.gov.au/nat-security/files/data-retention-guidelines-service-providers.pdf "Australian data-retention guidelines for service providers")
+- [Australian Parliamentary report on data-retention period](https://www.aph.gov.au/-/media/02_Parliamentary_Business/24_Committees/244_Joint_Committees/PJCIS/DataRetention2014/Chapter4.pdf "Australian Parliamentary report on data-retention period")
 
 ## New Zealand
 
@@ -336,11 +336,11 @@ Why Norway is better:
 - Norway is easier to explain as a data-minimizing jurisdiction.
 
 Sources:
-- [New Zealand NCSC: About TICSA](https://www.ncsc.govt.nz/what-we-do/regulations-and-standards/ticsa-network-security/about-ticsa/)
-- [New Zealand Police TICSA overview](https://www.police.govt.nz/advice/businesses-and-organisations/ticsa)
-- [New Zealand TICSA legislation](https://www.legislation.govt.nz/act/public/2013/0091/latest/DLM5177923.html)
-- [New Zealand Interception Guide for TICSA](https://www.tcf.org.nz/industry-hub/industry-codes/interception-guide-for-ticsa)
-- [New Zealand Privacy Principle 9: retention of personal information](https://www.privacy.org.nz/privacy-principles/9/)
+- [New Zealand NCSC: About TICSA](https://www.ncsc.govt.nz/what-we-do/regulations-and-standards/ticsa-network-security/about-ticsa/ "New Zealand NCSC: About TICSA")
+- [New Zealand Police TICSA overview](https://www.police.govt.nz/advice/businesses-and-organisations/ticsa "New Zealand Police TICSA overview")
+- [New Zealand TICSA legislation](https://www.legislation.govt.nz/act/public/2013/0091/latest/DLM5177923.html "New Zealand TICSA legislation")
+- [New Zealand Interception Guide for TICSA](https://www.tcf.org.nz/industry-hub/industry-codes/interception-guide-for-ticsa "New Zealand Interception Guide for TICSA")
+- [New Zealand Privacy Principle 9: retention of personal information](https://www.privacy.org.nz/privacy-principles/9/ "New Zealand Privacy Principle 9: retention of personal information")
 
 ## France
 
@@ -357,12 +357,12 @@ Why Norway is better:
 - France is less suitable for a minimal email provider trying to retain only one narrow access log.
 
 Sources:
-- [Global Network Initiative: France country legal framework](https://clfr.globalnetworkinitiative.org/country/france/)
-- [Lexology overview of telecom and internet access in France](https://www.lexology.com/library/detail.aspx?g=b74a9239-bb45-4354-a6a1-821884f1ca17)
-- [ICLG France telecoms, media and internet overview](https://iclg.com/practice-areas/telecoms-media-and-internet-laws-and-regulations/france)
-- [Legal 500 France TMT PDF](https://www.legal500.com/guides/wp-content/uploads/sites/1/2025/08/France-TMT.pdf)
-- [ISDC surveillance of telecommunications providers report](https://www.isdc.ch/media/2668/25-059-e-final-report-20251002_sign%C3%A9.pdf)
-- [CJEU/French data-retention case note via eucrim](https://eucrim.eu/news/cjeu-french-legislation-on-data-retention-for-the-purpose-of-combating-market-abuse-offences-unlawful/)
+- [Global Network Initiative: France country legal framework](https://clfr.globalnetworkinitiative.org/country/france/ "Global Network Initiative: France country legal framework")
+- [Lexology overview of telecom and internet access in France](https://www.lexology.com/library/detail.aspx?g=b74a9239-bb45-4354-a6a1-821884f1ca17 "Lexology overview of telecom and internet access in France")
+- [ICLG France telecoms, media and internet overview](https://iclg.com/practice-areas/telecoms-media-and-internet-laws-and-regulations/france "ICLG France telecoms, media and internet overview")
+- [Legal 500 France TMT PDF](https://www.legal500.com/guides/wp-content/uploads/sites/1/2025/08/France-TMT.pdf "Legal 500 France TMT PDF")
+- [ISDC surveillance of telecommunications providers report](https://www.isdc.ch/media/2668/25-059-e-final-report-20251002_sign%C3%A9.pdf "ISDC surveillance of telecommunications providers report")
+- [CJEU/French data-retention case note via eucrim](https://eucrim.eu/news/cjeu-french-legislation-on-data-retention-for-the-purpose-of-combating-market-abuse-offences-unlawful/ "CJEU/French data-retention case note via eucrim")
 
 ## Belgium
 
@@ -381,11 +381,11 @@ Why Norway is better:
 - Norway is easier to document clearly for users.
 
 Sources:
-- [BIPT: provision of electronic evidence to authorities](https://www.bipt.be/operators/telecommunications/security/provision-of-electronic-evidence)
-- [EDRi/Liga letter on Belgian draft data-retention law](https://edri.org/wp-content/uploads/2022/06/EDRi-Liga-Letter-Draft-Law-Data-Retention-BE_EN.pdf)
-- [EuroISPA note on Belgian data-retention uncertainty](https://www.euroispa.org/2024/10/data-retention-rules-in-belgium-uncertainty-remains-after-third-constitutional-court-ruling/)
-- [NautaDutilh Belgium cybersecurity PDF mentioning 2022 data-retention act](https://www.nautadutilh.com/documents/32/2023_Lexology_GTDT_Cybersecurity_-_Belgium6212859.1_1.pdf)
-- [Telenet Law Enforcement Disclosure Report 2024](https://www2.telenet.be/content/dam/www-telenet-corp/duurzaamheidsdocumenten-2025/Telenet%20group%20NV_Law%20Enforcement%20Disclosure%20Report_2024.pdf)
+- [BIPT: provision of electronic evidence to authorities](https://www.bipt.be/operators/telecommunications/security/provision-of-electronic-evidence "BIPT: provision of electronic evidence to authorities")
+- [EDRi/Liga letter on Belgian draft data-retention law](https://edri.org/wp-content/uploads/2022/06/EDRi-Liga-Letter-Draft-Law-Data-Retention-BE_EN.pdf "EDRi/Liga letter on Belgian draft data-retention law")
+- [EuroISPA note on Belgian data-retention uncertainty](https://www.euroispa.org/2024/10/data-retention-rules-in-belgium-uncertainty-remains-after-third-constitutional-court-ruling/ "EuroISPA note on Belgian data-retention uncertainty")
+- [NautaDutilh Belgium cybersecurity PDF mentioning 2022 data-retention act](https://www.nautadutilh.com/documents/32/2023_Lexology_GTDT_Cybersecurity_-_Belgium6212859.1_1.pdf "NautaDutilh Belgium cybersecurity PDF mentioning 2022 data-retention act")
+- [Telenet Law Enforcement Disclosure Report 2024](https://www2.telenet.be/content/dam/www-telenet-corp/duurzaamheidsdocumenten-2025/Telenet%20group%20NV_Law%20Enforcement%20Disclosure%20Report_2024.pdf "Telenet Law Enforcement Disclosure Report 2024")
 
 ## Ireland
 
@@ -404,13 +404,13 @@ Why Norway is better:
 - Norway gives a simple public answer about what Privacy.Fish must retain.
 
 Sources:
-- [Irish Communications Retention of Data Act 2011](https://www.irishstatutebook.ie/eli/2011/act/3/enacted/en/html)
-- [Irish Communications Retention of Data Act 2011, Schedule 2](https://www.irishstatutebook.ie/eli/2011/act/3/schedule/2/enacted/en/html)
-- [Irish revised act text](https://revisedacts.lawreform.ie/eli/2011/act/3/revised/en/html)
-- [Irish Revenue manual on the Communications Retention of Data Act](https://www.revenue.ie/en/tax-professionals/tdm-wm/investigations-prosecutions-enforcement/enforcement/communications-retention-of-data-act.pdf)
-- [Irish Legal News analysis of new data-retention laws](https://www.irishlegal.com/articles/michael-madden-new-data-retention-laws-for-ireland)
-- [DWT analysis of Irish internet traffic data retention](https://www.dwt.com/insights/2011/02/ireland-requires-storage-of-internet-traffic-data)
-- [Independent Examiner review of Irish retention law](https://independentexaminer.ie/wp-content/uploads/2025/02/236667_a01fdf60-6d1c-43cb-be6b-9440b8d36d6f-3.pdf)
+- [Irish Communications Retention of Data Act 2011](https://www.irishstatutebook.ie/eli/2011/act/3/enacted/en/html "Irish Communications Retention of Data Act 2011")
+- [Irish Communications Retention of Data Act 2011, Schedule 2](https://www.irishstatutebook.ie/eli/2011/act/3/schedule/2/enacted/en/html "Irish Communications Retention of Data Act 2011, Schedule 2")
+- [Irish revised act text](https://revisedacts.lawreform.ie/eli/2011/act/3/revised/en/html "Irish revised act text")
+- [Irish Revenue manual on the Communications Retention of Data Act](https://www.revenue.ie/en/tax-professionals/tdm-wm/investigations-prosecutions-enforcement/enforcement/communications-retention-of-data-act.pdf "Irish Revenue manual on the Communications Retention of Data Act")
+- [Irish Legal News analysis of new data-retention laws](https://www.irishlegal.com/articles/michael-madden-new-data-retention-laws-for-ireland "Irish Legal News analysis of new data-retention laws")
+- [DWT analysis of Irish internet traffic data retention](https://www.dwt.com/insights/2011/02/ireland-requires-storage-of-internet-traffic-data "DWT analysis of Irish internet traffic data retention")
+- [Independent Examiner review of Irish retention law](https://independentexaminer.ie/wp-content/uploads/2025/02/236667_a01fdf60-6d1c-43cb-be6b-9440b8d36d6f-3.pdf "Independent Examiner review of Irish retention law")
 
 ## Luxembourg
 
@@ -427,11 +427,11 @@ Why Norway is better:
 - Privacy.Fish needs a jurisdiction where the required retained data can be described precisely.
 
 Sources:
-- [Luxembourg government announcement on traffic and location data-retention draft law](https://me.gouvernement.lu/en/actualites.gouvernement2024%2Ben%2Bactualites%2Btoutes_actualites%2Bcommuniques%2B2023%2B01-janvier%2B25-tanson-loi-retention-donnees-caractere-personnel.html)
-- [DLA Piper Luxembourg data-protection law overview mentioning draft bill 8148](https://www.dlapiperdataprotection.com/index.html?c=LU&t=law)
-- [Luxembourg CNPD opinion on Bill 8148](https://cnpd.public.lu/en/actualites/national/2024/05/mai-2024-avis-retention-dp.html)
-- [Lexology note on Luxembourg retention-law reform](https://www.lexology.com/pro/content/luxembourg-set-reform-retention-law)
-- [Luxembourg Times note on electronic data-retention reform](https://www.luxtimes.lu/luxembourg/luxembourg-moves-to-limit-electronic-data-it-keeps/1358023.html)
+- [Luxembourg government announcement on traffic and location data-retention draft law](https://me.gouvernement.lu/en/actualites.gouvernement2024%2Ben%2Bactualites%2Btoutes_actualites%2Bcommuniques%2B2023%2B01-janvier%2B25-tanson-loi-retention-donnees-caractere-personnel.html "Luxembourg government announcement on traffic and location data-retention draft law")
+- [DLA Piper Luxembourg data-protection law overview mentioning draft bill 8148](https://www.dlapiperdataprotection.com/index.html?c=LU&t=law "DLA Piper Luxembourg data-protection law overview mentioning draft bill 8148")
+- [Luxembourg CNPD opinion on Bill 8148](https://cnpd.public.lu/en/actualites/national/2024/05/mai-2024-avis-retention-dp.html "Luxembourg CNPD opinion on Bill 8148")
+- [Lexology note on Luxembourg retention-law reform](https://www.lexology.com/pro/content/luxembourg-set-reform-retention-law "Lexology note on Luxembourg retention-law reform")
+- [Luxembourg Times note on electronic data-retention reform](https://www.luxtimes.lu/luxembourg/luxembourg-moves-to-limit-electronic-data-it-keeps/1358023.html "Luxembourg Times note on electronic data-retention reform")
 
 ## Austria
 
@@ -450,13 +450,13 @@ Why Norway is better:
 - Norway is easier to document precisely.
 
 Sources:
-- [Austrian Constitutional Court press release on data retention](https://www.vfgh.gv.at/downloads/press_releasedataretention.pdf)
-- [Austrian Constitutional Court PDF bulletin](https://www.vfgh.gv.at/downloads/Bulletin_2014-2_G_47-2012__G_59-2012__G_62_70_71-2012_27.06..pdf)
-- [RTR English translation of Austrian Telecommunications Act 2021](https://www.rtr.at/rtr/service/rechtsvorschriften/gesetze/TKG_2021_en-gb.pdf)
-- [Austrian TKG 2021 PDF via RIS](https://www.ris.bka.gv.at/Dokumente/Erv/ERV_2021_1_190/ERV_2021_1_190.pdf)
-- [FRA Austria surveillance study mentioning annulled data retention](https://fra.europa.eu/sites/default/files/fra_uploads/austria-study-data-surveillance-at.pdf)
-- [Deutsche Telekom Austria transparency report legal basis](https://www.telekom.com/en/company/data-privacy-and-security/news/austria-363540)
-- [EFF-style data-retention cases briefing mentioning Austria](https://www.patrick-breyer.de/wp-content/uploads/2021/09/Briefing-Data-Retention-Cases.pdf)
+- [Austrian Constitutional Court press release on data retention](https://www.vfgh.gv.at/downloads/press_releasedataretention.pdf "Austrian Constitutional Court press release on data retention")
+- [Austrian Constitutional Court PDF bulletin](https://www.vfgh.gv.at/downloads/Bulletin_2014-2_G_47-2012__G_59-2012__G_62_70_71-2012_27.06..pdf "Austrian Constitutional Court PDF bulletin")
+- [RTR English translation of Austrian Telecommunications Act 2021](https://www.rtr.at/rtr/service/rechtsvorschriften/gesetze/TKG_2021_en-gb.pdf "RTR English translation of Austrian Telecommunications Act 2021")
+- [Austrian TKG 2021 PDF via RIS](https://www.ris.bka.gv.at/Dokumente/Erv/ERV_2021_1_190/ERV_2021_1_190.pdf "Austrian TKG 2021 PDF via RIS")
+- [FRA Austria surveillance study mentioning annulled data retention](https://fra.europa.eu/sites/default/files/fra_uploads/austria-study-data-surveillance-at.pdf "FRA Austria surveillance study mentioning annulled data retention")
+- [Deutsche Telekom Austria transparency report legal basis](https://www.telekom.com/en/company/data-privacy-and-security/news/austria-363540 "Deutsche Telekom Austria transparency report legal basis")
+- [EFF-style data-retention cases briefing mentioning Austria](https://www.patrick-breyer.de/wp-content/uploads/2021/09/Briefing-Data-Retention-Cases.pdf "EFF-style data-retention cases briefing mentioning Austria")
 
 ## Comparison Table
 

@@ -23,6 +23,7 @@
         <div class="mt-8">
           <a
             href="{{ $.Params.primary_cta_url }}"
+            title="{{ $.Params.primary_cta_title | default . }}"
             class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-base font-bold text-white transition hover:bg-deep"
           >
             {{ . }}

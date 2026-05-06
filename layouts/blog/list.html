@@ -32,7 +32,7 @@
           {{ if and (not $videoPoster) $video (hasPrefix $video "/videos/") (hasSuffix $video ".mp4") }}
             {{ $videoPoster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" $video }}
           {{ end }}
-          <a href="{{ .RelPermalink }}" class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-deep/10 bg-white no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:border-ocean/24 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]">
+          <a href="{{ .RelPermalink }}" title="{{ .Params.link_title | default (printf "Read %s" .Title) }}" class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-deep/10 bg-white no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:border-ocean/24 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]">
             {{ with $video }}
               <div class="aspect-[21/9] w-full overflow-hidden bg-mist">
                 <video
@@ -86,6 +86,7 @@
           </div>
           <a
             href="{{ .Site.Params.signup_url }}"
+            title="{{ $cta.button_title | default $cta.button_text }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >
             {{ $cta.button_text }}

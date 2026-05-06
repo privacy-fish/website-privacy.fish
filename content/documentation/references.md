@@ -31,7 +31,7 @@ When our servers receive an email for you, it is encrypted before the encrypted 
 
 Your email is 100 MB in size and can not be extended. If your mailbox is full, incoming email will be rejected and the person that send you an email will receive an email with the error "SMTP 552 Mailbox full".
 
-100 MB is plenty of space for two weeks. Here is [https://www.emailtooltester.com/en/blog/email-usage-statistics/](the source we base this calculation on):
+100 MB is plenty of space for two weeks. Here is [the source we base this calculation on](https://www.emailtooltester.com/en/blog/email-usage-statistics/ "the source we base this calculation on"):
 
 ```
 80.6 Emails per day × 0.075 MB per email × 7 days ≈ 42.3 MB per week
@@ -59,7 +59,7 @@ The client app uses your downloaded and decrypted emails (.eml files) to serve t
 
 ### Customer Support
 
-If you are experiencing problems with using the service, please open an issue on [https://github.com/privacy-fish](github.com/privacy-fish) describing your problem and if it makes sense a screenshot.
+If you are experiencing problems with using the service, please open an issue on [github.com/privacy-fish](https://github.com/privacy-fish "github.com/privacy-fish") describing your problem and if it makes sense a screenshot.
 
 For technical issues, we do not offer support by email or any other way than github.
 

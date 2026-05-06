@@ -197,6 +197,7 @@
           {{ with .Params.help_url }}
             <a
               href="{{ . }}"
+              title="{{ $.Params.help_title | default $.Params.help_text }}"
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
               {{ partial "components/icon.html" (dict "name" "circle-question" "class" "h-4 w-4") }}
@@ -264,7 +265,7 @@
                 {{ with $logo }}
                   <div class="flex h-24 items-center justify-center border-b border-deep/10 px-5">
                     {{ if $item.logo_url }}
-                      <a href="{{ $item.logo_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex h-full items-center justify-center">
+                      <a href="{{ $item.logo_url }}" title="{{ $item.logo_title | default ($item.link_title | default $item.title) }}" target="_blank" rel="noopener noreferrer" class="inline-flex h-full items-center justify-center">
                         <img src="{{ .RelPermalink }}" alt="{{ $item.title }} logo" class="max-h-16 w-auto max-w-[10rem] object-contain" loading="lazy" />
                       </a>
                     {{ else }}
@@ -275,7 +276,7 @@
                 <div class="flex-1 {{ if $logo }}p-5{{ end }}">
                   <h3 class="font-bold text-deep">
                     {{ if $item.logo_url }}
-                      <a href="{{ $item.logo_url }}" target="_blank" rel="noopener noreferrer" class="transition hover:text-ocean">{{ .title }}</a>
+                      <a href="{{ $item.logo_url }}" title="{{ $item.link_title | default ($item.logo_title | default $item.title) }}" target="_blank" rel="noopener noreferrer" class="transition hover:text-ocean">{{ .title }}</a>
                     {{ else }}
                       {{ .title }}
                     {{ end }}
@@ -286,7 +287,7 @@
                 </div>
                 {{ with $item.privacy_url }}
                   <div class="border-t border-deep/10 px-5 py-4">
-                    <a href="{{ . }}" class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition hover:text-deep">
+                    <a href="{{ . }}" title="{{ $item.privacy_title | default (printf "%s privacy information" $item.title) }}" class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition hover:text-deep">
                       Privacy information
                       {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-amber") }}
                     </a>
@@ -299,6 +300,7 @@
             <div class="mt-6">
               <a
                 href="{{ . }}"
+                title="{{ $.Params.payment_methods_docs_title | default $.Params.payment_methods_docs_text }}"
                 class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
               >
                 {{ with $.Params.payment_methods_docs_icon }}
@@ -329,6 +331,7 @@
               {{ if .url }}
                 <a
                   href="{{ .url }}"
+                  title="{{ .link_title | default .title }}"
                   class="group overflow-hidden rounded-2xl border border-deep/10 bg-white transition hover:-translate-y-1 hover:border-ocean/24 hover:shadow-[0_24px_60px_-48px_rgba(6,47,73,0.62)] {{ if not $logo }}p-5{{ end }}"
                 >
                   {{ with $logo }}

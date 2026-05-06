@@ -61,7 +61,7 @@
                 data-doc-toc
                 class="mt-4 text-sm leading-6 text-deep/62 [&_a.active]:text-amber [&_a]:block [&_a]:rounded-xl [&_a]:px-3 [&_a]:py-1.5 [&_a]:font-semibold [&_a]:text-deep/68 [&_a]:no-underline [&_a]:transition [&_a:hover]:text-amber [&_li]:my-1 [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3"
               >
-                {{ . }}
+                {{ partial "components/toc-with-link-titles.html" . }}
               </div>
             </div>
           </aside>
@@ -73,6 +73,7 @@
           {{ with .Parent }}
             <a
               href="{{ .RelPermalink }}"
+              title="{{ $.Params.back_title | default (printf "%s %s" $singleText.back_prefix .Title) }}"
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
               {{ partial "components/icon.html" (dict "name" "arrow-left" "class" "h-4 w-4") }}
@@ -81,6 +82,7 @@
           {{ end }}
           <a
             href="{{ .Site.Params.signup_url }}"
+            title="{{ .Site.Params.single.cta_title | default $singleText.cta_text }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >
             {{ $singleText.cta_text }}
