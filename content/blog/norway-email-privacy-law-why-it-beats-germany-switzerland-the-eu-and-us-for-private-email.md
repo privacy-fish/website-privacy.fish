@@ -1,9 +1,9 @@
 ---
-title: "Jurisdiction Shopping for Email Privacy: Why Norway Beats All Western Countries in 2026"
+title: "Norway Email Privacy Law: Why It Beats Germany, Switzerland, the EU and US for Private Email"
 description: "Norway email privacy law vs Germany, Switzerland, UK, Australia and US data retention: what Privacy.Fish must log under Ekomloven."
 date: 2026-05-05
 draft: false
-video: "/videos/security-model.mp4"
+video: "/videos/blog/norway-email-privacy-law-why-it-beats-germany-switzerland-the-eu-and-us-for-private-email/norway-email-privacy-law.mp4"
 show_cta: false
 ---
 

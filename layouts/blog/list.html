@@ -1,0 +1,99 @@
+{{ define "main" }}
+  {{ $pages := .RegularPages.ByDate.Reverse }}
+  {{ $listText := .Site.Params.list }}
+  {{ $cta := .Params.list_cta }}
+
+  <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-10 sm:pt-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-[0.74rem] font-bold tracking-[0.22em] text-ocean uppercase">{{ .Title }}</p>
+        <h1 class="mt-4 text-5xl font-extrabold tracking-[-0.05em] text-deep sm:text-6xl">
+          {{ with .Params.heading }}{{ . }}{{ else }}{{ .Title }}{{ end }}
+        </h1>
+        {{ with .Description }}
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-deep/68">{{ . }}</p>
+        {{ end }}
+      </div>
+
+      {{ if .Content }}
+        <div class="prose prose-lg prose-headings:font-display prose-headings:text-deep prose-a:text-ocean mt-10 max-w-3xl text-deep/75">
+          {{ .Content }}
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="bg-white pt-10 pb-16 lg:pb-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {{ range $pages }}
+          {{ $video := .Params.video }}
+          {{ $videoPoster := .Params.video_poster }}
+          {{ if and (not $videoPoster) $video (hasPrefix $video "/videos/") (hasSuffix $video ".mp4") }}
+            {{ $videoPoster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" $video }}
+          {{ end }}
+          <a href="{{ .RelPermalink }}" class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-deep/10 bg-white no-underline shadow-[0_24px_70px_-52px_rgba(6,47,73,0.28)] transition hover:-translate-y-1 hover:border-ocean/24 hover:shadow-[0_30px_80px_-52px_rgba(6,47,73,0.36)]">
+            {{ with $video }}
+              <div class="aspect-[21/9] w-full overflow-hidden bg-mist">
+                <video
+                  class="h-full w-full object-cover object-center"
+                  muted
+                  playsinline
+                  preload="auto"
+                  data-blog-card-video
+                  {{ with $videoPoster }}poster="{{ . }}"{{ end }}
+                >
+                  <source src="{{ . }}" type="video/mp4" />
+                </video>
+              </div>
+            {{ end }}
+            <div class="flex flex-1 flex-col p-7">
+              <div class="flex items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
+                <span>{{ $listText.blog_card_label }}</span>
+                <span class="h-1 w-1 rounded-full bg-amber"></span>
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+              </div>
+              <h2 class="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-deep transition group-hover:text-ocean">
+                {{ .Title }}
+              </h2>
+              <p class="mt-4 flex-1 text-base leading-7 text-deep/70">
+                {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}
+              </p>
+              <div class="mt-6 flex items-center justify-between gap-4">
+                <span class="text-sm font-semibold text-deep/52">{{ .ReadingTime }} {{ $listText.reading_time_suffix }}</span>
+                <span class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition group-hover:text-deep">
+                  {{ $listText.read_more_text }}
+                  {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4") }}
+                </span>
+              </div>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist/55 pt-10 pb-10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[2.25rem] border border-deep/8 bg-white px-6 py-10 shadow-[0_30px_80px_-60px_rgba(6,47,73,0.3)] sm:px-10">
+        <div class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ $cta.eyebrow }}</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-deep">{{ $cta.heading }}</h2>
+            <p class="mt-3 max-w-2xl text-base leading-7 text-deep/68">
+              {{ $cta.copy }}
+            </p>
+          </div>
+          <a
+            href="{{ .Site.Params.signup_url }}"
+            class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
+          >
+            {{ $cta.button_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script defer src="/js/blog-videos.js"></script>
+{{ end }}

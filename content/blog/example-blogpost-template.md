@@ -2,7 +2,7 @@
 title: "Example blog post template"
 description: "Draft example showing the content patterns available for privacy.fish blog posts."
 date: 2026-05-04
-draft: false
+draft: true
 video: "/videos/security-model.mp4"
 show_cta: false
 ---
@@ -20,7 +20,7 @@ Write short paragraphs with one clear point each. The blog layout keeps the cont
 Use this pattern when a post needs another video inside the body:
 
 <div class="not-prose my-10 aspect-[21/9] overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.32)]">
-  <video class="h-full w-full object-cover object-center" muted playsinline controls preload="metadata">
+  <video class="h-full w-full object-cover object-center" muted playsinline preload="auto" data-limited-video data-play-count="1" poster="/videos/posters/data-minimization-by-default.jpg">
     <source src="/videos/data-minimization-by-default.mp4" type="video/mp4">
   </video>
 </div>

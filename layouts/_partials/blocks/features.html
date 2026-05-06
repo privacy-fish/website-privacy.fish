@@ -21,6 +21,10 @@
         {{ $imagePosition := $group.image_position | default "right" }}
         {{ $imageOnRight := eq $imagePosition "right" }}
         {{ $hasMedia := or $group.image $group.video }}
+        {{ $videoPoster := $group.video_poster }}
+        {{ if and (not $videoPoster) $group.video (hasPrefix $group.video "/videos/") (hasSuffix $group.video ".mp4") }}
+          {{ $videoPoster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" $group.video }}
+        {{ end }}
         <article class="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           {{ if $hasMedia }}
             <div class="{{ if $imageOnRight }}lg:order-2{{ end }}">
@@ -30,10 +34,11 @@
                     class="{{ if eq $group.video_aspect "16:9" }}aspect-video{{ else if eq $group.video_aspect "7:3" }}aspect-[7/3]{{ else }}aspect-[320/137]{{ end }} w-full object-cover object-center"
                     muted
                     playsinline
-                    preload="metadata"
+                    preload="auto"
                     aria-label="{{ $group.title }}"
                     data-limited-video
                     data-play-count="2"
+                    {{ with $videoPoster }}poster="{{ . }}"{{ end }}
                   >
                     <source src="{{ $group.video }}" type="video/mp4" />
                   </video>
