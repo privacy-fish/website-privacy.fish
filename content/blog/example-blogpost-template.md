@@ -11,8 +11,6 @@ Use this draft as a reference for future blog posts. It includes normal paragrap
 
 ## Section heading
 
-<script src="https://asciinema.org/a/123456.js" id="asciicast-123456" async></script>
-
 Write short paragraphs with one clear point each. The blog layout keeps the content width readable, so long explanations should be split into sections.
 
 ![privacy.fish secure mail workflow](/images/features/secure-mail-workflow.png)
