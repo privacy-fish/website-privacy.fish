@@ -50,6 +50,12 @@ The following chapters describe how much each payment option violates your priva
 
 Cash by letter is our preferred payment method for users who want the strongest practical payment privacy.
 
+#### What to send
+
+Do not send coins, but only banknotes, as coins tend to rip through the paper when letters are being processed by the post companies.
+
+
+
 ##### Cash By Letter Recipient Post Address
 
 Please put 20 euros into an envelope, add a letter that contains ONLY! the temporary payment code and NOT! your username, and send it to:
@@ -62,6 +68,14 @@ Norway
 ```
 
 This gives Privacy.Fish only the information we need: a payment code and the payment itself.
+
+##### Cost Of Sending a Letter To Privacy.Fish In Oslo, Norway
+
+We did the resarch and the approximate postage for sending a small ordinary letter to Norway with one banknote and one standard size A4 letter inside for the payment code, from most countries around the world, is between and and five Euros - if you do not want to track the letter and send it as a regular letter.
+
+Privacy.Fish does not offer refunds for cash by letter payments, regardless if they payments were made in full or not.
+
+
 
 ##### Privacy Information for Cash By Letter
 
