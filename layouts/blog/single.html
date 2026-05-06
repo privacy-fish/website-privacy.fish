@@ -1,9 +1,5 @@
 {{ define "main" }}
   {{ $singleText := .Site.Params.single }}
-  {{ $eyebrow := .Date.Format "January 2, 2006" }}
-  {{ with .Params.eyebrow }}
-    {{ $eyebrow = . }}
-  {{ end }}
   {{ $videoPoster := .Params.video_poster }}
   {{ if and (not $videoPoster) .Params.video (hasPrefix .Params.video "/videos/") (hasSuffix .Params.video ".mp4") }}
     {{ $videoPoster = replaceRE "^/videos/(.+)\\.mp4$" "/videos/posters/$1.jpg" .Params.video }}
@@ -11,47 +7,43 @@
 
   <section class="bg-[linear-gradient(180deg,#ffffff_0%,#edf5fb_100%)] pt-28 pb-12 sm:pt-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase">
-        {{ with .Parent }}
-          <a href="{{ .RelPermalink }}" class="transition hover:text-deep">{{ .Title }}</a>
-          <span class="h-1 w-1 rounded-full bg-amber"></span>
-        {{ end }}
-        <span>{{ $eyebrow }}</span>
-      </div>
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
+        <div>
+          <h1 class="max-w-4xl text-4xl font-extrabold tracking-[-0.05em] text-deep">
+            {{ .Title }}
+          </h1>
 
-      <h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-[-0.05em] text-deep sm:text-6xl">
-        {{ .Title }}
-      </h1>
+          {{ if ne .Params.show_meta false }}
+            <div class="mt-5 flex flex-wrap items-center gap-3 text-xs font-bold tracking-[0.18em] text-ocean uppercase transition hover:text-deep">
+              <span>{{ .ReadingTime }} {{ $singleText.reading_time_suffix }}</span>
+              {{ if .Date }}
+                <span class="h-1 w-1 rounded-full bg-amber"></span>
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
 
-      {{ with .Params.video }}
-        <div class="mt-8 aspect-[21/9] max-w-5xl overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.36)]">
-          <video
-            class="h-full w-full object-cover object-center"
-            muted
-            playsinline
-            preload="auto"
-            data-limited-video
-            data-play-count="1"
-            {{ with $videoPoster }}poster="{{ . }}"{{ end }}
-          >
-            <source src="{{ . }}" type="video/mp4" />
-          </video>
-        </div>
-      {{ end }}
+          {{ with .Params.video }}
+            <div class="mt-8 aspect-[21/9] overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.36)]">
+              <video
+                class="h-full w-full object-cover object-center"
+                muted
+                playsinline
+                preload="auto"
+                data-limited-video
+                data-play-count="1"
+                {{ with $videoPoster }}poster="{{ . }}"{{ end }}
+              >
+                <source src="{{ . }}" type="video/mp4" />
+              </video>
+            </div>
+          {{ end }}
 
-      {{ with .Description }}
-        <p class="mt-5 max-w-4xl text-[1.4rem] leading-10 text-deep/68">{{ . }}</p>
-      {{ end }}
-
-      {{ if ne .Params.show_meta false }}
-        <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-deep/54">
-          <span>{{ .ReadingTime }} {{ $singleText.reading_time_suffix }}</span>
-          {{ if .Date }}
-            <span class="h-1 w-1 self-center rounded-full bg-deep/24"></span>
-            <span>{{ .Date.Format "January 2, 2006" }}</span>
+          {{ with .Description }}
+            <p class="mt-5 max-w-4xl text-[1.4rem] leading-10 text-deep/68">{{ . }}</p>
           {{ end }}
         </div>
-      {{ end }}
+      </div>
     </div>
   </section>
 
