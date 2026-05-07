@@ -8,7 +8,7 @@ show_cta: false
 ---
 
 
-## Your Email Provider Is Part Of Your Threat Model
+## Your Email Provider Is Part of Your Threat Model
 
 Email data retention laws are one reason email privacy is not only a question of encryption or product design; it is also a question of which country the email provider chose to operate in, and what that country forces the provider to retain, disclose, or technically enable access to. Governments often do not need your device if the law can reach your provider and the data the provider has. That means your email provider’s jurisdiction is part of your privacy model.
 
@@ -16,9 +16,9 @@ Our answer has two parts: operate from Norway, and avoid storing data we do not 
 
 For the longer operational documentation, see our [jurisdiction comparison](/documentation/jurisdiction/ "jurisdiction comparison"), [privacy information](/documentation/privacy-information/ "privacy information"), and [email infrastructure architecture](/documentation/email-infrastructure-architecture/ "email infrastructure architecture").
 
-## The Uncomfortable Reality Of Email Data Retention In The West
+## The Uncomfortable Reality of Email Data Retention in the West
 
-### Germany And Switzerland: The Privacy Darlings With Teeth
+### Germany and Switzerland: The Privacy Darlings with Teeth
 
 Under German [TKG § 170](https://www.gesetze-im-internet.de/tkg_2021/__170.html "TKG § 170"), anyone operating a telecommunications system used to provide publicly available telecommunications services must, from the start of operation and at their own cost, keep technical facilities for legally ordered telecommunications surveillance and organizational arrangements for immediate implementation; the operator must also notify the Bundesnetzagentur and prove that the facilities and procedures comply with the ordinance and technical directive. [TKÜV § 3](https://www.gesetze-im-internet.de/tk_v_2005/__3.html "TKÜV § 3") applies these rules to operators of systems used for publicly available telecommunications services, but exempts certain systems, including systems with no more than 10,000 users and systems used exclusively for number-independent interpersonal telecommunications services or non-identifier WLAN internet access services with no more than 100,000 users. [TKG § 174](https://www.gesetze-im-internet.de/tkg_2021/__174.html "TKG § 174") requires secure electronic interfaces for authority requests: providers with 100,000 or more contractual partners must keep both the interface and the e-mail-based transmission process available, while smaller obligated providers must keep the e-mail-based process available.
 
@@ -39,11 +39,11 @@ Norway is [not an EU Member State](https://www.eu-norway.org/eu/norway-and-the-e
 
 
 
-## How Privacy.Fish Turns Norwegian Law Into Real Privacy
+## How Privacy.Fish Turns Norwegian Law into Real Privacy
 
 The legal baseline matters only if the service is built to keep everything outside that baseline from existing in the first place.
 
-### What We Do To Keep Others From Accessing Your Data
+### What We Do to Keep Others from Accessing Your Data
 
 Norwegian law helps only if our own infrastructure does not create extra data for attackers, insiders, payment providers, or later legal requests to reach.
 
@@ -60,7 +60,7 @@ Privacy.Fish uses SFTP for downloaded email so the server can act as short-lived
 Our approach is less convenient than a synchronized webmail account, but it changes the risk model: the long-term archive lives with you, while the provider has less mailbox data to protect, disclose, lose, or have stolen.
 
 
-### One-Time Payments And 14-Day Payment-To-Account Link Deletion
+### One-Time Payments and 14-Day Payment-to-Account Link Deletion
 
 Recurring billing keeps re-identifying the account because every renewal has to answer the same operational question again: which account is this payment for? A monthly card charge, yearly PayPal renewal, recurring SEPA transfer, or subscription management page needs either account-identifying metadata in the payment reference, a customer record inside the provider's billing system, or both. Even if the provider minimizes everything else, that recurring billing relationship becomes a long-lived identity bridge between payment data and mailbox account.
 
@@ -73,25 +73,25 @@ From then on, we still have a list of received payments and a list of active acc
 
 
 
-### The Real Cost Of Doing The Right Thing
+### The Real Cost of Doing the Right Thing
 
 The business cost is simple: subscriptions would probably make Privacy.Fish more profitable. We chose a one-time payment anyway because recurring billing would create exactly the kind of long-lived account-payment link we are trying to avoid in order to protect your privacy.
 
 That means the service depends more on trust, word of mouth, and people who understand why this tradeoff matters. If Privacy.Fish is useful to you, recommending it to the right people helps more than any subscription upsell ever could.
 
 
-## The Bottom Line: Jurisdiction Is Part Of Email Privacy
+## The Bottom Line: Jurisdiction Is Part of Email Privacy
 
 Email privacy is partly a technical problem, but it is also a jurisdiction problem: the country behind the provider decides what the provider must retain, disclose, or build for access. Germany, Switzerland, the United Kingdom, Australia, and the United States show how quickly "private email" can become a question of metadata retention, preservation duties, interception readiness, or recurring billing identity. Norway gives Privacy.Fish a narrower legal baseline, and we use the product design to keep the remaining data surface as small as we can. That choice is less convenient and less commercially comfortable than a normal mailbox subscription, but it is the only direction that matches what we mean by private email.
 
 
-## FAQ: Norway Email Privacy, Data Retention, And Privacy.Fish
+## FAQ: Norway Email Privacy, Data Retention, and Privacy.Fish
 
-### Is Norway In The EU?
+### Is Norway in the EU?
 
 No. Norway is [not an EU Member State](https://www.eu-norway.org/eu/norway-and-the-eu/ "not an EU Member State"), although it participates in large parts of the European legal and economic framework through the EEA.
 
-### What Does Norwegian Law Require Privacy.Fish To Log By Default?
+### What Does Norwegian Law Require Privacy.Fish to Log by Default?
 
 For our SSH/SFTP account-access model, the routine retention duty under [Ekomloven § 3-13](https://lovdata.no/lov/2024-12-13-76/%C2%A73-13 "Ekomloven § 3-13") maps to timestamp, username, source IP address and source port for registered account access, retained for 12 months.
 
