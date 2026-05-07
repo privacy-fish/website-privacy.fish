@@ -50,11 +50,11 @@ The largest part of our codebase is [configuration management code](https://gith
 
 TODO links to the custom scripts / tools
 
-## OpenSMTPD For Everything SMTP
+## OpenSMTPD for Everything SMTP
 
 OpenSMTPD is our open source mail server of choice. It is open source software developed as part of the OpenBSD project and is even included in OpenBSD’s base system. The mail server talks to gmail.com when you send or receive mail to/from example@gmail.com. It also fits our security approach because it is small, simple, and designed with security in mind.
 
-## SSH For Client Interaction
+## SSH for Client Interaction
 
 SSH (Secure Shell) is the standard way to securely log in to most of today's Linux and OpenBSD servers over the internet. It uses an encrypted connection and usually cryptographic keys (like your SSH public keys) instead of reusable passwords.
 
@@ -97,7 +97,7 @@ cat msg.eml | ssh j.doe@out.mail.privacy.fish
 
 This lets us use the same SSH key-based account model for sending mail that we already use for downloading mail and managing devices. The server can restrict what the SSH key is allowed to do, avoid reusable mailbox passwords, and keep the authentication surface smaller than running both SSH and SMTP AUTH.
 
-### Why SSH For User Authentication Management
+### Why SSH for User Authentication Management
 
 We chose SFTP for managing OpenSSH public keys because we already had SSH installed ;)
 
@@ -112,7 +112,7 @@ This isolation limits the impact of some compromises: root access on one VM does
 
 
 
-## Limiting Attacker Persistence With Rebuilds
+## Limiting Attacker Persistence with Rebuilds
 
 After a server compromise, the clean way forward is to set up a fresh server and migrate only the required data, which has to be verified not to have been manipulated.
 
@@ -128,7 +128,7 @@ Because of this, it is reasonable to treat any internet-facing server as potenti
 
 0day exploits are a part of the modern IT world and there is no way around it. Writing all of the software we use ourselves, in a "very secure way", would not remove the bugs every human (and machine) introduces into code. Because of this, we chose software that is already very well audited.
 
-### Reducing Attacker-Persistence By Reinstalling Everything From Scratch Once a Week
+### Reducing Attacker-Persistence by Reinstalling Everything from Scratch Once a Week
 
 In a traditional long-lived server setup, the operating system may run for months or years. If an attacker uses a 0day exploit before it is publicly known and patched, installing the security update later may close the original bug, but it may not remove the attacker's existing foothold. A hidden backdoor, modified binary, changed configuration file, or added key can remain on the server after the patch is installed.
 
@@ -147,7 +147,7 @@ The actual `~/.ssh/authorized_keys` files are generated from signed account-key 
 
 Everything else about the server is controlled by code that is on [github.com/privacy-fish](https://github.com/privacy-fish). The configuration management code and all other automations are published on GitHub. The list of registered users is not published, because it is private operational data, but it is used by configuration management to recreate the required user accounts on a fresh OpenBSD server installation.
 
-#### Mitigating The Manipulation Of Stored Encrypted Email Files
+#### Mitigating the Manipulation of Stored Encrypted Email Files
 
 The current protection comes from the age encryption of the email files itself. Stored emails are encrypted for the users' SSH public keys, and age encryption includes authentication. If an existing encrypted mail file is modified, decryption fails instead of producing silently changed mail. The client application interprets age decryption errors clearly and warns the user when encrypted mail cannot be decrypted.
 
@@ -168,7 +168,7 @@ Adding signatures would interfere with attacks in the following way:
 
 We continuously improve our service and prefer to honestly tell our users what is implemented and what is not (yet).
 
-#### Mitigating The Manipulation Of SSH Authorized Keys
+#### Mitigating the Manipulation of SSH Authorized Keys
 
 Privacy.Fish uses a dedicated key-management server where the users can upload, delete and change their SSH public keys that are used to send and download email as well as for encrypting email files to store. Only the user's master SSH keys can log into the keys server and perform updates. This keeps normal mail keys separate from account-management keys.
 
@@ -190,7 +190,7 @@ That is the Privacy.Fish tradeoff in one sentence: smaller server state, fewer r
 
 
 
-## Minimal And Replaceable Admin Workstation
+## Minimal and Replaceable Admin Workstation
 
 Compromising an administrator can be easier than attacking a hardened server directly.
 
@@ -236,7 +236,7 @@ If our source repositories on GitHub, the firmware / BIOS of the servers, backup
 
 
 
-## Which Servers exist
+## Which Servers Exist
 
 
 ### alpha.mail.privacy.fish (hardware)
@@ -265,9 +265,9 @@ Hence, we switch operations between alpha and omega weekly, while each time sett
 ### Ansible Playbook Web
 ### website-privacy.fish
 
-## Recreating the Servers For The Email Infrastructure
+## Recreating the Servers for the Email Infrastructure
 
-## Recreating the Servers For The Web-Infrastructure
+## Recreating the Servers for the Web-Infrastructure
 
 ## Weekly Server Lifecycle
 
