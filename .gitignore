@@ -13,6 +13,7 @@ npm-debug.log
 
 # Production
 /dist/
+/scripts/
 
 # Generated files by hugo
 /public/
