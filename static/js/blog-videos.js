@@ -12,6 +12,7 @@
 
   var activeVideo = null;
   var completedInView = new WeakSet();
+  var usesHoverPlayback = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var ticking = false;
   var playThreshold = 0.6;
   var resetThreshold = 0.2;
@@ -58,6 +59,19 @@
         if (activeVideo === video) activeVideo = null;
       });
     }
+  }
+
+  function playFromStart(video) {
+    completedInView.delete(video);
+    if (activeVideo && activeVideo !== video) reset(activeVideo);
+
+    try {
+      video.currentTime = 0;
+    } catch (error) {
+      // Some browsers can reject currentTime changes before enough data is loaded.
+    }
+
+    play(video);
   }
 
   function selectMostVisibleVideo() {
@@ -121,6 +135,19 @@
       if (activeVideo === video) activeVideo = null;
     });
   });
+
+  if (usesHoverPlayback) {
+    videos.forEach(function (video) {
+      var card = video.closest("a") || video;
+      card.addEventListener("mouseenter", function () {
+        playFromStart(video);
+      });
+      card.addEventListener("mouseleave", function () {
+        reset(video);
+      });
+    });
+    return;
+  }
 
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);

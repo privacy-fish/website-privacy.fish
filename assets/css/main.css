@@ -19,6 +19,7 @@
   --color-seafoam: #b4e4d8;
   --color-slate: #d8e5ef;
 
+  --font-sans: "Open Sans", sans-serif;
   --font-body: "Open Sans", sans-serif;
   --font-display: "Open Sans", sans-serif;
   --font-mono: "JetBrains Mono", "Menlo", monospace;
@@ -56,6 +57,71 @@
   }
 }
 
+
+/* iA Writer Duospace regular */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/iAWriterDuoS-Regular.woff2') format('woff2');
+}
+/* iA Writer Duospace italic */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/iAWriterDuoS-Italic.woff2') format('woff2');
+}
+/* iA Writer Duospace semibold */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/iAWriterDuoS-Bold.woff2') format('woff2');
+}
+/* iA Writer Duospace bold */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/iAWriterDuoS-Bold.woff2') format('woff2');
+}
+/* iA Writer Duospace extrabold */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/iAWriterDuoS-Bold.woff2') format('woff2');
+}
+/* iA Writer Duospace semibold italic */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/fonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+}
+/* iA Writer Duospace bold italic */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+}
+/* iA Writer Duospace extrabold italic */
+@font-face {
+  font-display: swap;
+  font-family: 'iA Writer Duospace';
+  font-style: italic;
+  font-weight: 800;
+  src: url('/fonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+}
 
 /* open-sans-regular - latin */
 @font-face {

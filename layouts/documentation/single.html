@@ -58,16 +58,15 @@
   <section class="bg-white pb-20">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="grid gap-12 py-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
-        <article class="prose prose-xl prose-headings:scroll-mt-32 prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-h2:text-[32px] prose-h2:font-extrabold prose-p:text-deep/88 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/88 prose-blockquote:text-deep/84 prose-th:text-deep prose-td:text-deep/84 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
+        <article class="prose prose-lg prose-headings:scroll-mt-32 prose-headings:font-display prose-headings:tracking-[-0.03em] prose-headings:text-deep prose-h2:text-[32px] prose-h2:font-extrabold prose-p:text-deep/88 prose-a:text-ocean prose-strong:text-deep prose-li:text-deep/88 prose-blockquote:text-deep/84 prose-th:text-deep prose-td:text-deep/84 prose-code:text-ocean prose-code:before:content-none prose-code:after:content-none prose-pre:bg-deep prose-pre:text-white max-w-none">
           {{ .Content }}
         </article>
         {{ with .TableOfContents }}
-          <aside class="hidden lg:sticky lg:top-28 lg:block lg:max-h-[calc(100vh-8rem)] lg:self-start lg:overflow-y-auto">
-            <div class="rounded-[1.5rem] border border-deep/8 bg-mist/35 p-5">
-              <p class="text-[0.72rem] font-bold tracking-[0.2em] text-amber uppercase">On this page</p>
+          <aside class="hidden font-display lg:sticky lg:top-28 lg:block lg:max-h-[calc(100vh-8rem)] lg:self-start lg:overflow-y-auto">
+            <div class="p-1">
               <div
                 data-doc-toc
-                class="mt-4 text-sm leading-6 text-deep/72 [&_a.active]:text-amber [&_a]:block [&_a]:rounded-xl [&_a]:px-3 [&_a]:py-1.5 [&_a]:font-semibold [&_a]:text-deep/78 [&_a]:no-underline [&_a]:transition [&_a:hover]:text-amber [&_li]:my-1 [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3"
+                class="text-sm leading-6 text-deep/68 [&_a.active]:text-amber [&_a.active]:before:scale-100 [&_a.active]:before:opacity-100 [&_a]:relative [&_a]:block [&_a]:py-2 [&_a]:pl-5 [&_a]:font-bold [&_a]:text-deep/66 [&_a]:no-underline [&_a]:transition [&_a]:before:absolute [&_a]:before:top-[1.05rem] [&_a]:before:left-0 [&_a]:before:h-2 [&_a]:before:w-2 [&_a]:before:scale-50 [&_a]:before:rounded-full [&_a]:before:bg-amber [&_a]:before:opacity-0 [&_a]:before:transition [&_a:hover]:text-amber [&_a:hover]:before:scale-100 [&_a:hover]:before:opacity-70 [&_li]:my-0 [&_ul]:space-y-0.5 [&_ul_ul]:mt-0.5 [&_ul_ul]:pl-4 [&_ul_ul_a]:text-[0.82rem] [&_ul_ul_a]:font-semibold"
               >
                 {{ partial "components/toc-with-link-titles.html" . }}
               </div>

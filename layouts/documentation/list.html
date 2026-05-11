@@ -24,9 +24,10 @@
 
   <section class="bg-white pt-10 pb-16 lg:pb-20">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="max-w-4xl">
+      <div class="max-w-5xl">
         <div class="space-y-4">
-          {{ range $page := $pages }}
+          {{ range $index, $page := $pages }}
+            {{ $number := printf "%02d" (add $index 1) }}
             {{ $video := $page.Params.video }}
             {{ $videoPoster := $page.Params.video_poster }}
             {{ if and (not $videoPoster) $video (hasPrefix $video "/videos/") (hasSuffix $video ".mp4") }}
@@ -42,9 +43,14 @@
               <div class="pointer-events-none absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-ocean/10 blur-2xl transition group-hover:bg-ocean/16"></div>
 
               <div class="relative flex min-w-0 flex-col justify-center px-5 py-5 sm:px-6 lg:py-4">
-                <h2 class="text-2xl font-extrabold tracking-[-0.035em] text-deep transition group-hover:text-ocean sm:text-[1.55rem]">
-                  {{ $page.Title }}
-                </h2>
+                <div class="flex min-w-0 items-center gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber text-xs font-extrabold tracking-[0.08em] text-white shadow-[0_12px_28px_-18px_rgba(244,167,12,0.9)]">
+                    {{ $number }}
+                  </span>
+                  <h2 class="min-w-0 text-2xl font-extrabold tracking-[-0.035em] text-deep transition group-hover:text-ocean sm:text-[1.55rem]">
+                    {{ $page.Title }}
+                  </h2>
+                </div>
                 {{ with $page.Description }}
                   <p class="mt-2 max-w-2xl text-base leading-7 text-deep/66">{{ . }}</p>
                 {{ end }}
