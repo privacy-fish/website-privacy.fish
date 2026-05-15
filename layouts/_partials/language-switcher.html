@@ -1,27 +1,33 @@
+{{- $page := .Page | default . -}}
 {{- if gt (len hugo.Sites) 1 -}}
-  {{- $current := .Language -}}
+  {{- $current := $page.Language -}}
   {{- $translations := dict -}}
-  {{- range .AllTranslations -}}
+  {{- range $page.AllTranslations -}}
     {{- $translations = merge $translations (dict .Language.Lang .) -}}
   {{- end -}}
   {{- $currentFlag := $current.Params.flag | default "xx" -}}
   {{- $currentName := $current.Label | default $current.Lang -}}
 
-  <details class="group relative">
+  {{- $variant := .variant | default "desktop" -}}
+  {{- $isMobile := eq $variant "mobile" -}}
+
+  <details class="group {{ if $isMobile }}relative w-full{{ else }}relative{{ end }}">
     <summary
-      class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-deep/10 bg-white px-3 py-2 text-sm font-bold text-deep/72 shadow-[0_14px_34px_-28px_rgba(6,47,73,0.5)] transition hover:border-ocean/24 hover:bg-ocean-soft/60 hover:text-ocean [&::-webkit-details-marker]:hidden"
+      class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-deep/10 bg-white px-3 py-2 text-sm font-bold text-deep/72 shadow-[0_14px_34px_-28px_rgba(6,47,73,0.5)] transition hover:border-ocean/24 hover:bg-ocean-soft/60 hover:text-ocean [&::-webkit-details-marker]:hidden{{ if $isMobile }} w-full justify-between{{ end }}"
       aria-label="{{ i18n "language_switcher_label" }}"
     >
-      {{ partial "components/flag.html" (dict "flag" $currentFlag "label" $currentName "class" "h-5 w-5 rounded-full object-cover ring-1 ring-deep/10") }}
-      <span class="hidden sm:inline">{{ $currentName }}</span>
-      {{ partial "components/icon.html" (dict "name" "chevron-down" "class" "h-3.5 w-3.5 transition group-open:rotate-180") }}
+      <span class="flex min-w-0 items-center gap-2">
+        {{ partial "components/flag.html" (dict "flag" $currentFlag "label" $currentName "class" "h-5 w-5 rounded-full object-cover ring-1 ring-deep/10") }}
+        <span class="{{ if not $isMobile }}hidden sm:inline{{ end }} min-w-0 truncate">{{ $currentName }}</span>
+      </span>
+      {{ partial "components/icon.html" (dict "name" "chevron-down" "class" "h-3.5 w-3.5 shrink-0 transition group-open:rotate-180") }}
     </summary>
 
-    <div class="absolute right-0 z-50 mt-3 w-72 overflow-hidden rounded-[1.5rem] border border-deep/10 bg-white shadow-[0_24px_70px_-42px_rgba(6,47,73,0.34)]">
+    <div class="{{ if $isMobile }}relative z-10 mt-3 w-full{{ else }}absolute right-0 z-50 mt-3 w-72{{ end }} overflow-hidden rounded-[1.5rem] border border-deep/10 bg-white shadow-[0_24px_70px_-42px_rgba(6,47,73,0.34)]">
       <div class="border-b border-deep/8 px-4 py-3">
         <p class="text-[0.68rem] font-extrabold tracking-[0.22em] text-amber uppercase">{{ i18n "language_switcher_label" }}</p>
       </div>
-      <div class="max-h-80 overflow-y-auto p-2">
+      <div class="{{ if $isMobile }}max-h-60{{ else }}max-h-80{{ end }} overflow-y-auto p-2">
         {{- range hugo.Sites -}}
           {{- $language := .Language -}}
           {{- $translation := index $translations $language.Lang -}}

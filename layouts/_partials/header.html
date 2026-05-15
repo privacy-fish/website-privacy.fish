@@ -42,7 +42,7 @@
     </div>
 
     <div class="hidden items-center gap-3 xl:flex">
-      {{ partial "language-switcher.html" . }}
+      {{ partial "language-switcher.html" (dict "Page" . "variant" "desktop") }}
       <a
         href="{{ .Site.Params.signup_url | relLangURL }}"
         title="{{ $headerCtaTitle }}"
@@ -97,7 +97,7 @@
       {{ end }}
 
       <div class="px-1 py-2">
-        {{ partial "language-switcher.html" . }}
+        {{ partial "language-switcher.html" (dict "Page" . "variant" "mobile") }}
       </div>
 
       <a
