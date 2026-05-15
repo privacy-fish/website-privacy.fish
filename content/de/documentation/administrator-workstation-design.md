@@ -5,23 +5,33 @@ weight: 50
 video: "/videos/security-model.mp4"
 ---
 
-Das Grundkonzept der Privacy.Fish-Admin-Workstation ist, sie zu härten, aber dennoch als potenziell kompromittierbar zu betrachten und regelmäßig vollständig zu ersetzen.
+Das Kernkonzept hinter der Hardware einer Privacy.Fish-Administrator-Workstation ist, sie zu härten, sie aber trotzdem als ausnutzbar zu betrachten und deshalb regelmäßig vollständig zu ersetzen.
 
-Eine neue Workstation sollte nur wenige Dinge benötigen:
+Der Administrator sollte nur vier Dinge benötigen, um eine neue Workstation einzurichten:
 
 - stw.no Benutzername und Passwort
 - stw.no 2FA-TOTP-Gerät
-- SSH Private Key für die Privacy.Fish-Mailserver
+- SSH Private-Key-Datei für die Privacy.Fish-E-Mail-Server
 - Passwort für den SSH Private Key
 
 ## Hardwarebeschaffung
 
-Eine günstige, leicht ersetzbare Plattform wie ein Raspberry Pi ist für dieses Modell geeignet. Auch Peripheriegeräte werden nicht dauerhaft als vertrauenswürdig betrachtet.
+Der sicherste Weg zu einer sicheren Workstation ist, sie häufig vollständig zu ersetzen. Dafür reicht ein Raspberry Pi mit einer SD-Karte mit vorinstalliertem Raspberry Pi OS oder Ähnlichem gut aus, weil diese Geräte günstig und leicht verfügbar sind. Peripherie wie Tastatur, Maus und Bildschirm kann ebenfalls nicht dauerhaft vertraut werden. Zusätzlich wird ein USB-Stick benötigt, um OpenBSD direkt vom Pi auf die SD-Karte zu installieren, bevor sie genutzt wird.
 
 ## Neue Workstation einrichten
 
-OpenBSD wird frisch installiert. Nur das minimal notwendige vertrauenswürdige Material wird übernommen.
+Mit dem Raspberry Pi OS von der SD-Karte kann OpenBSD auf den USB-Stick geschrieben werden. Dieser USB-Stick kann danach verwendet werden, um OpenBSD auf die Micro-SD-Karte zu installieren.
 
-## SSH Private Key migrieren
+## Neuen SSH Private Key erzeugen
 
-Ein ed25519 Private Key ist kurz genug, um kontrolliert von einem anderen Bildschirm abzutippen oder auf Papier zu übertragen. Für nur diesen Schlüssel ist kein USB-Stick erforderlich.
+Mit folgendem Befehl:
+
+```bash
+ssh-keygen -t ed25519 -a 100 -o
+```
+
+Für den SSH Private Key muss ein sicheres Passwort vergeben werden.
+
+## SSH Private Key auf eine neue Workstation migrieren
+
+Ein ed25519 Private Key ist relativ kurz und kann von einem anderen Bildschirm abgetippt oder auf Papier gedruckt werden. Es ist nicht nötig, einen USB-Stick oder ähnliches zu verwenden, nur um den SSH Private Key zu migrieren.
