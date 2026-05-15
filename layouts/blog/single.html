@@ -23,6 +23,13 @@
             </div>
           {{ end }}
 
+          {{ if ne .Language.Lang "en" }}
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber/8 px-4 py-2 text-sm font-bold text-deep/74">
+              <span class="h-2 w-2 rounded-full bg-amber"></span>
+              <span>{{ i18n "blog_ai_translation_notice" }}</span>
+            </div>
+          {{ end }}
+
           {{ with .Params.video }}
             <div class="mt-8 aspect-[21/9] overflow-hidden rounded-[2rem] border border-deep/8 bg-mist shadow-[0_30px_80px_-58px_rgba(6,47,73,0.36)]">
               <video

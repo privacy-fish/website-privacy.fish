@@ -7,6 +7,9 @@ other = "Switch to {{ .Language }}"
 [privacy_information_link]
 other = "Privacy information"
 
+[blog_ai_translation_notice]
+other = "This blogpost was translated by AI."
+
 [signup_js_tries_initial]
 other = "Solve the captcha once, then you get five username or signup attempts."
 

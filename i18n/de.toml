@@ -7,6 +7,9 @@ other = "Zu {{ .Language }} wechseln"
 [privacy_information_link]
 other = "Datenschutzinformationen"
 
+[blog_ai_translation_notice]
+other = "Dieser Blogbeitrag wurde von KI übersetzt."
+
 [signup_js_tries_initial]
 other = "Löse das Captcha einmal, danach erhältst du fünf Versuche für Benutzernamen oder Anmeldung."
 
