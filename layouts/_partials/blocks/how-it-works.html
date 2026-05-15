@@ -13,11 +13,14 @@
     </div>
 
     <div class="relative mx-auto mt-16 max-w-4xl">
-      <div class="absolute top-0 bottom-0 left-8 hidden w-px bg-[linear-gradient(180deg,transparent_0%,rgba(52,142,195,0.38)_8%,rgba(52,142,195,0.38)_92%,transparent_100%)] md:block"></div>
       {{ range $i, $step := .Params.steps }}
         {{ $stepNumber := printf "%02d" (add $i 1) }}
+        {{ $isLast := eq (add $i 1) (len $.Params.steps) }}
         <article class="relative grid gap-5 pb-10 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-8 lg:gap-10 lg:pb-12">
           <div class="relative z-10 flex items-start justify-start md:pt-8">
+            {{ if not $isLast }}
+              <div class="absolute left-8 top-16 hidden h-[calc(100%+3rem)] w-px bg-ocean/38 md:block"></div>
+            {{ end }}
             <div class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_18px_42px_-28px_rgba(6,47,73,0.55)] ring-1 ring-ocean/18">
               <div class="flex h-12 w-12 items-center justify-center rounded-full bg-ocean text-base font-extrabold tracking-[0.08em] text-white">
                 {{ $stepNumber }}
