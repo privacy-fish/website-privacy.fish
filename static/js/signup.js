@@ -40,6 +40,29 @@
     reserved: false,
   };
 
+  function dataKey(key) {
+    return "msg" + key.charAt(0).toUpperCase() + key.slice(1);
+  }
+
+  function msg(key, fallback) {
+    return form.dataset[dataKey(key)] || fallback;
+  }
+
+  function formatMessage(template, values) {
+    values = values || {};
+    return template.replace(/\{([a-zA-Z0-9_]+)\}/g, function (_, key) {
+      return Object.prototype.hasOwnProperty.call(values, key) ? values[key] : "";
+    });
+  }
+
+  function fmt(key, fallback, values) {
+    return formatMessage(msg(key, fallback), values);
+  }
+
+  function fullAddress(name) {
+    return name + (form.dataset.emailDomain || "@privacy.fish");
+  }
+
   function setMessage(el, msg, tone) {
     if (!el) return;
     el.classList.remove("hidden", "text-amber", "text-red-600", "text-ocean", "text-deep/60");
@@ -60,7 +83,7 @@
     availabilityStatus.classList.remove("hidden", "text-amber", "text-red-600", "text-ocean", "text-deep/60");
     availabilityStatus.innerHTML =
       '<span class="' + (available ? "text-ocean" : "text-red-600") + '">' + escapeHtml(status) + '</span>' +
-      '\n<span class="text-red-600">No attempts left. To check additional usernames, please solve the captcha above again.</span>';
+      '\n<span class="text-red-600">' + escapeHtml(msg("noAttempts", "No attempts left. To check additional usernames, please solve the captcha above again.")) + '</span>';
   }
 
   function setFormStatusMessage(msg, tone) {
@@ -159,7 +182,7 @@
       return false;
     }
     if (!usernamePattern.test(v)) {
-      setMessage(usernameError, "Username must be 1-31 characters, contain only lowercase letters, digits, dots, and hyphens, and start and end with a letter or digit.");
+      setMessage(usernameError, msg("usernameInvalid", "Username must be 1-31 characters, contain only lowercase letters, digits, dots, and hyphens, and start and end with a letter or digit."));
       setInvalid(username, true);
       return false;
     }
@@ -181,19 +204,19 @@
         var reason = "";
         if (type !== "ssh-ed25519") {
           ok = false;
-          reason = "Only ssh-ed25519 keys are accepted.";
+          reason = msg("keyOnlyEd25519", "Only ssh-ed25519 keys are accepted.");
         } else if (!blob || !/^[A-Za-z0-9+/]+={0,2}$/.test(blob)) {
           ok = false;
-          reason = "Invalid base64 key data.";
+          reason = msg("keyInvalidBase64", "Invalid base64 key data.");
         } else {
           try {
             if (atob(blob).length !== 51) {
               ok = false;
-              reason = "Decoded key is not the expected length for ed25519.";
+              reason = msg("keyWrongLength", "Decoded key is not the expected length for ed25519.");
             }
           } catch (e) {
             ok = false;
-            reason = "Could not decode base64.";
+            reason = msg("keyDecode", "Could not decode base64.");
           }
         }
         return { line: line, type: type, blob: blob, ok: ok, reason: reason };
@@ -211,9 +234,9 @@
     overlay.classList.toggle("border-red-600/35", invalid);
     overlay.classList.toggle("border-transparent", !invalid);
     if (keys.length > 10) {
-      setMessage(keyError, "Add no more than 10 SSH public keys.", "bad");
+      setMessage(keyError, msg("keyTooMany", "Add no more than 10 SSH public keys."), "bad");
     } else if (invalid) {
-      setMessage(keyError, "Only complete ssh-ed25519 public keys are accepted.", "bad");
+      setMessage(keyError, msg("keyInvalid", "Only complete ssh-ed25519 public keys are accepted."), "bad");
     } else {
       setMessage(keyError, null);
     }
@@ -261,12 +284,16 @@
 
   function updateTriesStatus() {
     if (!state.credential) {
-      triesStatus.textContent = "Solve the captcha once, then you get five username or signup attempts.";
+      triesStatus.textContent = msg("triesInitial", "Solve the captcha once, then you get five username or signup attempts.");
       return;
     }
     triesStatus.textContent = state.triesLeft > 0
-      ? state.triesLeft + " captcha-backed attempt" + (state.triesLeft === 1 ? "" : "s") + " left."
-      : "No attempts left. To check additional usernames, please solve the captcha above again.";
+      ? fmt(
+          state.triesLeft === 1 ? "triesLeftOne" : "triesLeftMany",
+          state.triesLeft + " captcha-backed attempt" + (state.triesLeft === 1 ? "" : "s") + " left.",
+          { count: state.triesLeft }
+        )
+      : msg("noAttempts", "No attempts left. To check additional usernames, please solve the captcha above again.");
   }
 
   function resetAvailability() {
@@ -324,7 +351,7 @@
   async function importKeyFiles(fileList) {
     var files = Array.prototype.slice.call(fileList || []);
     if (files.length === 0) return;
-    setMessage(keyFileStatus, "Reading public key file" + (files.length === 1 ? "" : "s") + "...", "muted");
+    setMessage(keyFileStatus, fmt("readingFiles", "Reading public key files...", { files: files.length }), "muted");
     try {
       var allLines = [];
       var skippedLarge = 0;
@@ -339,20 +366,24 @@
       }
       var added = appendKeyLines(allLines);
       if (skippedLarge > 0) {
-        setMessage(keyFileStatus, "Skipped " + skippedLarge + " file" + (skippedLarge === 1 ? "" : "s") + " because public key files should be smaller than 64 KB.", "bad");
+        setMessage(
+          keyFileStatus,
+          fmt("skippedLarge", "Skipped {skipped} file(s) because public key files should be smaller than 64 KB.", { skipped: skippedLarge }),
+          "bad"
+        );
       } else if (added > 0) {
         setMessage(
           keyFileStatus,
-          "Added " + added + " public key" + (added === 1 ? "" : "s") + " from " + files.length + " file" + (files.length === 1 ? "" : "s") + ". You can add more .pub files if needed.",
+          fmt("addedKeys", "Added {keys} public key(s) from {files} file(s). You can add more .pub files if needed.", { keys: added, files: files.length }),
           "ok"
         );
       } else if (allLines.length > 0) {
-        setMessage(keyFileStatus, "Those keys are already listed below. You can add more .pub files if needed.", "muted");
+        setMessage(keyFileStatus, msg("keysAlreadyListed", "Those keys are already listed below. You can add more .pub files if needed."), "muted");
       } else {
-        setMessage(keyFileStatus, "No SSH public key lines were found in the selected file" + (files.length === 1 ? "" : "s") + ".", "bad");
+        setMessage(keyFileStatus, fmt("noKeyLines", "No SSH public key lines were found in the selected file(s).", { files: files.length }), "bad");
       }
     } catch (err) {
-      setMessage(keyFileStatus, "Could not read the selected public key file" + (files.length === 1 ? "" : "s") + ".", "bad");
+      setMessage(keyFileStatus, fmt("readError", "Could not read the selected public key file(s).", { files: files.length }), "bad");
     }
   }
 
@@ -385,21 +416,21 @@
 
   function apiErrorMessage(code) {
     var messages = {
-      bad_origin: "The signup request must come from the privacy.fish site.",
-      body_too_large: "The submitted form is too large.",
-      captcha_failed: "Captcha verification failed. Please solve it again.",
-      credential_invalid: "Captcha session expired. Please solve it again.",
-      credential_exhausted: "No captcha-backed attempts left. Please solve the captcha again.",
-      rate_limited: "Too many attempts. Please wait before trying again.",
-      username_invalid: "The username is not valid.",
-      username_taken: "That username is already reserved or taken.",
-      keys_missing: "Add at least one ssh-ed25519 public key.",
-      keys_too_many: "Add no more than 10 SSH public keys.",
-      key_invalid: "One of the SSH public keys is malformed.",
-      key_wrong_type: "Only ssh-ed25519 public keys are accepted.",
-      server_error: "The signup server could not complete the request.",
+      bad_origin: msg("apiBadOrigin", "The signup request must come from the privacy.fish site."),
+      body_too_large: msg("apiBodyTooLarge", "The submitted form is too large."),
+      captcha_failed: msg("apiCaptchaFailed", "Captcha verification failed. Please solve it again."),
+      credential_invalid: msg("apiCredentialInvalid", "Captcha session expired. Please solve it again."),
+      credential_exhausted: msg("apiCredentialExhausted", "No captcha-backed attempts left. Please solve the captcha again."),
+      rate_limited: msg("apiRateLimited", "Too many attempts. Please wait before trying again."),
+      username_invalid: msg("apiUsernameInvalid", "The username is not valid."),
+      username_taken: msg("apiUsernameTaken", "That username is already reserved or taken."),
+      keys_missing: msg("apiKeysMissing", "Add at least one ssh-ed25519 public key."),
+      keys_too_many: msg("apiKeysTooMany", "Add no more than 10 SSH public keys."),
+      key_invalid: msg("apiKeyInvalid", "One of the SSH public keys is malformed."),
+      key_wrong_type: msg("apiKeyWrongType", "Only ssh-ed25519 public keys are accepted."),
+      server_error: msg("apiServerError", "The signup server could not complete the request."),
     };
-    return messages[code] || "The signup request failed.";
+    return messages[code] || msg("apiFailed", "The signup request failed.");
   }
 
   function isLocalhost() {
@@ -418,7 +449,7 @@
     var token = tokenInput ? tokenInput.value.trim() : "";
     if (token) return token;
     if (isLocalhost()) return "dev-local-token";
-    throw new Error("Please solve the captcha before continuing.");
+    throw new Error(msg("captchaRequired", "Please solve the captcha before continuing."));
   }
 
   function clearCapToken() {
@@ -464,7 +495,7 @@
       if (state.credential && state.triesLeft > 0) return;
       if (!currentCapToken()) return;
       ensureCredential().catch(function (err) {
-        setMessage(captchaStatus, err.message || "Captcha verification failed. Please solve it again.", "bad");
+        setMessage(captchaStatus, err.message || msg("captchaFailed", "Captcha verification failed. Please solve it again."), "bad");
       });
     }, 200);
   }
@@ -533,7 +564,7 @@
     stopFreshCaptchaWatcher();
     credentialInput.value = state.credential;
     updateTriesStatus();
-    setMessage(captchaStatus, "Captcha accepted. You can now make up to " + state.triesLeft + " attempts.", "ok");
+    setMessage(captchaStatus, fmt("captchaAccepted", "Captcha accepted. You can now make up to {count} attempts.", { count: state.triesLeft }), "ok");
     setMessage(availabilityStatus, null);
   }
 
@@ -550,11 +581,11 @@
       return;
     }
 
-    setMessage(availabilityStatus, "Waiting for you to stop typing...", "muted");
+    setMessage(availabilityStatus, msg("waiting", "Waiting for you to stop typing..."), "muted");
     autoAvailabilityTimer = setTimeout(function () {
       autoAvailabilityTimer = null;
       if (currentUsername() !== name || state.reserved) return;
-      setMessage(availabilityStatus, "Checking availability...", "muted");
+      setMessage(availabilityStatus, msg("checking", "Checking availability..."), "muted");
       checkAvailability({ expectedUsername: name });
     }, autoAvailabilityDelayMs);
   }
@@ -566,7 +597,7 @@
     if (!validateUsername()) return;
     var name = currentUsername();
     setBusy(true);
-    setMessage(availabilityStatus, "Checking availability...", "muted");
+    setMessage(availabilityStatus, msg("checking", "Checking availability..."), "muted");
     try {
       await ensureCredential();
       if (currentUsername() !== name) return;
@@ -582,8 +613,8 @@
       setMessage(
         availabilityStatus,
         data.available
-          ? name + "@privacy.fish is available."
-          : name + "@privacy.fish is already reserved or taken.",
+          ? fmt("available", "{address} is available.", { address: fullAddress(name) })
+          : fmt("taken", "{address} is already reserved or taken.", { address: fullAddress(name) }),
         data.available ? "ok" : "bad"
       );
       if (state.triesLeft <= 0) {
@@ -595,7 +626,7 @@
       if (err.code === "credential_invalid" || err.code === "credential_exhausted") {
         expireCredential(err.message);
       }
-      setMessage(availabilityStatus, err.message || "Could not check that username.", "bad");
+      setMessage(availabilityStatus, err.message || msg("checkFailed", "Could not check that username."), "bad");
     } finally {
       setBusy(false);
     }
@@ -635,7 +666,7 @@
       if (err.code === "credential_invalid" || err.code === "credential_exhausted") {
         expireCredential(err.message);
       }
-      setFormStatusMessage(err.message || "Could not reserve this account.", "bad");
+      setFormStatusMessage(err.message || msg("reserveFailed", "Could not reserve this account."), "bad");
     } finally {
       setBusy(false);
     }
@@ -666,7 +697,7 @@
       copyText(reference)
         .then(setCopyPaymentReferenceCopied)
         .catch(function () {
-          setFormStatusMessage("Could not copy the payment reference automatically.", "bad");
+          setFormStatusMessage(msg("copyFailed", "Could not copy the payment reference automatically."), "bad");
         });
     });
   }

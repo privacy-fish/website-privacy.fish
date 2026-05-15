@@ -1,0 +1,131 @@
+[language_switcher_label]
+other = "Sprache"
+
+[language_switcher_change_to]
+other = "Zu {{ .Language }} wechseln"
+
+[privacy_information_link]
+other = "Datenschutzinformationen"
+
+[signup_js_tries_initial]
+other = "Löse das Captcha einmal, danach erhältst du fünf Versuche für Benutzernamen oder Anmeldung."
+
+[signup_js_tries_left_one]
+other = "{count} Captcha-gestützter Versuch übrig."
+
+[signup_js_tries_left_many]
+other = "{count} Captcha-gestützte Versuche übrig."
+
+[signup_js_no_attempts]
+other = "Keine Versuche übrig. Um weitere Benutzernamen zu prüfen, löse bitte oben erneut das Captcha."
+
+[signup_js_username_invalid]
+other = "Der Benutzername muss 1-31 Zeichen lang sein, darf nur Kleinbuchstaben, Ziffern, Punkte und Bindestriche enthalten und muss mit einem Buchstaben oder einer Ziffer beginnen und enden."
+
+[signup_js_key_only_ed25519]
+other = "Nur ssh-ed25519 Schlüssel werden akzeptiert."
+
+[signup_js_key_invalid_base64]
+other = "Ungültige Base64-Schlüsseldaten."
+
+[signup_js_key_wrong_length]
+other = "Der dekodierte Schlüssel hat nicht die erwartete Länge für ed25519."
+
+[signup_js_key_decode]
+other = "Base64 konnte nicht dekodiert werden."
+
+[signup_js_key_too_many]
+other = "Füge nicht mehr als 10 SSH Public Keys hinzu."
+
+[signup_js_key_invalid]
+other = "Nur vollständige ssh-ed25519 Public Keys werden akzeptiert."
+
+[signup_js_reading_files]
+other = "Public-Key-Dateien werden gelesen..."
+
+[signup_js_skipped_large]
+other = "{skipped} Datei(en) übersprungen, weil Public-Key-Dateien kleiner als 64 KB sein sollten."
+
+[signup_js_added_keys]
+other = "{keys} Public Key(s) aus {files} Datei(en) hinzugefügt. Du kannst bei Bedarf weitere .pub-Dateien hinzufügen."
+
+[signup_js_keys_already_listed]
+other = "Diese Schlüssel sind unten bereits aufgeführt. Du kannst bei Bedarf weitere .pub-Dateien hinzufügen."
+
+[signup_js_no_key_lines]
+other = "In den ausgewählten Datei(en) wurden keine SSH Public Keys gefunden."
+
+[signup_js_read_error]
+other = "Die ausgewählten Public-Key-Datei(en) konnten nicht gelesen werden."
+
+[signup_js_copy_failed]
+other = "Die Zahlungsreferenz konnte nicht automatisch kopiert werden."
+
+[signup_js_captcha_required]
+other = "Bitte löse das Captcha, bevor du fortfährst."
+
+[signup_js_captcha_failed]
+other = "Captcha-Prüfung fehlgeschlagen. Bitte löse es erneut."
+
+[signup_js_captcha_accepted]
+other = "Captcha akzeptiert. Du kannst jetzt bis zu {count} Versuche machen."
+
+[signup_js_waiting]
+other = "Warte, bis du mit dem Tippen aufhörst..."
+
+[signup_js_checking]
+other = "Verfügbarkeit wird geprüft..."
+
+[signup_js_available]
+other = "{address} ist verfügbar."
+
+[signup_js_taken]
+other = "{address} ist bereits reserviert oder vergeben."
+
+[signup_js_check_failed]
+other = "Dieser Benutzername konnte nicht geprüft werden."
+
+[signup_js_reserve_failed]
+other = "Dieses Konto konnte nicht reserviert werden."
+
+[signup_js_api_bad_origin]
+other = "Die Anmeldung muss von der privacy.fish Website kommen."
+
+[signup_js_api_body_too_large]
+other = "Das übermittelte Formular ist zu groß."
+
+[signup_js_api_captcha_failed]
+other = "Captcha-Prüfung fehlgeschlagen. Bitte löse es erneut."
+
+[signup_js_api_credential_invalid]
+other = "Captcha-Sitzung abgelaufen. Bitte löse das Captcha erneut."
+
+[signup_js_api_credential_exhausted]
+other = "Keine Captcha-gestützten Versuche übrig. Bitte löse das Captcha erneut."
+
+[signup_js_api_rate_limited]
+other = "Zu viele Versuche. Bitte warte, bevor du es erneut versuchst."
+
+[signup_js_api_username_invalid]
+other = "Der Benutzername ist ungültig."
+
+[signup_js_api_username_taken]
+other = "Dieser Benutzername ist bereits reserviert oder vergeben."
+
+[signup_js_api_keys_missing]
+other = "Füge mindestens einen ssh-ed25519 Public Key hinzu."
+
+[signup_js_api_keys_too_many]
+other = "Füge nicht mehr als 10 SSH Public Keys hinzu."
+
+[signup_js_api_key_invalid]
+other = "Einer der SSH Public Keys ist fehlerhaft."
+
+[signup_js_api_key_wrong_type]
+other = "Nur ssh-ed25519 Public Keys werden akzeptiert."
+
+[signup_js_api_server_error]
+other = "Der Signup-Server konnte die Anfrage nicht abschließen."
+
+[signup_js_api_failed]
+other = "Die Anmeldung ist fehlgeschlagen."

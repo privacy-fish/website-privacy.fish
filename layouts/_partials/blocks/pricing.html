@@ -31,8 +31,10 @@
         </div>
 
         <div class="mt-8">
+          {{ $ctaUrl := .Params.cta_url | default $.Root.Site.Params.signup_url }}
+          {{ $ctaHref := partial "components/localized-url.html" (dict "url" $ctaUrl) }}
           <a
-            href="{{ .Params.cta_url | default $.Root.Site.Params.signup_url }}"
+            href="{{ $ctaHref }}"
             title="{{ .Params.cta_title | default .Params.cta_text }}"
             class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
           >
@@ -58,7 +60,7 @@
         {{ with .Params.payment_methods }}
           <div class="mt-8 rounded-[1.75rem] border border-deep/8 bg-white p-5">
             <p class="text-sm font-bold text-deep">{{ $.Params.payment_label }}</p>
-            <p class="mt-2 text-sm leading-7 text-deep/68">{{ delimit . ", " " and " }}</p>
+            <p class="mt-2 text-sm leading-7 text-deep/68">{{ delimit . ", " ($.Params.payment_methods_joiner | default " and ") }}</p>
           </div>
         {{ end }}
 

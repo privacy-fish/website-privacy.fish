@@ -20,9 +20,10 @@
       </div>
 
       {{ with .Params.primary_cta_text }}
+        {{ $primaryUrl := partial "components/localized-url.html" (dict "url" $.Params.primary_cta_url) }}
         <div class="mt-8">
           <a
-            href="{{ $.Params.primary_cta_url }}"
+            href="{{ $primaryUrl }}"
             title="{{ $.Params.primary_cta_title | default . }}"
             class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-base font-bold text-white transition hover:bg-deep"
           >

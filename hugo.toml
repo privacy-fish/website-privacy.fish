@@ -1,5 +1,6 @@
 baseURL = "https://privacy.fish/"
-locale = "en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 title = "privacy.fish"
 copyright = "privacy.fish"
 enableRobotsTXT = true
@@ -63,72 +64,124 @@ url = "/legal-information/"
 label = "Terms and conditions"
 url = "/terms-and-conditions/"
 
-[menus]
+[languages]
 
-[[menus.main]]
+[languages.en]
+label = "English"
+locale = "en-US"
+weight = 1
+contentDir = "content/en"
+
+[languages.en.params]
+flag = "gb"
+language_label = "English"
+
+[languages.de]
+label = "Deutsch"
+locale = "de-DE"
+weight = 2
+contentDir = "content/de"
+
+[languages.de.params]
+flag = "de"
+language_label = "Deutsch"
+description = "Kompromisslos private und sichere E-Mail. Ein datenschutzorientierter E-Mail-Dienst, der gespeicherte Daten, Angriffsfläche und Vertrauen minimiert."
+tagline = "Kompromisslos private und sichere E-Mail"
+
+[languages.de.params.header]
+cta_text = "Konto erstellen"
+menu_open_label = "Menü öffnen"
+menu_close_label = "Menü schließen"
+
+[languages.de.params.single]
+default_eyebrow = "Seite"
+docs_eyebrow = "Dokumentation"
+back_prefix = "Zurück zu"
+cta_text = "Konto erstellen"
+reading_time_suffix = "Min. Lesezeit"
+
+[languages.de.params.list]
+blog_card_label = "Blogbeitrag"
+default_card_label = "Anleitung"
+read_more_text = "Mehr lesen"
+reading_time_suffix = "Min. Lesezeit"
+
+[languages.de.params.footer]
+description = "Ein datenschutzorientierter E-Mail-Dienst, der gespeicherte Daten, Angriffsfläche und Vertrauen minimiert. Privater und sicherer Zugang zum Internet ist ein Menschenrecht."
+resources_heading = "Ressourcen"
+legal_heading = "Rechtliches"
+jurisdiction_note = "In Norwegen gehostet. Gebaut, um so wenig nützliche Daten wie möglich zu speichern."
+copyright_tagline = "Privacy-first E-Mail, by design."
+
+[[languages.de.params.footer.resources]]
+label = "Blog"
+url = "/blog/"
+
+[[languages.de.params.footer.resources]]
+label = "Dokumentation"
+url = "/documentation/"
+
+[[languages.de.params.footer.resources]]
+label = "Code"
+url = "https://github.com/privacy-fish"
+
+[[languages.de.params.footer.legal]]
+label = "Impressum und Unternehmensangaben"
+url = "/legal-information/"
+
+[[languages.de.params.footer.legal]]
+label = "Allgemeine Geschäftsbedingungen"
+url = "/terms-and-conditions/"
+
+[[languages.en.menus.main]]
 name = "Home"
 url = "/#hero"
 weight = 1
 
-[[menus.main]]
+[[languages.en.menus.main]]
 name = "Blog"
 url = "/blog/"
 weight = 2
 
-[[menus.main]]
+[[languages.en.menus.main]]
 name = "Documentation"
 url = "/documentation/"
 weight = 3
 
-[[menus.main]]
+[[languages.en.menus.main]]
 name = "FAQ"
 url = "/faq/"
 weight = 4
 
-[[menus.main]]
+[[languages.en.menus.main]]
 name = "Code"
 url = "https://github.com/privacy-fish"
 weight = 5
 
-[[menus.footer]]
-name = "Features"
-url = "/#features"
+[[languages.de.menus.main]]
+name = "Start"
+url = "/#hero"
 weight = 1
 
-[[menus.footer]]
-name = "How it works"
-url = "/#how-it-works"
-weight = 2
-
-[[menus.footer]]
-name = "Pricing"
-url = "/#pricing"
-weight = 3
-
-[[menus.footer]]
-name = "Threat model"
-url = "/#threat-model"
-weight = 4
-
-[[menus.footer]]
+[[languages.de.menus.main]]
 name = "Blog"
 url = "/blog/"
-weight = 5
+weight = 2
 
-[[menus.footer]]
-name = "Documentation"
+[[languages.de.menus.main]]
+name = "Dokumentation"
 url = "/documentation/"
-weight = 6
+weight = 3
 
-[[menus.footer]]
-name = "Company legal information"
-url = "/legal-information/"
-weight = 7
+[[languages.de.menus.main]]
+name = "FAQ"
+url = "/faq/"
+weight = 4
 
-[[menus.footer]]
-name = "Terms and conditions"
-url = "/terms-and-conditions/"
-weight = 8
+[[languages.de.menus.main]]
+name = "Code"
+url = "https://github.com/privacy-fish"
+weight = 5
 
 [markup]
 [markup.goldmark]

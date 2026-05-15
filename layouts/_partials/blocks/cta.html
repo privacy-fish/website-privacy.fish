@@ -25,9 +25,10 @@
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
           {{ with .Params.primary_cta_text }}
             {{ $primaryUrl := $.Params.primary_cta_url }}
+            {{ $primaryHref := partial "components/localized-url.html" (dict "url" $primaryUrl) }}
             {{ $isPrimaryExternal := or (strings.HasPrefix $primaryUrl "http://") (strings.HasPrefix $primaryUrl "https://") }}
             <a
-              href="{{ $primaryUrl }}"
+              href="{{ $primaryHref }}"
               title="{{ $.Params.primary_cta_title | default . }}"
               {{ if $isPrimaryExternal }}target="_blank" rel="noreferrer"{{ end }}
               class="inline-flex items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
@@ -38,9 +39,10 @@
           {{ end }}
           {{ with .Params.secondary_cta_text }}
             {{ $secondaryUrl := $.Params.secondary_cta_url }}
+            {{ $secondaryHref := partial "components/localized-url.html" (dict "url" $secondaryUrl) }}
             {{ $isSecondaryExternal := or (strings.HasPrefix $secondaryUrl "http://") (strings.HasPrefix $secondaryUrl "https://") }}
             <a
-              href="{{ $secondaryUrl }}"
+              href="{{ $secondaryHref }}"
               title="{{ $.Params.secondary_cta_title | default . }}"
               {{ if $isSecondaryExternal }}target="_blank" rel="noreferrer"{{ end }}
               class="inline-flex items-center justify-center rounded-full border border-deep/12 bg-white px-7 py-3.5 text-base font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"

@@ -4,7 +4,7 @@
   <div class="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-8 lg:pt-20">
     <div class="flex flex-col gap-12 border-b border-deep/8 pb-12 lg:flex-row lg:items-start lg:justify-between">
       <div class="max-w-xl lg:flex-none">
-        <a href="/" title="{{ $footer.logo_title | default (printf "%s home" .Site.Title) }}" class="inline-block no-underline">
+        <a href="{{ "/" | relLangURL }}" title="{{ $footer.logo_title | default (printf "%s home" .Site.Title) }}" class="inline-block no-underline">
           {{ partial "components/image-responsive.html" (dict
             "src" $logo
             "alt" (printf "%s logo" .Site.Title)
@@ -25,9 +25,10 @@
           <nav class="mt-5 space-y-3 text-sm font-semibold text-deep/68">
             {{ range $footer.resources }}
               {{ $url := .url }}
+              {{ $href := partial "components/localized-url.html" (dict "url" $url) }}
               {{ $title := .title | default .label }}
               {{ $isExternal := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") }}
-              <a href="{{ $url }}" title="{{ $title }}" {{ if $isExternal }}target="_blank" rel="noreferrer"{{ end }} class="block transition hover:text-ocean">{{ .label }}</a>
+              <a href="{{ $href }}" title="{{ $title }}" {{ if $isExternal }}target="_blank" rel="noreferrer"{{ end }} class="block transition hover:text-ocean">{{ .label }}</a>
             {{ end }}
             {{ with .Site.Params.email }}
               <a href="mailto:{{ . }}" title="{{ $.Site.Params.email_title | default (printf "Email %s" .) }}" class="block transition hover:text-ocean">{{ . }}</a>
@@ -39,7 +40,9 @@
           <h2 class="text-[0.74rem] font-bold tracking-[0.22em] text-amber uppercase">{{ $footer.legal_heading }}</h2>
           <nav class="mt-5 space-y-3 text-sm font-semibold text-deep/68">
             {{ range $footer.legal }}
-              <a href="{{ .url }}" title="{{ .title | default .label }}" class="block transition hover:text-ocean">{{ .label }}</a>
+              {{ $url := .url }}
+              {{ $href := partial "components/localized-url.html" (dict "url" $url) }}
+              <a href="{{ $href }}" title="{{ .title | default .label }}" class="block transition hover:text-ocean">{{ .label }}</a>
             {{ end }}
           </nav>
           <p class="mt-6 text-sm leading-6 text-deep/54">

@@ -2,4 +2,9 @@
 {{- if not $title -}}
   {{- $title = .PlainText | plainify -}}
 {{- end -}}
-<a href="{{ .Destination | safeURL }}" title="{{ $title }}"{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="nofollow noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- $href := .Destination -}}
+{{- $isExternal := strings.HasPrefix .Destination "http" -}}
+{{- if and (not $isExternal) (strings.HasPrefix .Destination "/") -}}
+  {{- $href = .Destination | relLangURL -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}" title="{{ $title }}"{{ if $isExternal }} target="_blank" rel="nofollow noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>

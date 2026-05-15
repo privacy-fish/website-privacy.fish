@@ -1,0 +1,131 @@
+[language_switcher_label]
+other = "Language"
+
+[language_switcher_change_to]
+other = "Switch to {{ .Language }}"
+
+[privacy_information_link]
+other = "Privacy information"
+
+[signup_js_tries_initial]
+other = "Solve the captcha once, then you get five username or signup attempts."
+
+[signup_js_tries_left_one]
+other = "{count} captcha-backed attempt left."
+
+[signup_js_tries_left_many]
+other = "{count} captcha-backed attempts left."
+
+[signup_js_no_attempts]
+other = "No attempts left. To check additional usernames, please solve the captcha above again."
+
+[signup_js_username_invalid]
+other = "Username must be 1-31 characters, contain only lowercase letters, digits, dots, and hyphens, and start and end with a letter or digit."
+
+[signup_js_key_only_ed25519]
+other = "Only ssh-ed25519 keys are accepted."
+
+[signup_js_key_invalid_base64]
+other = "Invalid base64 key data."
+
+[signup_js_key_wrong_length]
+other = "Decoded key is not the expected length for ed25519."
+
+[signup_js_key_decode]
+other = "Could not decode base64."
+
+[signup_js_key_too_many]
+other = "Add no more than 10 SSH public keys."
+
+[signup_js_key_invalid]
+other = "Only complete ssh-ed25519 public keys are accepted."
+
+[signup_js_reading_files]
+other = "Reading public key files..."
+
+[signup_js_skipped_large]
+other = "Skipped {skipped} file(s) because public key files should be smaller than 64 KB."
+
+[signup_js_added_keys]
+other = "Added {keys} public key(s) from {files} file(s). You can add more .pub files if needed."
+
+[signup_js_keys_already_listed]
+other = "Those keys are already listed below. You can add more .pub files if needed."
+
+[signup_js_no_key_lines]
+other = "No SSH public key lines were found in the selected file(s)."
+
+[signup_js_read_error]
+other = "Could not read the selected public key file(s)."
+
+[signup_js_copy_failed]
+other = "Could not copy the payment reference automatically."
+
+[signup_js_captcha_required]
+other = "Please solve the captcha before continuing."
+
+[signup_js_captcha_failed]
+other = "Captcha verification failed. Please solve it again."
+
+[signup_js_captcha_accepted]
+other = "Captcha accepted. You can now make up to {count} attempts."
+
+[signup_js_waiting]
+other = "Waiting for you to stop typing..."
+
+[signup_js_checking]
+other = "Checking availability..."
+
+[signup_js_available]
+other = "{address} is available."
+
+[signup_js_taken]
+other = "{address} is already reserved or taken."
+
+[signup_js_check_failed]
+other = "Could not check that username."
+
+[signup_js_reserve_failed]
+other = "Could not reserve this account."
+
+[signup_js_api_bad_origin]
+other = "The signup request must come from the privacy.fish site."
+
+[signup_js_api_body_too_large]
+other = "The submitted form is too large."
+
+[signup_js_api_captcha_failed]
+other = "Captcha verification failed. Please solve it again."
+
+[signup_js_api_credential_invalid]
+other = "Captcha session expired. Please solve it again."
+
+[signup_js_api_credential_exhausted]
+other = "No captcha-backed attempts left. Please solve the captcha again."
+
+[signup_js_api_rate_limited]
+other = "Too many attempts. Please wait before trying again."
+
+[signup_js_api_username_invalid]
+other = "The username is not valid."
+
+[signup_js_api_username_taken]
+other = "That username is already reserved or taken."
+
+[signup_js_api_keys_missing]
+other = "Add at least one ssh-ed25519 public key."
+
+[signup_js_api_keys_too_many]
+other = "Add no more than 10 SSH public keys."
+
+[signup_js_api_key_invalid]
+other = "One of the SSH public keys is malformed."
+
+[signup_js_api_key_wrong_type]
+other = "Only ssh-ed25519 public keys are accepted."
+
+[signup_js_api_server_error]
+other = "The signup server could not complete the request."
+
+[signup_js_api_failed]
+other = "The signup request failed."

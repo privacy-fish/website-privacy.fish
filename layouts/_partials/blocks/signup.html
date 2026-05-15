@@ -36,6 +36,48 @@
       action="{{ .Params.action | default "/api/signup" }}"
       data-lookup-endpoint="{{ .Params.lookup_action | default "/api/lookup-session" }}"
       data-check-endpoint="{{ .Params.check_action | default "/api/check-username" }}"
+      data-email-domain="{{ .Params.username_domain | default "@privacy.fish" }}"
+      data-msg-tries-initial="{{ i18n "signup_js_tries_initial" }}"
+      data-msg-tries-left-one="{{ i18n "signup_js_tries_left_one" }}"
+      data-msg-tries-left-many="{{ i18n "signup_js_tries_left_many" }}"
+      data-msg-no-attempts="{{ i18n "signup_js_no_attempts" }}"
+      data-msg-username-invalid="{{ i18n "signup_js_username_invalid" }}"
+      data-msg-key-only-ed25519="{{ i18n "signup_js_key_only_ed25519" }}"
+      data-msg-key-invalid-base64="{{ i18n "signup_js_key_invalid_base64" }}"
+      data-msg-key-wrong-length="{{ i18n "signup_js_key_wrong_length" }}"
+      data-msg-key-decode="{{ i18n "signup_js_key_decode" }}"
+      data-msg-key-too-many="{{ i18n "signup_js_key_too_many" }}"
+      data-msg-key-invalid="{{ i18n "signup_js_key_invalid" }}"
+      data-msg-reading-files="{{ i18n "signup_js_reading_files" }}"
+      data-msg-skipped-large="{{ i18n "signup_js_skipped_large" }}"
+      data-msg-added-keys="{{ i18n "signup_js_added_keys" }}"
+      data-msg-keys-already-listed="{{ i18n "signup_js_keys_already_listed" }}"
+      data-msg-no-key-lines="{{ i18n "signup_js_no_key_lines" }}"
+      data-msg-read-error="{{ i18n "signup_js_read_error" }}"
+      data-msg-copy-failed="{{ i18n "signup_js_copy_failed" }}"
+      data-msg-captcha-required="{{ i18n "signup_js_captcha_required" }}"
+      data-msg-captcha-failed="{{ i18n "signup_js_captcha_failed" }}"
+      data-msg-captcha-accepted="{{ i18n "signup_js_captcha_accepted" }}"
+      data-msg-waiting="{{ i18n "signup_js_waiting" }}"
+      data-msg-checking="{{ i18n "signup_js_checking" }}"
+      data-msg-available="{{ i18n "signup_js_available" }}"
+      data-msg-taken="{{ i18n "signup_js_taken" }}"
+      data-msg-check-failed="{{ i18n "signup_js_check_failed" }}"
+      data-msg-reserve-failed="{{ i18n "signup_js_reserve_failed" }}"
+      data-msg-api-bad-origin="{{ i18n "signup_js_api_bad_origin" }}"
+      data-msg-api-body-too-large="{{ i18n "signup_js_api_body_too_large" }}"
+      data-msg-api-captcha-failed="{{ i18n "signup_js_api_captcha_failed" }}"
+      data-msg-api-credential-invalid="{{ i18n "signup_js_api_credential_invalid" }}"
+      data-msg-api-credential-exhausted="{{ i18n "signup_js_api_credential_exhausted" }}"
+      data-msg-api-rate-limited="{{ i18n "signup_js_api_rate_limited" }}"
+      data-msg-api-username-invalid="{{ i18n "signup_js_api_username_invalid" }}"
+      data-msg-api-username-taken="{{ i18n "signup_js_api_username_taken" }}"
+      data-msg-api-keys-missing="{{ i18n "signup_js_api_keys_missing" }}"
+      data-msg-api-keys-too-many="{{ i18n "signup_js_api_keys_too_many" }}"
+      data-msg-api-key-invalid="{{ i18n "signup_js_api_key_invalid" }}"
+      data-msg-api-key-wrong-type="{{ i18n "signup_js_api_key_wrong_type" }}"
+      data-msg-api-server-error="{{ i18n "signup_js_api_server_error" }}"
+      data-msg-api-failed="{{ i18n "signup_js_api_failed" }}"
       class="mt-10"
       novalidate
     >
@@ -195,8 +237,9 @@
             {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-white") }}
           </button>
           {{ with .Params.help_url }}
+            {{ $helpHref := partial "components/localized-url.html" (dict "url" .) }}
             <a
-              href="{{ . }}"
+              href="{{ $helpHref }}"
               title="{{ $.Params.help_title | default $.Params.help_text }}"
               class="inline-flex items-center justify-center gap-2 rounded-full border border-deep/12 bg-white px-6 py-3 text-sm font-bold text-deep transition hover:border-ocean/28 hover:text-ocean"
             >
@@ -286,9 +329,10 @@
                   </div>
                 </div>
                 {{ with $item.privacy_url }}
+                  {{ $privacyHref := partial "components/localized-url.html" (dict "url" .) }}
                   <div class="border-t border-deep/10 px-5 py-4">
-                    <a href="{{ . }}" title="{{ $item.privacy_title | default (printf "%s privacy information" $item.title) }}" class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition hover:text-deep">
-                      Privacy information
+                    <a href="{{ $privacyHref }}" title="{{ $item.privacy_title | default (printf "%s privacy information" $item.title) }}" class="inline-flex items-center gap-2 text-sm font-bold text-ocean transition hover:text-deep">
+                      {{ i18n "privacy_information_link" }}
                       {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 text-amber") }}
                     </a>
                   </div>
@@ -297,9 +341,10 @@
             {{ end }}
           </div>
           {{ with $.Params.payment_methods_docs_url }}
+            {{ $paymentDocsHref := partial "components/localized-url.html" (dict "url" .) }}
             <div class="mt-6">
               <a
-                href="{{ . }}"
+                href="{{ $paymentDocsHref }}"
                 title="{{ $.Params.payment_methods_docs_title | default $.Params.payment_methods_docs_text }}"
                 class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ocean px-7 py-3.5 text-base font-bold text-white transition hover:bg-deep"
               >
@@ -329,8 +374,9 @@
                 {{ $logo = resources.Get . }}
               {{ end }}
               {{ if .url }}
+                {{ $setupHref := partial "components/localized-url.html" (dict "url" .url) }}
                 <a
-                  href="{{ .url }}"
+                  href="{{ $setupHref }}"
                   title="{{ .link_title | default .title }}"
                   class="group overflow-hidden rounded-2xl border border-deep/10 bg-white transition hover:-translate-y-1 hover:border-ocean/24 hover:shadow-[0_24px_60px_-48px_rgba(6,47,73,0.62)] {{ if not $logo }}p-5{{ end }}"
                 >

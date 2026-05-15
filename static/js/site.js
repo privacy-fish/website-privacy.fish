@@ -25,7 +25,6 @@
       return target.startsWith("/#") || target.startsWith("#");
     });
     if (navbarLinks.length === 0) return;
-    if (window.location.pathname !== "/") return;
 
     function updateActiveNav() {
       const sections = qsa("section[id]");
@@ -159,7 +158,13 @@
   }
 
   function navigateToHash(href, behavior) {
-    const targetId = href.replace("/#", "").replace("#", "");
+    let hash = href;
+    try {
+      hash = new URL(href, window.location.origin).hash;
+    } catch (_) {
+      hash = href;
+    }
+    const targetId = hash.replace("#", "");
     const targetElement = document.getElementById(targetId);
     if (!targetElement) return false;
 
@@ -170,13 +175,16 @@
 
   function initSmoothAnchors() {
     document.addEventListener("click", (e) => {
-      const anchor = e.target.closest('a[href^="/#"], a[href^="#"]');
+      const anchor = e.target.closest('a[href*="#"]');
       if (!anchor) return;
 
       const href = anchor.getAttribute("href");
       if (!href || href === "#" || href === "/#") return;
 
-      if (href.startsWith("#") || href.startsWith("/#")) {
+      const url = new URL(href, window.location.origin);
+      const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+      const targetPath = url.pathname.replace(/\/$/, "") || "/";
+      if (url.origin === window.location.origin && currentPath === targetPath && url.hash) {
         if (navigateToHash(href, "smooth")) {
           e.preventDefault();
         }

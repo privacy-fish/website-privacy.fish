@@ -55,8 +55,9 @@
               {{ $singleText.back_prefix }} {{ .Title }}
             </a>
           {{ end }}
+          {{ $signupHref := .Site.Params.signup_url | relLangURL }}
           <a
-            href="{{ .Site.Params.signup_url }}"
+            href="{{ $signupHref }}"
             title="{{ .Site.Params.single.cta_title | default $singleText.cta_text }}"
             class="inline-flex items-center justify-center rounded-full bg-ocean px-6 py-3 text-sm font-bold text-white transition hover:bg-deep"
           >

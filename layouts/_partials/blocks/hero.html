@@ -37,8 +37,9 @@
 
       <div class="mt-9 flex flex-col gap-4 overflow-hidden sm:flex-row">
         {{ with .Params.primary_cta_text }}
+          {{ $primaryUrl := partial "components/localized-url.html" (dict "url" $.Params.primary_cta_url) }}
           <a
-            href="{{ $.Params.primary_cta_url }}"
+            href="{{ $primaryUrl }}"
             title="{{ $.Params.primary_cta_title | default . }}"
             class="inline-flex min-w-0 items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_38px_-18px_rgba(52,142,195,0.82)] transition hover:bg-deep sm:px-7 sm:text-base"
           >
@@ -48,8 +49,9 @@
         {{ end }}
 
         {{ with .Params.secondary_cta_text }}
+          {{ $secondaryUrl := partial "components/localized-url.html" (dict "url" $.Params.secondary_cta_url) }}
           <a
-            href="{{ $.Params.secondary_cta_url }}"
+            href="{{ $secondaryUrl }}"
             title="{{ $.Params.secondary_cta_title | default . }}"
             class="inline-flex min-w-0 items-center justify-center rounded-full border border-deep/12 bg-white px-6 py-3.5 text-sm font-bold text-deep transition hover:border-ocean/32 hover:text-ocean sm:px-7 sm:text-base"
           >

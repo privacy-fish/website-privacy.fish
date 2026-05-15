@@ -3,6 +3,8 @@ title: "Company Introduction and Philosophy"
 description: "The company philosophy behind privacy.fish and why privacy and security are treated as primary product requirements."
 weight: 10
 video: "/videos/data-minimization-by-default.mp4"
+aliases:
+  - /documentation/company-philosophy/
 ---
 
 ## What Is Privacy.Fish

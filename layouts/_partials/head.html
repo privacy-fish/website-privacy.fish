@@ -8,6 +8,16 @@
 <meta name="author" content="{{ with .Site.Params.author }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}">
 
 <link rel="canonical" href="{{ .Permalink }}">
+{{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+{{ end }}
+{{ with .AllTranslations }}
+  {{ range . }}
+    {{ if eq .Language.Lang "en" }}
+      <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
 
 {{ $logo := or .Params.logo site.Home.Params.logo .Site.Params.logo }}
 {{ with $logo }}

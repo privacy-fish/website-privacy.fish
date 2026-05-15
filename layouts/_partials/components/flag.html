@@ -1,0 +1,10 @@
+{{- $flag := .flag | default "xx" -}}
+{{- $label := .label | default $flag -}}
+{{- $class := .class | default "h-5 w-5 rounded-full object-cover" -}}
+{{- partial "components/image-responsive.html" (dict
+  "src" (printf "images/flags/%s.svg" $flag)
+  "alt" (printf "%s flag" $label)
+  "class" $class
+  "sizes" "24px"
+  "loading" "lazy"
+) -}}
